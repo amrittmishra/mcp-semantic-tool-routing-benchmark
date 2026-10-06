@@ -1,0 +1,157 @@
+{
+  "requests": 10000,
+  "seeds": [
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "task_class": "default",
+  "prior": "optimistic",
+  "static": {
+    "oracle": {
+      "provider_alpha": 0.8735294117647059,
+      "provider_beta": 0.8125574641022447,
+      "provider_gamma": 0.6448390842233958,
+      "provider_delta": 0.30000000000000004
+    },
+    "policies": {
+      "random": {
+        "fidelity": -0.0716227766016838,
+        "starved": 0.0,
+        "found_best_rate": 0.2,
+        "success_rate": 0.8721249999999999,
+        "mean_latency_ms": 167.54536687509102,
+        "regret_per_request": 0.21650390072984696,
+        "share": {
+          "provider_alpha": 0.24979,
+          "provider_beta": 0.24912,
+          "provider_gamma": 0.24960999999999997,
+          "provider_delta": 0.2514799999999999
+        },
+        "final_share": {
+          "provider_alpha": 0.24335,
+          "provider_beta": 0.24985000000000004,
+          "provider_gamma": 0.25284999999999996,
+          "provider_delta": 0.25395
+        }
+      },
+      "argmax": {
+        "fidelity": 0.9648683298050514,
+        "starved": 0.0,
+        "found_best_rate": 1.0,
+        "success_rate": 0.9783550000000002,
+        "mean_latency_ms": 120.08178909646033,
+        "regret_per_request": 0.001995221569727046,
+        "share": {
+          "provider_alpha": 0.98553,
+          "provider_beta": 0.01025,
+          "provider_gamma": 0.0030450000000000004,
+          "provider_delta": 0.001175
+        },
+        "final_share": {
+          "provider_alpha": 0.9968999999999999,
+          "provider_beta": 0.0016999999999999997,
+          "provider_gamma": 0.0009000000000000001,
+          "provider_delta": 0.0005
+        }
+      },
+      "proportional": {
+        "fidelity": 1.0,
+        "starved": 0.0,
+        "found_best_rate": 0.85,
+        "success_rate": 0.9075399999999998,
+        "mean_latency_ms": 146.31363715864762,
+        "regret_per_request": 0.14055600809730692,
+        "share": {
+          "provider_alpha": 0.336555,
+          "provider_beta": 0.30738000000000004,
+          "provider_gamma": 0.23895000000000005,
+          "provider_delta": 0.117115
+        },
+        "final_share": {
+          "provider_alpha": 0.33559999999999995,
+          "provider_beta": 0.30790000000000006,
+          "provider_gamma": 0.23820000000000002,
+          "provider_delta": 0.11829999999999999
+        }
+      },
+      "softmax t=0.25": {
+        "fidelity": 1.0,
+        "starved": 0.0,
+        "found_best_rate": 0.95,
+        "success_rate": 0.93279,
+        "mean_latency_ms": 129.94101172594625,
+        "regret_per_request": 0.08637766472648954,
+        "share": {
+          "provider_alpha": 0.44451999999999997,
+          "provider_beta": 0.33915999999999996,
+          "provider_gamma": 0.16926000000000002,
+          "provider_delta": 0.047060000000000005
+        },
+        "final_share": {
+          "provider_alpha": 0.43995000000000006,
+          "provider_beta": 0.34475,
+          "provider_gamma": 0.1682,
+          "provider_delta": 0.04710000000000001
+        }
+      },
+      "softmax t=0.1": {
+        "fidelity": 1.0,
+        "starved": 0.0,
+        "found_best_rate": 1.0,
+        "success_rate": 0.9639949999999999,
+        "mean_latency_ms": 116.08966541972165,
+        "regret_per_request": 0.023492652219545822,
+        "share": {
+          "provider_alpha": 0.7341900000000001,
+          "provider_beta": 0.23172500000000001,
+          "provider_gamma": 0.029535,
+          "provider_delta": 0.00455
+        },
+        "final_share": {
+          "provider_alpha": 0.6867999999999999,
+          "provider_beta": 0.2731,
+          "provider_gamma": 0.037450000000000004,
+          "provider_delta": 0.0026500000000000004
+        }
+      },
+      "softmax t=0.05": {
+        "fidelity": 1.0,
+        "starved": 0.0,
+        "found_best_rate": 1.0,
+        "success_rate": 0.97774,
+        "mean_latency_ms": 119.81288090769365,
+        "regret_per_request": 0.0031422716071744156,
+        "share": {
+          "provider_alpha": 0.971325,
+          "provider_beta": 0.02315,
+          "provider_gamma": 0.004170000000000001,
+          "provider_delta": 0.0013550000000000003
+        },
+        "final_share": {
+          "provider_alpha": 0.9769500000000001,
+          "provider_beta": 0.0225,
+          "provider_gamma": 0.0005,
+          "provider_delta": 5e-05
+        }
+      }
+    }
+  }
+}

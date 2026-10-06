@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP Semantic Tool Routing Benchmark</title>
+<meta name="description" content="505 hand-authored queries over 101 semantic operations on 18 synthetic MCP servers, with cached embeddings and evaluation code for flat, hierarchical, multi-vector, lexical, hybrid and decision-model routing.">
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#5d5c58;--line:#e3e0d8;--accent:#0f6e56;--accent-soft:#e3f1ec;--card:#ffffff;--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15161a;--fg:#ececea;--muted:#a6a5a0;--line:#2c2e35;--accent:#5fd3ad;--accent-soft:#17352c;--card:#1d1f25}}
+:root[data-theme="dark"]{--bg:#15161a;--fg:#ececea;--muted:#a6a5a0;--line:#2c2e35;--accent:#5fd3ad;--accent-soft:#17352c;--card:#1d1f25}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Georgia,"Times New Roman",serif}
+main{max-width:860px;margin:0 auto;padding:40px 16px 64px}
+h1{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.15;margin:0 0 8px}
+h2{font-size:1.25rem;margin:40px 0 12px;border-top:1px solid var(--line);padding-top:24px}
+p,li{color:var(--fg)}
+.sub{color:var(--muted);font-size:1.05rem;margin:0 0 20px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 28px}
+.btn{display:inline-block;padding:9px 14px;border:1px solid var(--accent);border-radius:8px;color:var(--accent);text-decoration:none;font-family:system-ui,sans-serif;font-size:.95rem}
+.btn.primary{background:var(--accent);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:0 0 8px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.stat b{display:block;font-size:1.5rem;font-family:system-ui,sans-serif}
+.stat span{color:var(--muted);font-size:.9rem}
+table{width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;font-size:.93rem;margin:12px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.hl td{background:var(--accent-soft)}
+code,pre{font-family:var(--mono);font-size:.88rem}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;overflow-x:auto}
+figure{margin:16px 0}
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff}
+figcaption{color:var(--muted);font-size:.9rem;margin-top:6px}
+.note{color:var(--muted);font-size:.93rem}
+footer{margin-top:48px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:16px}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+<h1>MCP Semantic Tool Routing Benchmark</h1>
+<p class="sub">Can one orchestrator tool route a request to the right capability without loading every MCP tool schema into the model's context?</p>
+
+<div class="meta">
+  <a class="btn primary" href="https://github.com/amrittmishra/mcp-semantic-tool-routing-benchmark">Code &amp; data on GitHub</a>
+  <a class="btn" href="mcp_tool_routing_dataset_v1.0.0.zip">Download dataset v1.0.0 (CSV, 240 KB)</a>
+</div>
+
+<div class="stats">
+  <div class="stat"><b>101</b><span>semantic operations</span></div>
+  <div class="stat"><b>18</b><span>synthetic MCP servers</span></div>
+  <div class="stat"><b>505</b><span>hand-authored queries</span></div>
+  <div class="stat"><b>606</b><span>indexed examples</span></div>
+  <div class="stat"><b>24</b><span>compound requests</span></div>
+</div>
+
+<p>This page accompanies the paper <em>Scalable Semantic Routing and QoS-Aware Provider Selection for MCP Agents</em> (Mishra, Panditrao, Parab, Sharma, Mishra, Saha; ICMLDE 2026, Procedia Computer Science). The repository contains the registry, the 505 labelled queries, the cached <code>gemini-embedding-001</code> vectors, saved outputs of every model run, and the scripts behind each table, so the retrieval results reproduce offline without any API key.</p>
+
+<h2>Results on the 505 queries</h2>
+<table>
+<thead><tr><th>Routing method</th><th class="num">Top-1</th><th class="num">95% Wilson CI</th><th>Script</th></tr></thead>
+<tbody>
+<tr><td>BM25 (k<sub>1</sub>=1.5, b=0.75)</td><td class="num">62.97%</td><td class="num">58.7–67.1</td><td><code>research.lexical_hybrid</code></td></tr>
+<tr><td>Reciprocal rank fusion, BM25 + dense top-5</td><td class="num">86.93%</td><td class="num">83.7–89.6</td><td><code>research.lexical_hybrid</code></td></tr>
+<tr><td>Hard class-gated hierarchy, beam 1</td><td class="num">87.13%</td><td class="num">—</td><td><code>hierarchy_experiment</code></td></tr>
+<tr class="hl"><td>Flat dense retrieval (one vector per operation)</td><td class="num">95.64%</td><td class="num">93.5–97.1</td><td><code>hierarchy_experiment</code></td></tr>
+<tr><td>Best score interpolation (α<sub>h</sub>=0.7)</td><td class="num">95.84%</td><td class="num">93.7–97.3</td><td><code>research.lexical_hybrid</code></td></tr>
+<tr><td>Multi-vector, 5-fold cross-validated</td><td class="num">97.62%</td><td class="num">95.9–98.6</td><td><code>research.tune_blend</code></td></tr>
+<tr><td>Jev 1.13 decision model, all 101 descriptions</td><td class="num">97.82%</td><td class="num">96.1–98.8</td><td><code>jev_comparison</code></td></tr>
+<tr><td>Generation selector over flat top 5</td><td class="num">98.02%</td><td class="num">96.4–98.9</td><td><code>research.recovery</code></td></tr>
+</tbody>
+</table>
+<p class="note">Top-3 recall of flat dense retrieval is 99.60%. Hard hierarchical gating makes the correct operation unreachable for 51 of 505 queries. For 23 of 24 compound requests a single embedding places every constituent operation in its top 10. These are operation-routing results, not end-to-end task success.</p>
+
+<h2>QoS provider selection (simulation)</h2>
+<figure>
+  <img src="qos_dynamic_reputation.png" alt="Four-panel figure: regret per request under uninformative versus optimistic priors; entrant traffic share in a cold-start market; and two traffic-share timelines in which a new provider joins at request 2,250.">
+  <figcaption>Dynamic reputation loop. Winner-take-all allocation never samples a new, better provider under an uninformative prior; optimistic initialisation discovers it and routes 95–96% of traffic to it. Reproduce with <code>python -m benchmark.research.qos_dynamic --experiment all</code>.</figcaption>
+</figure>
+
+<h2>Quick start</h2>
+<pre>git clone https://github.com/amrittmishra/mcp-semantic-tool-routing-benchmark
+cd mcp-semantic-tool-routing-benchmark
+python -m venv .venv &amp;&amp; . .venv/bin/activate
+pip install -r requirements.txt
+export PYTHONPATH=.
+python -m benchmark.hierarchy_experiment        # Tables 1–2, offline
+python -m benchmark.research.lexical_hybrid     # Table 5 lexical/hybrid rows, offline
+python -m benchmark.research.tune_blend         # multi-vector cross-validation, offline</pre>
+
+<h2>Dataset files</h2>
+<table>
+<thead><tr><th>File</th><th class="num">Rows</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code>servers.csv</code></td><td class="num">18</td><td>One row per downstream synthetic MCP server</td></tr>
+<tr><td><code>tools.csv</code></td><td class="num">101</td><td>One row per semantic operation, with taxonomy class/type and description</td></tr>
+<tr><td><code>queries.csv</code></td><td class="num">505</td><td>Hand-authored routing queries with gold operation, tool and server labels</td></tr>
+<tr><td><code>tool_examples.csv</code></td><td class="num">606</td><td>Positive and negative example phrasings used in the indexed documents</td></tr>
+<tr><td><code>tool_parameters.csv</code></td><td class="num">160</td><td>Flattened input schemas</td></tr>
+</tbody>
+</table>
+<p class="note">The queries were written by the authors after the registry was fixed; two coincide with a positive example up to capitalisation and one differs by a single word, and all three are routed correctly by every method. The catalogue is synthetic and English-only; see the dataset card in the repository for intended uses and limitations.</p>
+
+<h2>License and citation</h2>
+<p>Code: MIT. Data: CC BY 4.0. Please cite the ICMLDE 2026 paper; machine-readable metadata is in <code>CITATION.cff</code>.</p>
+
+<footer>Department of Computer Engineering, SVKM's NMIMS Mukesh Patel School of Technology Management &amp; Engineering, Mumbai.</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "dataset_title": "MCP Semantic Tool Routing Benchmark",
+  "version": "1.0.0",
+  "release_date": "2026-08-11",
+  "language": "en",
+  "license": "PENDING - select a license before public upload",
+  "source_registry": "data/tools.json",
+  "source_queries": "benchmark/dataset.jsonl",
+  "registry_branch": "taxonomy-router",
+  "qos_enabled": false,
+  "counts": {
+    "servers": 18,
+    "tools": 101,
+    "operations": 101,
+    "queries": 505,
+    "positive_examples": 303,
+    "negative_examples": 303,
+    "tool_parameters": 160,
+    "taxonomy_classes": 12,
+    "taxonomy_types": 35,
+    "taxonomy_nodes": 38
+  },
+  "provenance": "Synthetic registry and hand-authored benchmark queries; not production traffic or user logs.",
+  "source_registry_sha256": "410a35abdf942cca7127d8e3c4356ad3f07919b7eeb91e700243fae0f40a5a44",
+  "validation": {
+    "status": "passed",
+    "check_count": 22,
+    "checks": [
+      "Server row count is exactly 18",
+      "Tool row count is exactly 101",
+      "Query row count is exactly 505",
+      "Positive-example row count is exactly 303",
+      "Negative-example row count is exactly 303",
+      "Tool-parameter row count is exactly 160",
+      "Server IDs are unique",
+      "Operation IDs are unique",
+      "Tool IDs are unique",
+      "Query IDs are unique",
+      "Query texts are unique",
+      "Every tool server_id joins to servers.csv",
+      "Every query operation label joins to tools.csv",
+      "Every query tool label joins to tools.csv",
+      "Every query server label joins to servers.csv",
+      "Every query operation/tool/server label triple matches the canonical registry",
+      "Every operation has exactly five benchmark queries",
+      "All required tool fields are populated",
+      "All required server fields are populated",
+      "All required query fields are populated",
+      "No released text cell begins with a spreadsheet-formula prefix",
+      "Basic sensitive-content scan found no private keys, credential values, or non-placeholder email addresses"
+    ]
+  }
+}

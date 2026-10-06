@@ -1,0 +1,607 @@
+operation_id,tool_id,example_polarity,example_index,example_text
+FILE_READ,read_file,positive,1,read this file
+FILE_READ,read_file,positive,2,open report.txt
+FILE_READ,read_file,positive,3,show me what is inside this file
+FILE_READ,read_file,positive,4,retrieve the contents of notes.md
+FILE_READ,read_file,positive,5,inspect this configuration file
+FILE_READ,read_file,negative,1,write text into this file
+FILE_READ,read_file,negative,2,copy this file
+FILE_READ,read_file,negative,3,delete this file
+FILE_WRITE,write_file,positive,1,write this text to notes.txt
+FILE_WRITE,write_file,positive,2,create a file containing this
+FILE_WRITE,write_file,positive,3,replace the contents of config.json
+FILE_WRITE,write_file,negative,1,read a file
+FILE_WRITE,write_file,negative,2,append to a file
+FILE_WRITE,write_file,negative,3,copy a file
+FILE_APPEND,append_file,positive,1,append this line to the log
+FILE_APPEND,append_file,positive,2,add this text to the end of notes.txt
+FILE_APPEND,append_file,positive,3,keep the existing file and add this
+FILE_APPEND,append_file,negative,1,replace the file contents
+FILE_APPEND,append_file,negative,2,read the file
+FILE_APPEND,append_file,negative,3,delete the file
+FILE_COPY,copy_file,positive,1,copy this file to backups
+FILE_COPY,copy_file,positive,2,duplicate report.pdf
+FILE_COPY,copy_file,positive,3,make another copy of this file
+FILE_COPY,copy_file,negative,1,move this file
+FILE_COPY,copy_file,negative,2,rename this file
+FILE_COPY,copy_file,negative,3,read this file
+FILE_MOVE,move_file,positive,1,move this file to another folder
+FILE_MOVE,move_file,positive,2,rename notes.txt to archive.txt
+FILE_MOVE,move_file,positive,3,relocate this file
+FILE_MOVE,move_file,negative,1,copy this file
+FILE_MOVE,move_file,negative,2,read this file
+FILE_MOVE,move_file,negative,3,append to this file
+FILE_DELETE,delete_file,positive,1,delete this file
+FILE_DELETE,delete_file,positive,2,remove temp.txt
+FILE_DELETE,delete_file,positive,3,get rid of this file
+FILE_DELETE,delete_file,negative,1,move this file
+FILE_DELETE,delete_file,negative,2,clear the contents of this file
+FILE_DELETE,delete_file,negative,3,read this file
+DIRECTORY_LIST,list_directory,positive,1,show files in this folder
+DIRECTORY_LIST,list_directory,positive,2,list directory contents
+DIRECTORY_LIST,list_directory,positive,3,what is inside /tmp
+DIRECTORY_LIST,list_directory,negative,1,read this file
+DIRECTORY_LIST,list_directory,negative,2,search inside all files
+DIRECTORY_LIST,list_directory,negative,3,get file metadata
+FILE_METADATA,get_file_metadata,positive,1,how large is this file
+FILE_METADATA,get_file_metadata,positive,2,when was this file modified
+FILE_METADATA,get_file_metadata,positive,3,show metadata for report.pdf
+FILE_METADATA,get_file_metadata,negative,1,read the contents of this file
+FILE_METADATA,get_file_metadata,negative,2,describe an image
+FILE_METADATA,get_file_metadata,negative,3,extract PDF text
+PDF_TEXT_EXTRACT,extract_pdf_text,positive,1,extract text from this PDF
+PDF_TEXT_EXTRACT,extract_pdf_text,positive,2,give me all text in report.pdf
+PDF_TEXT_EXTRACT,extract_pdf_text,positive,3,convert this PDF to text
+PDF_TEXT_EXTRACT,extract_pdf_text,negative,1,summarize this PDF
+PDF_TEXT_EXTRACT,extract_pdf_text,negative,2,search this PDF for a topic
+PDF_TEXT_EXTRACT,extract_pdf_text,negative,3,read a plain text file
+DOCX_TEXT_EXTRACT,extract_docx_text,positive,1,extract the text from this Word file
+DOCX_TEXT_EXTRACT,extract_docx_text,positive,2,read all paragraphs from document.docx
+DOCX_TEXT_EXTRACT,extract_docx_text,negative,1,extract PDF text
+DOCX_TEXT_EXTRACT,extract_docx_text,negative,2,summarize a document
+DOCX_TEXT_EXTRACT,extract_docx_text,negative,3,write a Word document
+DOCUMENT_SUMMARIZE,summarize_document,positive,1,summarize this document
+DOCUMENT_SUMMARIZE,summarize_document,positive,2,give me a short overview of this report
+DOCUMENT_SUMMARIZE,summarize_document,positive,3,what are the main points of this document
+DOCUMENT_SUMMARIZE,summarize_document,negative,1,extract all raw text
+DOCUMENT_SUMMARIZE,summarize_document,negative,2,search for one exact section
+DOCUMENT_SUMMARIZE,summarize_document,negative,3,summarize a research paper specifically
+DOCUMENT_SEARCH,search_document,positive,1,find where this document discusses pricing
+DOCUMENT_SEARCH,search_document,positive,2,search this document for security
+DOCUMENT_SEARCH,search_document,positive,3,find passages about limitations
+DOCUMENT_SEARCH,search_document,negative,1,summarize the entire document
+DOCUMENT_SEARCH,search_document,negative,2,search the web
+DOCUMENT_SEARCH,search_document,negative,3,extract all PDF text
+DOCUMENT_SECTION_EXTRACT,extract_document_section,positive,1,give me the conclusion section
+DOCUMENT_SECTION_EXTRACT,extract_document_section,positive,2,extract chapter 4
+DOCUMENT_SECTION_EXTRACT,extract_document_section,positive,3,show the methodology section
+DOCUMENT_SECTION_EXTRACT,extract_document_section,negative,1,summarize the whole document
+DOCUMENT_SECTION_EXTRACT,extract_document_section,negative,2,search for arbitrary passages
+DOCUMENT_SECTION_EXTRACT,extract_document_section,negative,3,extract all document text
+SQL_QUERY,execute_sql_query,positive,1,run this SQL query
+SQL_QUERY,execute_sql_query,positive,2,select users created this month
+SQL_QUERY,execute_sql_query,positive,3,query the database
+SQL_QUERY,execute_sql_query,negative,1,insert a record
+SQL_QUERY,execute_sql_query,negative,2,update rows
+SQL_QUERY,execute_sql_query,negative,3,inspect the schema
+DATABASE_SCHEMA_INSPECT,inspect_database_schema,positive,1,show me the database schema
+DATABASE_SCHEMA_INSPECT,inspect_database_schema,positive,2,what columns are in users
+DATABASE_SCHEMA_INSPECT,inspect_database_schema,positive,3,list database tables
+DATABASE_SCHEMA_INSPECT,inspect_database_schema,negative,1,query rows from users
+DATABASE_SCHEMA_INSPECT,inspect_database_schema,negative,2,insert data
+DATABASE_SCHEMA_INSPECT,inspect_database_schema,negative,3,aggregate sales
+DATABASE_INSERT,insert_database_record,positive,1,add a new user
+DATABASE_INSERT,insert_database_record,positive,2,insert this record
+DATABASE_INSERT,insert_database_record,positive,3,create a row in customers
+DATABASE_INSERT,insert_database_record,negative,1,update this row
+DATABASE_INSERT,insert_database_record,negative,2,delete this row
+DATABASE_INSERT,insert_database_record,negative,3,query existing rows
+DATABASE_UPDATE,update_database_record,positive,1,update this user's email
+DATABASE_UPDATE,update_database_record,positive,2,change the status of these rows
+DATABASE_UPDATE,update_database_record,positive,3,modify this database record
+DATABASE_UPDATE,update_database_record,negative,1,insert a new record
+DATABASE_UPDATE,update_database_record,negative,2,delete rows
+DATABASE_UPDATE,update_database_record,negative,3,query the database
+DATABASE_DELETE,delete_database_record,positive,1,delete this user
+DATABASE_DELETE,delete_database_record,positive,2,remove cancelled orders
+DATABASE_DELETE,delete_database_record,positive,3,delete matching database rows
+DATABASE_DELETE,delete_database_record,negative,1,delete a filesystem file
+DATABASE_DELETE,delete_database_record,negative,2,update database rows
+DATABASE_DELETE,delete_database_record,negative,3,insert a row
+DATABASE_AGGREGATE,aggregate_database_data,positive,1,average revenue by country
+DATABASE_AGGREGATE,aggregate_database_data,positive,2,count customers by plan
+DATABASE_AGGREGATE,aggregate_database_data,positive,3,sum sales by month
+DATABASE_AGGREGATE,aggregate_database_data,negative,1,calculate statistics on a local CSV
+DATABASE_AGGREGATE,aggregate_database_data,negative,2,run arbitrary SQL
+DATABASE_AGGREGATE,aggregate_database_data,negative,3,inspect table definitions
+WEB_FETCH,fetch_web_page,positive,1,fetch this webpage
+WEB_FETCH,fetch_web_page,positive,2,open this URL
+WEB_FETCH,fetch_web_page,positive,3,retrieve the page at this address
+WEB_FETCH,fetch_web_page,negative,1,search the web for something
+WEB_FETCH,fetch_web_page,negative,2,extract only readable text
+WEB_FETCH,fetch_web_page,negative,3,extract structured fields
+WEB_TEXT_EXTRACT,extract_web_text,positive,1,extract the article text
+WEB_TEXT_EXTRACT,extract_web_text,positive,2,give me the readable content from this webpage
+WEB_TEXT_EXTRACT,extract_web_text,positive,3,remove menus and return page text
+WEB_TEXT_EXTRACT,extract_web_text,negative,1,fetch the raw webpage
+WEB_TEXT_EXTRACT,extract_web_text,negative,2,extract links
+WEB_TEXT_EXTRACT,extract_web_text,negative,3,search the internet
+WEB_LINK_EXTRACT,extract_web_links,positive,1,list all links on this page
+WEB_LINK_EXTRACT,extract_web_links,positive,2,extract hyperlinks from this website
+WEB_LINK_EXTRACT,extract_web_links,positive,3,show outbound links
+WEB_LINK_EXTRACT,extract_web_links,negative,1,extract article text
+WEB_LINK_EXTRACT,extract_web_links,negative,2,search the web
+WEB_LINK_EXTRACT,extract_web_links,negative,3,get page metadata
+WEB_METADATA,extract_web_metadata,positive,1,get metadata for this page
+WEB_METADATA,extract_web_metadata,positive,2,what is the page title and description
+WEB_METADATA,extract_web_metadata,positive,3,show webpage metadata
+WEB_METADATA,extract_web_metadata,negative,1,get file metadata
+WEB_METADATA,extract_web_metadata,negative,2,extract article text
+WEB_METADATA,extract_web_metadata,negative,3,search webpages
+WEB_STRUCTURED_EXTRACT,extract_structured_web_data,positive,1,extract product names and prices
+WEB_STRUCTURED_EXTRACT,extract_structured_web_data,positive,2,scrape this table
+WEB_STRUCTURED_EXTRACT,extract_structured_web_data,positive,3,get these fields from the webpage
+WEB_STRUCTURED_EXTRACT,extract_structured_web_data,negative,1,return all readable text
+WEB_STRUCTURED_EXTRACT,extract_structured_web_data,negative,2,fetch HTML only
+WEB_STRUCTURED_EXTRACT,extract_structured_web_data,negative,3,extract links
+WEB_SEARCH,search_web,positive,1,search the web for MCP routing
+WEB_SEARCH,search_web,positive,2,find websites about FAISS
+WEB_SEARCH,search_web,positive,3,look up pages discussing tool discovery
+WEB_SEARCH,search_web,negative,1,fetch this exact URL
+WEB_SEARCH,search_web,negative,2,search research papers
+WEB_SEARCH,search_web,negative,3,search email
+PAPER_SEARCH,search_research_papers,positive,1,find papers about MCP routing
+PAPER_SEARCH,search_research_papers,positive,2,search academic research on embeddings
+PAPER_SEARCH,search_research_papers,positive,3,find studies on tool selection
+PAPER_SEARCH,search_research_papers,negative,1,search the general web
+PAPER_SEARCH,search_research_papers,negative,2,search emails
+PAPER_SEARCH,search_research_papers,negative,3,summarize this paper
+PAPER_METADATA,get_paper_metadata,positive,1,who wrote this paper
+PAPER_METADATA,get_paper_metadata,positive,2,what year was this study published
+PAPER_METADATA,get_paper_metadata,positive,3,get metadata for this paper
+PAPER_METADATA,get_paper_metadata,negative,1,summarize the paper
+PAPER_METADATA,get_paper_metadata,negative,2,find citations
+PAPER_METADATA,get_paper_metadata,negative,3,extract PDF text
+PAPER_CITATIONS,get_paper_citations,positive,1,what papers cite this
+PAPER_CITATIONS,get_paper_citations,positive,2,show references for this paper
+PAPER_CITATIONS,get_paper_citations,positive,3,find citing papers
+PAPER_CITATIONS,get_paper_citations,negative,1,search papers by topic
+PAPER_CITATIONS,get_paper_citations,negative,2,get paper metadata
+PAPER_CITATIONS,get_paper_citations,negative,3,summarize the paper
+PAPER_SUMMARIZE,summarize_research_paper,positive,1,summarize this research paper
+PAPER_SUMMARIZE,summarize_research_paper,positive,2,what did this study find
+PAPER_SUMMARIZE,summarize_research_paper,positive,3,give me the methodology and results
+PAPER_SUMMARIZE,summarize_research_paper,negative,1,summarize a generic document
+PAPER_SUMMARIZE,summarize_research_paper,negative,2,extract PDF text
+PAPER_SUMMARIZE,summarize_research_paper,negative,3,find papers
+PAPER_COMPARE,compare_research_papers,positive,1,compare these two papers
+PAPER_COMPARE,compare_research_papers,positive,2,how do these studies differ
+PAPER_COMPARE,compare_research_papers,positive,3,compare their methodologies
+PAPER_COMPARE,compare_research_papers,negative,1,summarize one paper
+PAPER_COMPARE,compare_research_papers,negative,2,find citations
+PAPER_COMPARE,compare_research_papers,negative,3,compare JSON
+EMAIL_SEND,send_email,positive,1,email Alice about the meeting
+EMAIL_SEND,send_email,positive,2,send this message by email
+EMAIL_SEND,send_email,positive,3,send an email to the team
+EMAIL_SEND,send_email,negative,1,create an email draft
+EMAIL_SEND,send_email,negative,2,reply to this email
+EMAIL_SEND,send_email,negative,3,send a Slack message
+EMAIL_SEARCH,search_email,positive,1,find emails from Alice
+EMAIL_SEARCH,search_email,positive,2,search my inbox for invoices
+EMAIL_SEARCH,search_email,positive,3,find the message about the meeting
+EMAIL_SEARCH,search_email,negative,1,search Slack messages
+EMAIL_SEARCH,search_email,negative,2,read a known email
+EMAIL_SEARCH,search_email,negative,3,search the web
+EMAIL_READ,read_email,positive,1,open this email
+EMAIL_READ,read_email,positive,2,read the email from Alice
+EMAIL_READ,read_email,positive,3,show me the full message
+EMAIL_READ,read_email,negative,1,search emails
+EMAIL_READ,read_email,negative,2,reply to an email
+EMAIL_READ,read_email,negative,3,read a filesystem file
+EMAIL_REPLY,reply_email,positive,1,reply to this email
+EMAIL_REPLY,reply_email,positive,2,respond to Alice's message
+EMAIL_REPLY,reply_email,positive,3,send a reply saying yes
+EMAIL_REPLY,reply_email,negative,1,send a brand new email
+EMAIL_REPLY,reply_email,negative,2,create a draft only
+EMAIL_REPLY,reply_email,negative,3,reply to a chat thread
+EMAIL_DRAFT,create_email_draft,positive,1,draft an email to Alice
+EMAIL_DRAFT,create_email_draft,positive,2,save this as an email draft
+EMAIL_DRAFT,create_email_draft,positive,3,prepare an email but don't send it
+EMAIL_DRAFT,create_email_draft,negative,1,send the email now
+EMAIL_DRAFT,create_email_draft,negative,2,reply immediately
+EMAIL_DRAFT,create_email_draft,negative,3,draft a Slack message
+EMAIL_ARCHIVE,archive_email,positive,1,archive this email
+EMAIL_ARCHIVE,archive_email,positive,2,remove this message from inbox but keep it
+EMAIL_ARCHIVE,archive_email,negative,1,delete the email permanently
+EMAIL_ARCHIVE,archive_email,negative,2,reply to this email
+EMAIL_ARCHIVE,archive_email,negative,3,archive a filesystem file
+CALENDAR_CREATE,create_calendar_event,positive,1,schedule a meeting tomorrow
+CALENDAR_CREATE,create_calendar_event,positive,2,create a calendar event
+CALENDAR_CREATE,create_calendar_event,positive,3,put lunch on my calendar
+CALENDAR_CREATE,create_calendar_event,negative,1,find an existing meeting
+CALENDAR_CREATE,create_calendar_event,negative,2,check when I'm free
+CALENDAR_CREATE,create_calendar_event,negative,3,send an email invitation without creating an event
+CALENDAR_SEARCH,search_calendar_events,positive,1,find my meeting with Alice
+CALENDAR_SEARCH,search_calendar_events,positive,2,what meetings do I have Friday
+CALENDAR_SEARCH,search_calendar_events,positive,3,search my calendar
+CALENDAR_SEARCH,search_calendar_events,negative,1,create a new event
+CALENDAR_SEARCH,search_calendar_events,negative,2,check free time only
+CALENDAR_SEARCH,search_calendar_events,negative,3,search email
+CALENDAR_UPDATE,update_calendar_event,positive,1,move my meeting to 4pm
+CALENDAR_UPDATE,update_calendar_event,positive,2,change the event title
+CALENDAR_UPDATE,update_calendar_event,positive,3,add Alice to this meeting
+CALENDAR_UPDATE,update_calendar_event,negative,1,create another event
+CALENDAR_UPDATE,update_calendar_event,negative,2,delete the event
+CALENDAR_UPDATE,update_calendar_event,negative,3,search events
+CALENDAR_DELETE,delete_calendar_event,positive,1,cancel this meeting
+CALENDAR_DELETE,delete_calendar_event,positive,2,remove this event from my calendar
+CALENDAR_DELETE,delete_calendar_event,positive,3,delete tomorrow's appointment
+CALENDAR_DELETE,delete_calendar_event,negative,1,update the meeting time
+CALENDAR_DELETE,delete_calendar_event,negative,2,archive email
+CALENDAR_DELETE,delete_calendar_event,negative,3,delete a file
+CALENDAR_AVAILABILITY,check_calendar_availability,positive,1,when am I free tomorrow
+CALENDAR_AVAILABILITY,check_calendar_availability,positive,2,find an open slot on Friday
+CALENDAR_AVAILABILITY,check_calendar_availability,positive,3,check my availability
+CALENDAR_AVAILABILITY,check_calendar_availability,negative,1,search for a named meeting
+CALENDAR_AVAILABILITY,check_calendar_availability,negative,2,create an event
+CALENDAR_AVAILABILITY,check_calendar_availability,negative,3,list all calendar events
+MESSAGE_SEND,send_channel_message,positive,1,post this to engineering
+MESSAGE_SEND,send_channel_message,positive,2,send a Slack message to general
+MESSAGE_SEND,send_channel_message,positive,3,message the team channel
+MESSAGE_SEND,send_channel_message,negative,1,send an email
+MESSAGE_SEND,send_channel_message,negative,2,reply inside an existing thread
+MESSAGE_SEND,send_channel_message,negative,3,search messages
+MESSAGE_SEARCH,search_messages,positive,1,find Slack messages about deployment
+MESSAGE_SEARCH,search_messages,positive,2,search our chats for pricing
+MESSAGE_SEARCH,search_messages,positive,3,find where someone mentioned FAISS
+MESSAGE_SEARCH,search_messages,negative,1,search emails
+MESSAGE_SEARCH,search_messages,negative,2,get one channel's recent history
+MESSAGE_SEARCH,search_messages,negative,3,send a new message
+MESSAGE_THREAD_REPLY,reply_to_thread,positive,1,reply to this Slack thread
+MESSAGE_THREAD_REPLY,reply_to_thread,positive,2,respond in the existing conversation
+MESSAGE_THREAD_REPLY,reply_to_thread,positive,3,add this to the thread
+MESSAGE_THREAD_REPLY,reply_to_thread,negative,1,send a new channel message
+MESSAGE_THREAD_REPLY,reply_to_thread,negative,2,reply to email
+MESSAGE_THREAD_REPLY,reply_to_thread,negative,3,search chats
+CHANNEL_LIST,list_channels,positive,1,list Slack channels
+CHANNEL_LIST,list_channels,positive,2,what channels are available
+CHANNEL_LIST,list_channels,positive,3,show workspace channels
+CHANNEL_LIST,list_channels,negative,1,list directory contents
+CHANNEL_LIST,list_channels,negative,2,get messages from one channel
+CHANNEL_LIST,list_channels,negative,3,search channel messages
+CHANNEL_HISTORY,get_channel_history,positive,1,show recent messages in engineering
+CHANNEL_HISTORY,get_channel_history,positive,2,what happened in general today
+CHANNEL_HISTORY,get_channel_history,positive,3,get channel history
+CHANNEL_HISTORY,get_channel_history,negative,1,search all messages
+CHANNEL_HISTORY,get_channel_history,negative,2,list channels
+CHANNEL_HISTORY,get_channel_history,negative,3,read email history
+GIT_STATUS,get_git_status,positive,1,git status
+GIT_STATUS,get_git_status,positive,2,what files have changed
+GIT_STATUS,get_git_status,positive,3,show staged and unstaged changes
+GIT_STATUS,get_git_status,negative,1,show the actual diff
+GIT_STATUS,get_git_status,negative,2,list commits
+GIT_STATUS,get_git_status,negative,3,list branches
+GIT_DIFF,get_git_diff,positive,1,show me the git diff
+GIT_DIFF,get_git_diff,positive,2,what code changed
+GIT_DIFF,get_git_diff,positive,3,compare these branches
+GIT_DIFF,get_git_diff,negative,1,show only repository status
+GIT_DIFF,get_git_diff,negative,2,list commits
+GIT_DIFF,get_git_diff,negative,3,create a branch
+GIT_COMMIT_HISTORY,get_commit_history,positive,1,show recent commits
+GIT_COMMIT_HISTORY,get_commit_history,positive,2,git log
+GIT_COMMIT_HISTORY,get_commit_history,positive,3,what was committed yesterday
+GIT_COMMIT_HISTORY,get_commit_history,negative,1,create a commit
+GIT_COMMIT_HISTORY,get_commit_history,negative,2,show current diff
+GIT_COMMIT_HISTORY,get_commit_history,negative,3,list branches
+GIT_BRANCH_LIST,list_git_branches,positive,1,show git branches
+GIT_BRANCH_LIST,list_git_branches,positive,2,what branches exist
+GIT_BRANCH_LIST,list_git_branches,positive,3,list remote branches
+GIT_BRANCH_LIST,list_git_branches,negative,1,create a branch
+GIT_BRANCH_LIST,list_git_branches,negative,2,show commits
+GIT_BRANCH_LIST,list_git_branches,negative,3,list filesystem directories
+GIT_CREATE_BRANCH,create_git_branch,positive,1,create a branch called experiment
+GIT_CREATE_BRANCH,create_git_branch,positive,2,make a new git branch
+GIT_CREATE_BRANCH,create_git_branch,positive,3,branch from main
+GIT_CREATE_BRANCH,create_git_branch,negative,1,list branches
+GIT_CREATE_BRANCH,create_git_branch,negative,2,create a commit
+GIT_CREATE_BRANCH,create_git_branch,negative,3,move a file
+GIT_COMMIT,create_git_commit,positive,1,commit these changes
+GIT_COMMIT,create_git_commit,positive,2,make a git commit
+GIT_COMMIT,create_git_commit,positive,3,save staged changes with this message
+GIT_COMMIT,create_git_commit,negative,1,show commit history
+GIT_COMMIT,create_git_commit,negative,2,create a branch
+GIT_COMMIT,create_git_commit,negative,3,write a file
+ISSUE_SEARCH,search_issues,positive,1,find bugs mentioning authentication
+ISSUE_SEARCH,search_issues,positive,2,search GitHub issues for crash
+ISSUE_SEARCH,search_issues,positive,3,find open issues about routing
+ISSUE_SEARCH,search_issues,negative,1,search git commits
+ISSUE_SEARCH,search_issues,negative,2,read a known issue
+ISSUE_SEARCH,search_issues,negative,3,search web pages
+ISSUE_READ,read_issue,positive,1,open issue 42
+ISSUE_READ,read_issue,positive,2,show me this GitHub issue
+ISSUE_READ,read_issue,positive,3,read the bug report
+ISSUE_READ,read_issue,negative,1,search issues
+ISSUE_READ,read_issue,negative,2,create a new issue
+ISSUE_READ,read_issue,negative,3,read an email
+ISSUE_CREATE,create_issue,positive,1,create a bug report
+ISSUE_CREATE,create_issue,positive,2,open a new issue
+ISSUE_CREATE,create_issue,positive,3,file an issue for this problem
+ISSUE_CREATE,create_issue,negative,1,comment on an existing issue
+ISSUE_CREATE,create_issue,negative,2,update an issue
+ISSUE_CREATE,create_issue,negative,3,create a calendar event
+ISSUE_UPDATE,update_issue,positive,1,close this issue
+ISSUE_UPDATE,update_issue,positive,2,assign this bug to Alice
+ISSUE_UPDATE,update_issue,positive,3,change the issue label
+ISSUE_UPDATE,update_issue,negative,1,create a new issue
+ISSUE_UPDATE,update_issue,negative,2,comment on the issue
+ISSUE_UPDATE,update_issue,negative,3,search issues
+ISSUE_COMMENT,comment_on_issue,positive,1,comment on this issue
+ISSUE_COMMENT,comment_on_issue,positive,2,post this response to the bug
+ISSUE_COMMENT,comment_on_issue,positive,3,add a note to issue 42
+ISSUE_COMMENT,comment_on_issue,negative,1,update the issue description
+ISSUE_COMMENT,comment_on_issue,negative,2,reply to Slack
+ISSUE_COMMENT,comment_on_issue,negative,3,create a new issue
+TEXT_SUMMARIZE,summarize_text,positive,1,summarize this paragraph
+TEXT_SUMMARIZE,summarize_text,positive,2,make this text shorter
+TEXT_SUMMARIZE,summarize_text,positive,3,give me the key points of this text
+TEXT_SUMMARIZE,summarize_text,negative,1,summarize a research paper
+TEXT_SUMMARIZE,summarize_text,negative,2,summarize an entire document
+TEXT_SUMMARIZE,summarize_text,negative,3,rewrite this in a nicer tone
+TEXT_TRANSLATE,translate_text,positive,1,translate this to Hindi
+TEXT_TRANSLATE,translate_text,positive,2,convert this sentence to French
+TEXT_TRANSLATE,translate_text,positive,3,what is this in Marathi
+TEXT_TRANSLATE,translate_text,negative,1,rewrite this in simpler English
+TEXT_TRANSLATE,translate_text,negative,2,detect sentiment
+TEXT_TRANSLATE,translate_text,negative,3,extract entities
+TEXT_SENTIMENT,analyze_sentiment,positive,1,is this review positive
+TEXT_SENTIMENT,analyze_sentiment,positive,2,analyze the sentiment of this message
+TEXT_SENTIMENT,analyze_sentiment,positive,3,does this sound negative
+TEXT_SENTIMENT,analyze_sentiment,negative,1,classify this into a topic
+TEXT_SENTIMENT,analyze_sentiment,negative,2,extract keywords
+TEXT_SENTIMENT,analyze_sentiment,negative,3,rewrite the text
+TEXT_KEYWORDS,extract_keywords,positive,1,extract keywords from this article
+TEXT_KEYWORDS,extract_keywords,positive,2,what are the key phrases
+TEXT_KEYWORDS,extract_keywords,positive,3,give me important terms
+TEXT_KEYWORDS,extract_keywords,negative,1,extract named entities
+TEXT_KEYWORDS,extract_keywords,negative,2,summarize the text
+TEXT_KEYWORDS,extract_keywords,negative,3,classify the text
+TEXT_ENTITIES,extract_entities,positive,1,extract company names from this
+TEXT_ENTITIES,extract_entities,positive,2,find people and places mentioned here
+TEXT_ENTITIES,extract_entities,positive,3,identify named entities
+TEXT_ENTITIES,extract_entities,negative,1,extract keywords
+TEXT_ENTITIES,extract_entities,negative,2,summarize this text
+TEXT_ENTITIES,extract_entities,negative,3,search a document
+TEXT_REWRITE,rewrite_text,positive,1,make this more professional
+TEXT_REWRITE,rewrite_text,positive,2,rewrite this politely
+TEXT_REWRITE,rewrite_text,positive,3,make this sentence clearer
+TEXT_REWRITE,rewrite_text,negative,1,translate this
+TEXT_REWRITE,rewrite_text,negative,2,summarize this
+TEXT_REWRITE,rewrite_text,negative,3,classify sentiment
+TEXT_CLASSIFY,classify_text,positive,1,classify this support ticket
+TEXT_CLASSIFY,classify_text,positive,2,which category does this message belong to
+TEXT_CLASSIFY,classify_text,positive,3,label this text as billing or technical
+TEXT_CLASSIFY,classify_text,negative,1,analyze positive or negative sentiment
+TEXT_CLASSIFY,classify_text,negative,2,extract keywords
+TEXT_CLASSIFY,classify_text,negative,3,rewrite this text
+CALCULATOR,calculate_expression,positive,1,calculate 45 times 12
+CALCULATOR,calculate_expression,positive,2,what is 17.5 divided by 3
+CALCULATOR,calculate_expression,positive,3,evaluate this expression
+CALCULATOR,calculate_expression,negative,1,calculate compound interest
+CALCULATOR,calculate_expression,negative,2,describe a dataset
+CALCULATOR,calculate_expression,negative,3,solve a linear equation
+STATISTICS_DESCRIBE,calculate_descriptive_statistics,positive,1,calculate mean and median
+STATISTICS_DESCRIBE,calculate_descriptive_statistics,positive,2,give me descriptive statistics
+STATISTICS_DESCRIBE,calculate_descriptive_statistics,positive,3,find standard deviation
+STATISTICS_DESCRIBE,calculate_descriptive_statistics,negative,1,group a dataset by category
+STATISTICS_DESCRIBE,calculate_descriptive_statistics,negative,2,calculate percentage change
+STATISTICS_DESCRIBE,calculate_descriptive_statistics,negative,3,aggregate SQL data
+PERCENTAGE_CHANGE,calculate_percentage_change,positive,1,what percentage increase is 100 to 125
+PERCENTAGE_CHANGE,calculate_percentage_change,positive,2,calculate percentage change
+PERCENTAGE_CHANGE,calculate_percentage_change,positive,3,how much did revenue decline in percent
+PERCENTAGE_CHANGE,calculate_percentage_change,negative,1,calculate a percentage of a number
+PERCENTAGE_CHANGE,calculate_percentage_change,negative,2,calculate compound growth
+PERCENTAGE_CHANGE,calculate_percentage_change,negative,3,get descriptive statistics
+COMPOUND_INTEREST,calculate_compound_interest,positive,1,what will 1000 become at 8 percent for 5 years
+COMPOUND_INTEREST,calculate_compound_interest,positive,2,calculate compound interest
+COMPOUND_INTEREST,calculate_compound_interest,positive,3,future value with annual compounding
+COMPOUND_INTEREST,calculate_compound_interest,negative,1,calculate percentage change
+COMPOUND_INTEREST,calculate_compound_interest,negative,2,calculate simple arithmetic
+COMPOUND_INTEREST,calculate_compound_interest,negative,3,convert currencies
+LINEAR_EQUATION_SOLVE,solve_linear_equation,positive,1,solve 2x plus 5 equals 17
+LINEAR_EQUATION_SOLVE,solve_linear_equation,positive,2,find x in this linear equation
+LINEAR_EQUATION_SOLVE,solve_linear_equation,positive,3,solve this linear system
+LINEAR_EQUATION_SOLVE,solve_linear_equation,negative,1,evaluate arithmetic
+LINEAR_EQUATION_SOLVE,solve_linear_equation,negative,2,calculate statistics
+LINEAR_EQUATION_SOLVE,solve_linear_equation,negative,3,calculate compound interest
+DATASET_INSPECT,inspect_dataset,positive,1,inspect this CSV
+DATASET_INSPECT,inspect_dataset,positive,2,what columns are in this dataset
+DATASET_INSPECT,inspect_dataset,positive,3,show dataset structure
+DATASET_INSPECT,inspect_dataset,negative,1,inspect a database schema
+DATASET_INSPECT,inspect_dataset,negative,2,filter the dataset
+DATASET_INSPECT,inspect_dataset,negative,3,calculate statistics only
+DATASET_FILTER,filter_dataset,positive,1,show rows where revenue is over 1000
+DATASET_FILTER,filter_dataset,positive,2,filter this dataset by country
+DATASET_FILTER,filter_dataset,positive,3,keep only active customers
+DATASET_FILTER,filter_dataset,negative,1,sort the dataset
+DATASET_FILTER,filter_dataset,negative,2,group rows
+DATASET_FILTER,filter_dataset,negative,3,run a SQL query
+DATASET_SORT,sort_dataset,positive,1,sort by revenue descending
+DATASET_SORT,sort_dataset,positive,2,order the dataset by date
+DATASET_SORT,sort_dataset,positive,3,sort customers alphabetically
+DATASET_SORT,sort_dataset,negative,1,filter dataset rows
+DATASET_SORT,sort_dataset,negative,2,group dataset rows
+DATASET_SORT,sort_dataset,negative,3,sort files in a directory
+DATASET_GROUP,group_dataset,positive,1,group sales by country
+DATASET_GROUP,group_dataset,positive,2,average revenue by category
+DATASET_GROUP,group_dataset,positive,3,count users per plan
+DATASET_GROUP,group_dataset,negative,1,aggregate a SQL database
+DATASET_GROUP,group_dataset,negative,2,calculate simple statistics
+DATASET_GROUP,group_dataset,negative,3,sort the dataset
+DATASET_COLUMN_CREATE,create_calculated_column,positive,1,add a profit margin column
+DATASET_COLUMN_CREATE,create_calculated_column,positive,2,create total price from quantity and unit price
+DATASET_COLUMN_CREATE,create_calculated_column,positive,3,derive age from birth year
+DATASET_COLUMN_CREATE,create_calculated_column,negative,1,insert a database column
+DATASET_COLUMN_CREATE,create_calculated_column,negative,2,filter rows
+DATASET_COLUMN_CREATE,create_calculated_column,negative,3,calculate one arithmetic expression
+DATASET_MISSING_VALUES,analyze_missing_values,positive,1,which columns have missing data
+DATASET_MISSING_VALUES,analyze_missing_values,positive,2,analyze null values
+DATASET_MISSING_VALUES,analyze_missing_values,positive,3,show missing-value percentages
+DATASET_MISSING_VALUES,analyze_missing_values,negative,1,inspect general dataset structure
+DATASET_MISSING_VALUES,analyze_missing_values,negative,2,fill missing values
+DATASET_MISSING_VALUES,analyze_missing_values,negative,3,validate JSON
+JSON_PARSE,parse_json,positive,1,parse this JSON string
+JSON_PARSE,parse_json,positive,2,is this valid JSON syntax
+JSON_PARSE,parse_json,positive,3,convert this JSON text into an object
+JSON_PARSE,parse_json,negative,1,validate against a JSON schema
+JSON_PARSE,parse_json,negative,2,query nested JSON
+JSON_PARSE,parse_json,negative,3,transform JSON fields
+JSON_QUERY,query_json,positive,1,get user.name from this JSON
+JSON_QUERY,query_json,positive,2,find the price field
+JSON_QUERY,query_json,positive,3,extract this nested JSON property
+JSON_QUERY,query_json,negative,1,validate JSON
+JSON_QUERY,query_json,negative,2,compare two JSON objects
+JSON_QUERY,query_json,negative,3,query SQL
+JSON_VALIDATE,validate_json_schema,positive,1,validate this JSON against this schema
+JSON_VALIDATE,validate_json_schema,positive,2,does this payload match the schema
+JSON_VALIDATE,validate_json_schema,positive,3,check required JSON fields
+JSON_VALIDATE,validate_json_schema,negative,1,check only JSON syntax
+JSON_VALIDATE,validate_json_schema,negative,2,query a JSON path
+JSON_VALIDATE,validate_json_schema,negative,3,compare JSON objects
+JSON_TRANSFORM,transform_json,positive,1,rename these JSON fields
+JSON_TRANSFORM,transform_json,positive,2,convert this JSON structure
+JSON_TRANSFORM,transform_json,positive,3,map this payload into another schema
+JSON_TRANSFORM,transform_json,negative,1,compare JSON
+JSON_TRANSFORM,transform_json,negative,2,validate JSON
+JSON_TRANSFORM,transform_json,negative,3,rewrite plain text
+JSON_COMPARE,compare_json,positive,1,compare these JSON objects
+JSON_COMPARE,compare_json,positive,2,what changed between these payloads
+JSON_COMPARE,compare_json,positive,3,diff these JSON files
+JSON_COMPARE,compare_json,negative,1,git diff
+JSON_COMPARE,compare_json,negative,2,validate JSON
+JSON_COMPARE,compare_json,negative,3,compare research papers
+SYSTEM_INFO,get_system_info,positive,1,what OS is this machine running
+SYSTEM_INFO,get_system_info,positive,2,show system information
+SYSTEM_INFO,get_system_info,positive,3,what architecture is this computer
+SYSTEM_INFO,get_system_info,negative,1,show memory usage
+SYSTEM_INFO,get_system_info,negative,2,show disk usage
+SYSTEM_INFO,get_system_info,negative,3,list running processes
+DISK_USAGE,get_disk_usage,positive,1,how much disk space is left
+DISK_USAGE,get_disk_usage,positive,2,show storage usage
+DISK_USAGE,get_disk_usage,positive,3,check free space on this drive
+DISK_USAGE,get_disk_usage,negative,1,show memory usage
+DISK_USAGE,get_disk_usage,negative,2,show file size
+DISK_USAGE,get_disk_usage,negative,3,inspect a directory
+MEMORY_USAGE,get_memory_usage,positive,1,how much RAM is being used
+MEMORY_USAGE,get_memory_usage,positive,2,show memory usage
+MEMORY_USAGE,get_memory_usage,positive,3,how much memory is free
+MEMORY_USAGE,get_memory_usage,negative,1,show disk usage
+MEMORY_USAGE,get_memory_usage,negative,2,show file size
+MEMORY_USAGE,get_memory_usage,negative,3,list processes
+PROCESS_LIST,list_processes,positive,1,show running processes
+PROCESS_LIST,list_processes,positive,2,what programs are running
+PROCESS_LIST,list_processes,positive,3,list system processes
+PROCESS_LIST,list_processes,negative,1,list files
+PROCESS_LIST,list_processes,negative,2,show memory usage
+PROCESS_LIST,list_processes,negative,3,read environment variable
+ENVIRONMENT_READ,read_environment_variable,positive,1,what is the value of APP_ENV
+ENVIRONMENT_READ,read_environment_variable,positive,2,read this environment variable
+ENVIRONMENT_READ,read_environment_variable,positive,3,show the configured environment setting
+ENVIRONMENT_READ,read_environment_variable,negative,1,read a file
+ENVIRONMENT_READ,read_environment_variable,negative,2,show system information
+ENVIRONMENT_READ,read_environment_variable,negative,3,modify an environment variable
+GEOCODE,geocode_location,positive,1,get coordinates for Mumbai
+GEOCODE,geocode_location,positive,2,geocode this address
+GEOCODE,geocode_location,positive,3,what are the coordinates of this place
+GEOCODE,geocode_location,negative,1,convert coordinates to an address
+GEOCODE,geocode_location,negative,2,calculate distance
+GEOCODE,geocode_location,negative,3,find timezone
+REVERSE_GEOCODE,reverse_geocode,positive,1,what place is at these coordinates
+REVERSE_GEOCODE,reverse_geocode,positive,2,"reverse geocode 19.07,72.87"
+REVERSE_GEOCODE,reverse_geocode,positive,3,convert lat long to an address
+REVERSE_GEOCODE,reverse_geocode,negative,1,get coordinates for Mumbai
+REVERSE_GEOCODE,reverse_geocode,negative,2,calculate geographic distance
+REVERSE_GEOCODE,reverse_geocode,negative,3,lookup country information
+GEO_DISTANCE,calculate_geographic_distance,positive,1,distance from Mumbai to Pune
+GEO_DISTANCE,calculate_geographic_distance,positive,2,how far apart are these coordinates
+GEO_DISTANCE,calculate_geographic_distance,positive,3,calculate geographic distance
+GEO_DISTANCE,calculate_geographic_distance,negative,1,geocode a place
+GEO_DISTANCE,calculate_geographic_distance,negative,2,calculate Euclidean math
+GEO_DISTANCE,calculate_geographic_distance,negative,3,find timezone
+TIMEZONE_LOOKUP,lookup_timezone,positive,1,what timezone is Mumbai in
+TIMEZONE_LOOKUP,lookup_timezone,positive,2,find timezone for San Francisco
+TIMEZONE_LOOKUP,lookup_timezone,positive,3,which timezone does this location use
+TIMEZONE_LOOKUP,lookup_timezone,negative,1,what time is it now
+TIMEZONE_LOOKUP,lookup_timezone,negative,2,geocode the location
+TIMEZONE_LOOKUP,lookup_timezone,negative,3,lookup country data
+COUNTRY_LOOKUP,lookup_country_information,positive,1,what is the capital of Japan
+COUNTRY_LOOKUP,lookup_country_information,positive,2,show information about India
+COUNTRY_LOOKUP,lookup_country_information,positive,3,what is Germany's country code
+COUNTRY_LOOKUP,lookup_country_information,negative,1,find coordinates for a city
+COUNTRY_LOOKUP,lookup_country_information,negative,2,calculate distance
+COUNTRY_LOOKUP,lookup_country_information,negative,3,translate a country name
+IMAGE_METADATA,get_image_metadata,positive,1,what size is this image
+IMAGE_METADATA,get_image_metadata,positive,2,get metadata for this PNG
+IMAGE_METADATA,get_image_metadata,positive,3,what format is this image
+IMAGE_METADATA,get_image_metadata,negative,1,get generic file metadata
+IMAGE_METADATA,get_image_metadata,negative,2,describe what is in the image
+IMAGE_METADATA,get_image_metadata,negative,3,resize the image
+IMAGE_RESIZE,resize_image,positive,1,resize this image to 500 by 500
+IMAGE_RESIZE,resize_image,positive,2,make this image smaller
+IMAGE_RESIZE,resize_image,positive,3,change the image dimensions
+IMAGE_RESIZE,resize_image,negative,1,crop the image
+IMAGE_RESIZE,resize_image,negative,2,convert image format
+IMAGE_RESIZE,resize_image,negative,3,get image metadata
+IMAGE_CROP,crop_image,positive,1,crop the top-left part of this image
+IMAGE_CROP,crop_image,positive,2,cut this image to this rectangle
+IMAGE_CROP,crop_image,positive,3,extract this region from the image
+IMAGE_CROP,crop_image,negative,1,resize the whole image
+IMAGE_CROP,crop_image,negative,2,convert to PNG
+IMAGE_CROP,crop_image,negative,3,describe the image
+IMAGE_FORMAT_CONVERT,convert_image_format,positive,1,convert this PNG to JPEG
+IMAGE_FORMAT_CONVERT,convert_image_format,positive,2,change this image to WebP
+IMAGE_FORMAT_CONVERT,convert_image_format,positive,3,save this image in another format
+IMAGE_FORMAT_CONVERT,convert_image_format,negative,1,resize this image
+IMAGE_FORMAT_CONVERT,convert_image_format,negative,2,convert text encoding
+IMAGE_FORMAT_CONVERT,convert_image_format,negative,3,extract image metadata
+IMAGE_DESCRIBE,describe_image,positive,1,what is in this image
+IMAGE_DESCRIBE,describe_image,positive,2,describe this photo
+IMAGE_DESCRIBE,describe_image,positive,3,tell me what you see
+IMAGE_DESCRIBE,describe_image,negative,1,get image dimensions
+IMAGE_DESCRIBE,describe_image,negative,2,resize the image
+IMAGE_DESCRIBE,describe_image,negative,3,extract text from PDF
+DATE_DIFFERENCE,calculate_date_difference,positive,1,how many days between these dates
+DATE_DIFFERENCE,calculate_date_difference,positive,2,calculate date difference
+DATE_DIFFERENCE,calculate_date_difference,positive,3,how long from August 1 to August 20
+DATE_DIFFERENCE,calculate_date_difference,negative,1,add 10 days to a date
+DATE_DIFFERENCE,calculate_date_difference,negative,2,check calendar availability
+DATE_DIFFERENCE,calculate_date_difference,negative,3,calculate geographic distance
+DATE_ADD,add_date_duration,positive,1,add 10 days to this date
+DATE_ADD,add_date_duration,positive,2,what date is three weeks after August 1
+DATE_ADD,add_date_duration,positive,3,move this date forward two months
+DATE_ADD,add_date_duration,negative,1,calculate difference between dates
+DATE_ADD,add_date_duration,negative,2,create a calendar event
+DATE_ADD,add_date_duration,negative,3,find timezone
+UUID_GENERATE,generate_uuid,positive,1,generate a UUID
+UUID_GENERATE,generate_uuid,positive,2,give me a unique identifier
+UUID_GENERATE,generate_uuid,positive,3,create a random UUID
+UUID_GENERATE,generate_uuid,negative,1,hash this text
+UUID_GENERATE,generate_uuid,negative,2,generate a random password
+UUID_GENERATE,generate_uuid,negative,3,encode this string
+HASH_TEXT,hash_text,positive,1,hash this text with SHA256
+HASH_TEXT,hash_text,positive,2,calculate the MD5 digest
+HASH_TEXT,hash_text,positive,3,generate a hash of this string
+HASH_TEXT,hash_text,negative,1,Base64 encode this
+HASH_TEXT,hash_text,negative,2,encrypt this text
+HASH_TEXT,hash_text,negative,3,generate a UUID
+BASE64_ENCODE,encode_base64,positive,1,encode this text as Base64
+BASE64_ENCODE,encode_base64,positive,2,convert this string to Base64
+BASE64_ENCODE,encode_base64,positive,3,Base64 encode this
+BASE64_ENCODE,encode_base64,negative,1,decode Base64
+BASE64_ENCODE,encode_base64,negative,2,hash this text
+BASE64_ENCODE,encode_base64,negative,3,convert JSON
+BASE64_DECODE,decode_base64,positive,1,decode this Base64
+BASE64_DECODE,decode_base64,positive,2,convert this Base64 string back to text
+BASE64_DECODE,decode_base64,positive,3,what does this Base64 value contain
+BASE64_DECODE,decode_base64,negative,1,encode text as Base64
+BASE64_DECODE,decode_base64,negative,2,hash this value
+BASE64_DECODE,decode_base64,negative,3,parse JSON

@@ -1,0 +1,14 @@
+# Core: every "offline" experiment in the README needs only these.
+numpy>=1.26
+faiss-cpu>=1.8.0
+python-dotenv>=1.0.0
+
+# Re-embedding, the shortlist selector (recovery.py), and the eager control
+# need Vertex AI through google-genai; eager_control.py additionally needs
+# google-adk. Jev (jev_comparison.py) needs httpx and an OpenRouter key.
+google-genai>=1.0.0
+httpx>=0.27
+anyio>=4.0
+
+# Figures only.
+matplotlib>=3.8

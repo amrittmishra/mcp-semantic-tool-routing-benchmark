@@ -1,0 +1,197 @@
+
+########## build_index
+Loaded 101 tools
+Active tools: 101
+Embedding model: gemini-embedding-001
+Embedding dimension: 768
+Embedded: 101
+FAISS vectors: 101
+Normalized: yes
+Metric: inner product / cosine
+Registry hash: sha256:4f282b2da273e9ea47830c5bd2cbdb51a310bf8c073ffd7b16f07f0641279ea5
+Saved: data/cache/tools.faiss
+Saved: data/cache/tools_metadata.json
+Saved: data/cache/embedding_manifest.json
+########## build_index done in 316s
+
+########## hierarchy_experiment
+Embedding 505 queries as RETRIEVAL_QUERY (one time)...
+Cached to benchmark_query_vectors_9d876b0b187348ce.npy
+
+505 queries | 101 operations | 12 classes | 38 nodes
+Tree nodes are centroids of the SAME operation vectors flat search uses,
+so any difference is the search procedure, not the embeddings.
+
+variant                   top-1    top-3     gate   fixed   broke  unreach
+--------------------------------------------------------------------------
+flat (baseline)          95.64%   99.60%       -      -       -        -
+class-gate beam=1        87.13%   89.90%   89.9%      2      45       51
+class-gate beam=2        94.26%   97.62%   97.6%      2       9       12
+class-gate beam=3        94.85%   98.61%   99.0%      0       4        5
+node-gate beam=1         91.68%   93.27%   93.3%      5      25       34
+node-gate beam=2         94.85%   98.02%   98.2%      3       7        9
+node-gate beam=3         95.64%   99.21%   99.6%      2       2        2
+soft-class w=0.15        95.84%   99.60%       -      1       0        -
+soft-class w=0.30        95.25%   99.60%       -      1       3        -
+soft-class w=0.50        94.65%   99.21%       -      1       6        -
+soft-node w=0.15         95.84%   99.41%       -      1       0        -
+soft-node w=0.30         95.84%   99.41%       -      3       2        -
+soft-node w=0.50         95.25%   99.21%       -      4       6        -
+
+gate    = the right answer was inside the node(s) the gate admitted
+fixed   = flat got it wrong, this variant got it right
+broke   = flat got it right, this variant got it wrong
+unreach = gate excluded the correct operation entirely (flat never does this)
+########## hierarchy_experiment done in 1211s
+
+########## scaling
+505 queries | 101 operations | vectors cached, no API calls
+
+Random subsets (mean +/- 1 s.d. over 40 draws) vs the deterministic
+--tool-limit subset the build script actually produces.
+
+    N  queries      top-1 random    top-3 random  top-1 determ.  top-3 determ.
+------------------------------------------------------------------------------
+   10       50      99.10% +/-1.55         100.00%         96.00%        100.00%
+   20      100      98.78% +/-1.39          99.88%         98.00%         99.00%
+   30      150      98.32% +/-1.17          99.80%         97.33%         99.33%
+   40      200      98.06% +/-1.06          99.78%         98.00%         99.50%
+   50      250      97.88% +/-1.07          99.73%         96.80%         99.60%
+   60      300      97.38% +/-0.84          99.76%         96.67%         99.67%
+   70      350      96.66% +/-0.74          99.60%         96.57%         99.71%
+   80      400      96.48% +/-0.69          99.67%         96.50%         99.75%
+   90      450      96.08% +/-0.46          99.63%         96.22%         99.78%
+  101      505        95.64%              99.60%         95.64%         99.60%
+
+linear fit of top-1 against log(N):  slope = -1.50 points per e-fold
+  extrapolated to N=1000:  92.8%
+  extrapolated to N=10000: 89.4%
+
+(Extrapolation assumes new capabilities are as separable as these 101.
+ A denser catalogue with more near-duplicates would decay faster --
+ that is what the collision detector is for.)
+########## scaling done in 0s
+
+########## reranking
+505 queries | 101 operations | no re-embedding, no labels used
+
+technique                           top-1    top-3   fixed   broke         p
+----------------------------------------------------------------------------
+baseline                           95.64%   99.60%       -       -         -
+centering                          93.47%   99.01%       0      11   0.0010 *
+abtt d=1                           93.47%   99.01%       0      11   0.0010 *
+abtt d=2                           92.87%   99.21%       0      14   0.0001 *
+abtt d=4                           92.48%   98.42%       1      17   0.0001 *
+csls k=3 lam=0.25                  95.25%   99.60%       0       2   0.5000
+csls k=3 lam=0.5                   94.26%   99.21%       2       9   0.0654
+csls k=3 lam=1.0                   91.29%   98.02%       3      25   0.0000 *
+csls k=5 lam=0.25                  95.25%   99.60%       0       2   0.5000
+csls k=5 lam=0.5                   93.66%   99.21%       0      10   0.0020 *
+csls k=5 lam=1.0                   90.89%   97.62%       3      27   0.0000 *
+csls k=10 lam=0.25                 95.45%   99.60%       1       2   1.0000
+csls k=10 lam=0.5                  93.66%   98.81%       1      11   0.0063 *
+csls k=10 lam=1.0                  88.71%   97.43%       2      37   0.0000 *
+centering + csls k=5 lam=0.5       91.68%   98.81%       2      22   0.0000 *
+abtt d=2 + csls k=5 lam=0.5        91.88%   98.61%       2      21   0.0001 *
+
+fixed = this technique got it right where baseline was wrong
+broke = baseline was right, this technique wrong
+p     = exact McNemar, paired on the same 505 queries.  * = p<0.05
+
+best: csls k=10 lam=0.25 at 95.45% (baseline 95.64%), p=1.0000
+NOT statistically distinguishable from baseline -- do not ship it.
+########## reranking done in 0s
+
+########## chains
+  embedding 24 chain requests -> research_chain_queries.npy
+
+24 compound requests | 101 operations
+
+Can ONE embedding of the whole request find EACH required step?
+step position      rank@1    top-3    top-5   top-10  median rank
+-----------------------------------------------------------------
+step 1              41.7%    83.3%    91.7%   100.0%            2
+step 2              45.8%    83.3%    87.5%    95.8%            2
+step 3              50.0%    75.0%   100.0%   100.0%            1
+ALL steps           44.2%    82.7%    90.4%    98.1%            2
+
+Are ALL of a chain's steps inside a single top-k? (this is what plan-then-route needs)
+  top-3   complete chains: 16/24  (67%)
+  top-5   complete chains: 20/24  (83%)
+  top-10  complete chains: 23/24  (96%)
+  top-20  complete chains: 23/24  (96%)
+
+Which step does the single embedding actually land on?
+  an operation not in the chain at all     1/24
+  step 1                                  10/24
+  step 2                                  11/24
+  step 3                                   2/24
+
+Error compounding, assuming independent steps at measured per-step accuracy:
+  current flat   k=1:  95.6%  k=2:  91.5%  k=3:  87.5%  k=5:  80.0%
+  tuned blend    k=1:  97.6%  k=2:  95.3%  k=3:  93.0%  k=5:  88.7%
+########## chains done in 46s
+
+########## tune_blend
+  embedding 303 texts as RETRIEVAL_DOCUMENT -> research_pos_doc.npy
+  embedding 303 texts as RETRIEVAL_DOCUMENT -> research_neg_doc.npy
+505 queries | 101 operations
+baseline top-1: 95.64%
+
+2-fold cross-validated
+  weights chosen per fold: a=0.30/l=0.20, a=0.60/l=0.10
+  HELD-OUT top-1: 96.24%   (baseline 95.64%, +0.59 points)
+  fixed 13, broke 10, p=0.6776  not significant
+
+5-fold cross-validated
+  weights chosen per fold: a=0.60/l=0.10, a=0.60/l=0.10, a=0.55/l=0.10, a=0.60/l=0.10, a=0.60/l=0.10
+  HELD-OUT top-1: 97.62%   (baseline 95.64%, +1.98 points)
+  fixed 14, broke 4, p=0.0309  SIGNIFICANT
+
+in-sample optimum (OVERFIT, do not quote): alpha=0.60 lam=0.10 -> 98.02%
+
+blend sensitivity at lam=0 (in-sample, for shape only):
+  alpha=0.50  top-1 96.63%  top-3 99.60%
+  alpha=0.60  top-1 97.43%  top-3 99.60%
+  alpha=0.70  top-1 97.23%  top-3 99.60%
+  alpha=0.75  top-1 97.03%  top-3 99.60%
+  alpha=0.80  top-1 97.23%  top-3 99.60%
+  alpha=0.85  top-1 96.83%  top-3 99.60%
+  alpha=0.90  top-1 96.44%  top-3 99.60%
+  alpha=0.95  top-1 96.44%  top-3 99.60%
+  alpha=1.00  top-1 95.64%  top-3 99.60%
+########## tune_blend done in 1164s
+
+########## multivector
+505 queries | 101 operations
+303 positive examples, 303 negative examples
+
+  embedding 303 texts as RETRIEVAL_QUERY -> research_pos_query.npy
+variant                                       top-1    top-3  fixed  broke         p
+------------------------------------------------------------------------------------
+baseline (1 vector/op)                       95.64%   99.60%      -      -         -
+examples only, max  [doc]                    92.67%   98.81%     14     29   0.0315 *
+examples only, mean [doc]                    94.46%   98.61%     16     22   0.4177
+blend 0.3*summary + max [doc]                94.85%   99.60%     12     16   0.5716
+blend 0.5*summary + max [doc]                96.63%   99.60%     13      8   0.3833
+blend 0.7*summary + max [doc]                97.23%   99.60%     11      3   0.0574
+max(summary, examples) [doc]                 93.47%   99.21%     14     25   0.1081
+examples only, max  [qry]                    91.29%   98.22%     14     36   0.0026 *
+examples only, mean [qry]                    93.66%   98.02%     16     26   0.1641
+blend 0.3*summary + max [qry]                94.26%   98.61%     15     22   0.3240
+blend 0.5*summary + max [qry]                95.64%   99.60%     14     14   1.0000
+blend 0.7*summary + max [qry]                97.03%   99.41%     13      6   0.1671
+max(summary, examples) [qry]                 92.67%   99.21%     14     29   0.0315 *
+baseline - 0.1*negatives                     96.04%   99.41%      4      2   0.6875
+baseline - 0.2*negatives                     95.45%   99.41%      3      4   1.0000
+baseline - 0.3*negatives                     95.05%   99.41%      5      8   0.5811
+max(summary,examples) - 0.1*negatives        93.07%   99.01%     14     27   0.0596
+max(summary,examples) - 0.2*negatives        93.27%   99.01%     14     26   0.0807
+
+best: blend 0.7*summary + max [doc]
+  top-1 97.23% vs baseline 95.64%  (+1.58 points)
+  top-3 99.60%,  fixed 11, broke 3,  p=0.0574
+  not significant -- treat as a wash
+########## multivector done in 583s
+
+ALL STAGES ATTEMPTED

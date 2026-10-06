@@ -1,0 +1,7 @@
+file_name,entity,row_count,column_count,sha256,description
+servers.csv,MCP server,18,5,ea176e1b68420965f7675f65f795ef2757f8f7a981fd39c5dd3b8014f9d68832,One row per downstream synthetic MCP server.
+tools.csv,semantic operation/tool,101,14,364994f01017b3ff1c06002de712bb25ececc59867345b9756680253b2064fd1,"One row per semantic operation. In this release, one operation maps to one tool and one server."
+queries.csv,benchmark query,505,6,7ae41ccc49a663519a3f57a9fce45cd33ae0634111dd30f357c2347f59cae613,"One row per hand-authored routing query with gold operation, tool, and server labels."
+tool_examples.csv,tool description example,606,5,7f00cfaef77465fc1c3d1299f04b0fe66ea3c1e8a2bc2645ca7c4456460f74bb,"Positive and negative examples used in tool descriptions, one example per row."
+tool_parameters.csv,tool input parameter,160,9,06f3e3691bab8effdc421e471037bc415497aa16d483977dbebc4467b34c955a,"Flattened tool input schemas, one input parameter per row."
+data_dictionary.csv,column definition,39,5,2947db9c2c799d2ebfadf183669412d00991d128802f8bf777db2aa161f3af27,Machine-readable definitions for every released CSV column.

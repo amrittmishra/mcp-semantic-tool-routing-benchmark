@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, please cite it using this metadata."
+title: "MCP Semantic Tool Routing Benchmark"
+type: dataset
+version: "1.0.0"
+date-released: "2026-08-11"
+repository-code: "https://github.com/amrittmishra/mcp-semantic-tool-routing-benchmark"
+url: "https://mcp-tool-routing-benchmark.vercel.app"
+license: "MIT"
+authors:
+  - family-names: "Mishra"
+    given-names: "Amritansh"
+  - family-names: "Panditrao"
+    given-names: "Yash"
+  - family-names: "Parab"
+    given-names: "Shlok"
+  - family-names: "Sharma"
+    given-names: "Achintya"
+  - family-names: "Mishra"
+    given-names: "Payal"
+  - family-names: "Saha"
+    given-names: "Ishani"
+preferred-citation:
+  type: conference-paper
+  title: "Scalable Semantic Routing and QoS-Aware Provider Selection for MCP Agents"
+  collection-title: "Procedia Computer Science, International Conference on Machine Learning and Data Engineering (ICMLDE)"
+  year: 2026
+  authors:
+    - family-names: "Mishra"
+      given-names: "Amritansh"
+    - family-names: "Panditrao"
+      given-names: "Yash"
+    - family-names: "Parab"
+      given-names: "Shlok"
+    - family-names: "Sharma"
+      given-names: "Achintya"
+    - family-names: "Mishra"
+      given-names: "Payal"
+    - family-names: "Saha"
+      given-names: "Ishani"

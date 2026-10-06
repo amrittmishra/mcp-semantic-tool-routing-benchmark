@@ -1,0 +1,19 @@
+# secrets
+.env
+.secrets/
+*service_account*.json
+*.pem
+
+# python
+.venv/
+__pycache__/
+*.py[cod]
+
+# vercel
+.vercel/
+
+# macOS
+.DS_Store
+
+# run logs written by the router
+logs/

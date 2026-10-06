@@ -1,0 +1,2989 @@
+{
+  "version": "1.0",
+  "branch": "taxonomy-router",
+  "qos_enabled": false,
+  "servers": [
+    {
+      "server_id": "filesystem_mcp",
+      "name": "Filesystem MCP",
+      "description": "Local filesystem operations for reading, writing, inspecting, copying, moving, deleting, and discovering files and directories.",
+      "tools": [
+        {
+          "tool_id": "read_file",
+          "name": "Read File",
+          "operation_id": "FILE_READ",
+          "taxonomy": {
+            "class": "data",
+            "type": "filesystem"
+          },
+          "description": "Read and return the contents of an existing file from a provided filesystem path. Use when the user wants to open, inspect, view, retrieve, or read file contents.",
+          "positive_examples": [
+            "read this file",
+            "open report.txt",
+            "show me what is inside this file",
+            "retrieve the contents of notes.md",
+            "inspect this configuration file"
+          ],
+          "negative_examples": [
+            "write text into this file",
+            "copy this file",
+            "delete this file"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "write_file",
+          "name": "Write File",
+          "operation_id": "FILE_WRITE",
+          "taxonomy": {
+            "class": "data",
+            "type": "filesystem"
+          },
+          "description": "Write supplied content to a file, creating the file if necessary or replacing its current contents.",
+          "positive_examples": [
+            "write this text to notes.txt",
+            "create a file containing this",
+            "replace the contents of config.json"
+          ],
+          "negative_examples": [
+            "read a file",
+            "append to a file",
+            "copy a file"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            },
+            "content": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "append_file",
+          "name": "Append File",
+          "operation_id": "FILE_APPEND",
+          "taxonomy": {
+            "class": "data",
+            "type": "filesystem"
+          },
+          "description": "Add new content to the end of an existing file without replacing its current contents.",
+          "positive_examples": [
+            "append this line to the log",
+            "add this text to the end of notes.txt",
+            "keep the existing file and add this"
+          ],
+          "negative_examples": [
+            "replace the file contents",
+            "read the file",
+            "delete the file"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            },
+            "content": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "copy_file",
+          "name": "Copy File",
+          "operation_id": "FILE_COPY",
+          "taxonomy": {
+            "class": "data",
+            "type": "filesystem"
+          },
+          "description": "Duplicate an existing file from one filesystem location to another while preserving the original.",
+          "positive_examples": [
+            "copy this file to backups",
+            "duplicate report.pdf",
+            "make another copy of this file"
+          ],
+          "negative_examples": [
+            "move this file",
+            "rename this file",
+            "read this file"
+          ],
+          "input_schema": {
+            "source_path": {
+              "type": "string",
+              "required": true
+            },
+            "destination_path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "move_file",
+          "name": "Move File",
+          "operation_id": "FILE_MOVE",
+          "taxonomy": {
+            "class": "data",
+            "type": "filesystem"
+          },
+          "description": "Move or rename an existing file from one filesystem location to another.",
+          "positive_examples": [
+            "move this file to another folder",
+            "rename notes.txt to archive.txt",
+            "relocate this file"
+          ],
+          "negative_examples": [
+            "copy this file",
+            "read this file",
+            "append to this file"
+          ],
+          "input_schema": {
+            "source_path": {
+              "type": "string",
+              "required": true
+            },
+            "destination_path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "delete_file",
+          "name": "Delete File",
+          "operation_id": "FILE_DELETE",
+          "taxonomy": {
+            "class": "data",
+            "type": "filesystem"
+          },
+          "description": "Delete an existing file from the filesystem.",
+          "positive_examples": [
+            "delete this file",
+            "remove temp.txt",
+            "get rid of this file"
+          ],
+          "negative_examples": [
+            "move this file",
+            "clear the contents of this file",
+            "read this file"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "list_directory",
+          "name": "List Directory",
+          "operation_id": "DIRECTORY_LIST",
+          "taxonomy": {
+            "class": "data",
+            "type": "filesystem"
+          },
+          "description": "Return the files and subdirectories contained within a specified directory.",
+          "positive_examples": [
+            "show files in this folder",
+            "list directory contents",
+            "what is inside /tmp"
+          ],
+          "negative_examples": [
+            "read this file",
+            "search inside all files",
+            "get file metadata"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "get_file_metadata",
+          "name": "Get File Metadata",
+          "operation_id": "FILE_METADATA",
+          "taxonomy": {
+            "class": "data",
+            "type": "filesystem"
+          },
+          "description": "Retrieve metadata for a file including size, timestamps, extension, and path information.",
+          "positive_examples": [
+            "how large is this file",
+            "when was this file modified",
+            "show metadata for report.pdf"
+          ],
+          "negative_examples": [
+            "read the contents of this file",
+            "describe an image",
+            "extract PDF text"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "document_mcp",
+      "name": "Document MCP",
+      "description": "Document-oriented operations for extracting, searching, summarizing, and inspecting structured and unstructured documents.",
+      "tools": [
+        {
+          "tool_id": "extract_pdf_text",
+          "name": "Extract PDF Text",
+          "operation_id": "PDF_TEXT_EXTRACT",
+          "taxonomy": {
+            "class": "documents",
+            "type": "pdf"
+          },
+          "description": "Extract readable textual content from a PDF document while preserving basic page ordering.",
+          "positive_examples": [
+            "extract text from this PDF",
+            "give me all text in report.pdf",
+            "convert this PDF to text"
+          ],
+          "negative_examples": [
+            "summarize this PDF",
+            "search this PDF for a topic",
+            "read a plain text file"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "extract_docx_text",
+          "name": "Extract DOCX Text",
+          "operation_id": "DOCX_TEXT_EXTRACT",
+          "taxonomy": {
+            "class": "documents",
+            "type": "docx"
+          },
+          "description": "Extract paragraphs and textual content from a Microsoft Word DOCX document.",
+          "positive_examples": [
+            "extract the text from this Word file",
+            "read all paragraphs from document.docx"
+          ],
+          "negative_examples": [
+            "extract PDF text",
+            "summarize a document",
+            "write a Word document"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "summarize_document",
+          "name": "Summarize Document",
+          "operation_id": "DOCUMENT_SUMMARIZE",
+          "taxonomy": {
+            "class": "documents",
+            "type": "analysis"
+          },
+          "description": "Produce a concise summary of a supplied document while preserving its major arguments, findings, and conclusions.",
+          "positive_examples": [
+            "summarize this document",
+            "give me a short overview of this report",
+            "what are the main points of this document"
+          ],
+          "negative_examples": [
+            "extract all raw text",
+            "search for one exact section",
+            "summarize a research paper specifically"
+          ],
+          "input_schema": {
+            "document": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "search_document",
+          "name": "Search Document",
+          "operation_id": "DOCUMENT_SEARCH",
+          "taxonomy": {
+            "class": "documents",
+            "type": "retrieval"
+          },
+          "description": "Search within the contents of a document for passages relevant to a natural-language query.",
+          "positive_examples": [
+            "find where this document discusses pricing",
+            "search this document for security",
+            "find passages about limitations"
+          ],
+          "negative_examples": [
+            "summarize the entire document",
+            "search the web",
+            "extract all PDF text"
+          ],
+          "input_schema": {
+            "document": {
+              "type": "string",
+              "required": true
+            },
+            "query": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "extract_document_section",
+          "name": "Extract Document Section",
+          "operation_id": "DOCUMENT_SECTION_EXTRACT",
+          "taxonomy": {
+            "class": "documents",
+            "type": "retrieval"
+          },
+          "description": "Retrieve a particular heading, section, chapter, or named portion of a document.",
+          "positive_examples": [
+            "give me the conclusion section",
+            "extract chapter 4",
+            "show the methodology section"
+          ],
+          "negative_examples": [
+            "summarize the whole document",
+            "search for arbitrary passages",
+            "extract all document text"
+          ],
+          "input_schema": {
+            "document": {
+              "type": "string",
+              "required": true
+            },
+            "section": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "database_mcp",
+      "name": "Database MCP",
+      "description": "Structured relational database operations for querying, inspecting, inserting, updating, deleting, and aggregating data.",
+      "tools": [
+        {
+          "tool_id": "execute_sql_query",
+          "name": "Execute SQL Query",
+          "operation_id": "SQL_QUERY",
+          "taxonomy": {
+            "class": "data",
+            "type": "database"
+          },
+          "description": "Execute a read-only SQL query against a relational database and return matching rows.",
+          "positive_examples": [
+            "run this SQL query",
+            "select users created this month",
+            "query the database"
+          ],
+          "negative_examples": [
+            "insert a record",
+            "update rows",
+            "inspect the schema"
+          ],
+          "input_schema": {
+            "query": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "inspect_database_schema",
+          "name": "Inspect Database Schema",
+          "operation_id": "DATABASE_SCHEMA_INSPECT",
+          "taxonomy": {
+            "class": "data",
+            "type": "database"
+          },
+          "description": "Return information about database tables, columns, types, keys, and relationships.",
+          "positive_examples": [
+            "show me the database schema",
+            "what columns are in users",
+            "list database tables"
+          ],
+          "negative_examples": [
+            "query rows from users",
+            "insert data",
+            "aggregate sales"
+          ],
+          "input_schema": {}
+        },
+        {
+          "tool_id": "insert_database_record",
+          "name": "Insert Database Record",
+          "operation_id": "DATABASE_INSERT",
+          "taxonomy": {
+            "class": "data",
+            "type": "database"
+          },
+          "description": "Insert a new record into a database table.",
+          "positive_examples": [
+            "add a new user",
+            "insert this record",
+            "create a row in customers"
+          ],
+          "negative_examples": [
+            "update this row",
+            "delete this row",
+            "query existing rows"
+          ],
+          "input_schema": {
+            "table": {
+              "type": "string",
+              "required": true
+            },
+            "data": {
+              "type": "object",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "update_database_record",
+          "name": "Update Database Record",
+          "operation_id": "DATABASE_UPDATE",
+          "taxonomy": {
+            "class": "data",
+            "type": "database"
+          },
+          "description": "Modify existing records in a database based on supplied conditions.",
+          "positive_examples": [
+            "update this user's email",
+            "change the status of these rows",
+            "modify this database record"
+          ],
+          "negative_examples": [
+            "insert a new record",
+            "delete rows",
+            "query the database"
+          ],
+          "input_schema": {
+            "table": {
+              "type": "string",
+              "required": true
+            },
+            "conditions": {
+              "type": "object",
+              "required": true
+            },
+            "data": {
+              "type": "object",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "delete_database_record",
+          "name": "Delete Database Record",
+          "operation_id": "DATABASE_DELETE",
+          "taxonomy": {
+            "class": "data",
+            "type": "database"
+          },
+          "description": "Remove records from a database table that match supplied conditions.",
+          "positive_examples": [
+            "delete this user",
+            "remove cancelled orders",
+            "delete matching database rows"
+          ],
+          "negative_examples": [
+            "delete a filesystem file",
+            "update database rows",
+            "insert a row"
+          ],
+          "input_schema": {
+            "table": {
+              "type": "string",
+              "required": true
+            },
+            "conditions": {
+              "type": "object",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "aggregate_database_data",
+          "name": "Aggregate Database Data",
+          "operation_id": "DATABASE_AGGREGATE",
+          "taxonomy": {
+            "class": "data",
+            "type": "database"
+          },
+          "description": "Compute grouped database statistics such as counts, sums, averages, minima, and maxima.",
+          "positive_examples": [
+            "average revenue by country",
+            "count customers by plan",
+            "sum sales by month"
+          ],
+          "negative_examples": [
+            "calculate statistics on a local CSV",
+            "run arbitrary SQL",
+            "inspect table definitions"
+          ],
+          "input_schema": {
+            "table": {
+              "type": "string",
+              "required": true
+            },
+            "aggregation": {
+              "type": "string",
+              "required": true
+            },
+            "group_by": {
+              "type": "string",
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "web_mcp",
+      "name": "Web MCP",
+      "description": "Synthetic web retrieval and extraction operations for pages, links, metadata, search results, and structured information.",
+      "tools": [
+        {
+          "tool_id": "fetch_web_page",
+          "name": "Fetch Web Page",
+          "operation_id": "WEB_FETCH",
+          "taxonomy": {
+            "class": "web",
+            "type": "retrieval"
+          },
+          "description": "Retrieve the raw or rendered content of a web page from a supplied URL.",
+          "positive_examples": [
+            "fetch this webpage",
+            "open this URL",
+            "retrieve the page at this address"
+          ],
+          "negative_examples": [
+            "search the web for something",
+            "extract only readable text",
+            "extract structured fields"
+          ],
+          "input_schema": {
+            "url": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "extract_web_text",
+          "name": "Extract Web Text",
+          "operation_id": "WEB_TEXT_EXTRACT",
+          "taxonomy": {
+            "class": "web",
+            "type": "extraction"
+          },
+          "description": "Extract the main readable textual content from a web page while removing layout and navigation noise.",
+          "positive_examples": [
+            "extract the article text",
+            "give me the readable content from this webpage",
+            "remove menus and return page text"
+          ],
+          "negative_examples": [
+            "fetch the raw webpage",
+            "extract links",
+            "search the internet"
+          ],
+          "input_schema": {
+            "url": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "extract_web_links",
+          "name": "Extract Web Links",
+          "operation_id": "WEB_LINK_EXTRACT",
+          "taxonomy": {
+            "class": "web",
+            "type": "extraction"
+          },
+          "description": "Extract hyperlinks and associated anchor text from a web page.",
+          "positive_examples": [
+            "list all links on this page",
+            "extract hyperlinks from this website",
+            "show outbound links"
+          ],
+          "negative_examples": [
+            "extract article text",
+            "search the web",
+            "get page metadata"
+          ],
+          "input_schema": {
+            "url": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "extract_web_metadata",
+          "name": "Extract Web Metadata",
+          "operation_id": "WEB_METADATA",
+          "taxonomy": {
+            "class": "web",
+            "type": "metadata"
+          },
+          "description": "Retrieve page metadata such as title, description, canonical URL, headers, and publication information.",
+          "positive_examples": [
+            "get metadata for this page",
+            "what is the page title and description",
+            "show webpage metadata"
+          ],
+          "negative_examples": [
+            "get file metadata",
+            "extract article text",
+            "search webpages"
+          ],
+          "input_schema": {
+            "url": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "extract_structured_web_data",
+          "name": "Extract Structured Web Data",
+          "operation_id": "WEB_STRUCTURED_EXTRACT",
+          "taxonomy": {
+            "class": "web",
+            "type": "extraction"
+          },
+          "description": "Extract specified structured fields such as product names, prices, dates, entities, or table rows from a webpage.",
+          "positive_examples": [
+            "extract product names and prices",
+            "scrape this table",
+            "get these fields from the webpage"
+          ],
+          "negative_examples": [
+            "return all readable text",
+            "fetch HTML only",
+            "extract links"
+          ],
+          "input_schema": {
+            "url": {
+              "type": "string",
+              "required": true
+            },
+            "fields": {
+              "type": "array",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "search_web",
+          "name": "Search Web",
+          "operation_id": "WEB_SEARCH",
+          "taxonomy": {
+            "class": "web",
+            "type": "search"
+          },
+          "description": "Search an indexed synthetic web corpus using a natural-language query and return ranked web results.",
+          "positive_examples": [
+            "search the web for MCP routing",
+            "find websites about FAISS",
+            "look up pages discussing tool discovery"
+          ],
+          "negative_examples": [
+            "fetch this exact URL",
+            "search research papers",
+            "search email"
+          ],
+          "input_schema": {
+            "query": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "research_mcp",
+      "name": "Research MCP",
+      "description": "Academic and technical research operations for papers, metadata, citations, comparisons, and summaries.",
+      "tools": [
+        {
+          "tool_id": "search_research_papers",
+          "name": "Search Research Papers",
+          "operation_id": "PAPER_SEARCH",
+          "taxonomy": {
+            "class": "research",
+            "type": "academic"
+          },
+          "description": "Find research papers relevant to a scientific or technical natural-language query.",
+          "positive_examples": [
+            "find papers about MCP routing",
+            "search academic research on embeddings",
+            "find studies on tool selection"
+          ],
+          "negative_examples": [
+            "search the general web",
+            "search emails",
+            "summarize this paper"
+          ],
+          "input_schema": {
+            "query": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "get_paper_metadata",
+          "name": "Get Paper Metadata",
+          "operation_id": "PAPER_METADATA",
+          "taxonomy": {
+            "class": "research",
+            "type": "academic"
+          },
+          "description": "Retrieve metadata for a research paper including title, authors, year, venue, abstract, and identifier.",
+          "positive_examples": [
+            "who wrote this paper",
+            "what year was this study published",
+            "get metadata for this paper"
+          ],
+          "negative_examples": [
+            "summarize the paper",
+            "find citations",
+            "extract PDF text"
+          ],
+          "input_schema": {
+            "paper_id": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "get_paper_citations",
+          "name": "Get Paper Citations",
+          "operation_id": "PAPER_CITATIONS",
+          "taxonomy": {
+            "class": "research",
+            "type": "academic"
+          },
+          "description": "Retrieve research papers cited by or citing a selected paper.",
+          "positive_examples": [
+            "what papers cite this",
+            "show references for this paper",
+            "find citing papers"
+          ],
+          "negative_examples": [
+            "search papers by topic",
+            "get paper metadata",
+            "summarize the paper"
+          ],
+          "input_schema": {
+            "paper_id": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "summarize_research_paper",
+          "name": "Summarize Research Paper",
+          "operation_id": "PAPER_SUMMARIZE",
+          "taxonomy": {
+            "class": "research",
+            "type": "analysis"
+          },
+          "description": "Summarize the objective, methodology, experiments, results, and limitations of a research paper.",
+          "positive_examples": [
+            "summarize this research paper",
+            "what did this study find",
+            "give me the methodology and results"
+          ],
+          "negative_examples": [
+            "summarize a generic document",
+            "extract PDF text",
+            "find papers"
+          ],
+          "input_schema": {
+            "paper": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "compare_research_papers",
+          "name": "Compare Research Papers",
+          "operation_id": "PAPER_COMPARE",
+          "taxonomy": {
+            "class": "research",
+            "type": "analysis"
+          },
+          "description": "Compare multiple research papers based on methods, claims, datasets, experiments, results, or conclusions.",
+          "positive_examples": [
+            "compare these two papers",
+            "how do these studies differ",
+            "compare their methodologies"
+          ],
+          "negative_examples": [
+            "summarize one paper",
+            "find citations",
+            "compare JSON"
+          ],
+          "input_schema": {
+            "papers": {
+              "type": "array",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "email_mcp",
+      "name": "Email MCP",
+      "description": "Synthetic email operations for sending, searching, reading, replying, drafting, and archiving messages.",
+      "tools": [
+        {
+          "tool_id": "send_email",
+          "name": "Send Email",
+          "operation_id": "EMAIL_SEND",
+          "taxonomy": {
+            "class": "communication",
+            "type": "email"
+          },
+          "description": "Send a new email message to one or more recipients with a subject and message body.",
+          "positive_examples": [
+            "email Alice about the meeting",
+            "send this message by email",
+            "send an email to the team"
+          ],
+          "negative_examples": [
+            "create an email draft",
+            "reply to this email",
+            "send a Slack message"
+          ],
+          "input_schema": {
+            "to": {
+              "type": "array",
+              "required": true
+            },
+            "subject": {
+              "type": "string",
+              "required": true
+            },
+            "body": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "search_email",
+          "name": "Search Email",
+          "operation_id": "EMAIL_SEARCH",
+          "taxonomy": {
+            "class": "communication",
+            "type": "email"
+          },
+          "description": "Search stored email messages using keywords, senders, subjects, dates, recipients, or natural-language criteria.",
+          "positive_examples": [
+            "find emails from Alice",
+            "search my inbox for invoices",
+            "find the message about the meeting"
+          ],
+          "negative_examples": [
+            "search Slack messages",
+            "read a known email",
+            "search the web"
+          ],
+          "input_schema": {
+            "query": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "read_email",
+          "name": "Read Email",
+          "operation_id": "EMAIL_READ",
+          "taxonomy": {
+            "class": "communication",
+            "type": "email"
+          },
+          "description": "Retrieve the full body and metadata of a specific stored email message.",
+          "positive_examples": [
+            "open this email",
+            "read the email from Alice",
+            "show me the full message"
+          ],
+          "negative_examples": [
+            "search emails",
+            "reply to an email",
+            "read a filesystem file"
+          ],
+          "input_schema": {
+            "message_id": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "reply_email",
+          "name": "Reply Email",
+          "operation_id": "EMAIL_REPLY",
+          "taxonomy": {
+            "class": "communication",
+            "type": "email"
+          },
+          "description": "Send a reply within an existing email conversation.",
+          "positive_examples": [
+            "reply to this email",
+            "respond to Alice's message",
+            "send a reply saying yes"
+          ],
+          "negative_examples": [
+            "send a brand new email",
+            "create a draft only",
+            "reply to a chat thread"
+          ],
+          "input_schema": {
+            "message_id": {
+              "type": "string",
+              "required": true
+            },
+            "body": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "create_email_draft",
+          "name": "Create Email Draft",
+          "operation_id": "EMAIL_DRAFT",
+          "taxonomy": {
+            "class": "communication",
+            "type": "email"
+          },
+          "description": "Create and save an email draft without sending it.",
+          "positive_examples": [
+            "draft an email to Alice",
+            "save this as an email draft",
+            "prepare an email but don't send it"
+          ],
+          "negative_examples": [
+            "send the email now",
+            "reply immediately",
+            "draft a Slack message"
+          ],
+          "input_schema": {
+            "to": {
+              "type": "array",
+              "required": true
+            },
+            "subject": {
+              "type": "string",
+              "required": true
+            },
+            "body": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "archive_email",
+          "name": "Archive Email",
+          "operation_id": "EMAIL_ARCHIVE",
+          "taxonomy": {
+            "class": "communication",
+            "type": "email"
+          },
+          "description": "Remove an email from the active inbox while retaining the message in stored mail.",
+          "positive_examples": [
+            "archive this email",
+            "remove this message from inbox but keep it"
+          ],
+          "negative_examples": [
+            "delete the email permanently",
+            "reply to this email",
+            "archive a filesystem file"
+          ],
+          "input_schema": {
+            "message_id": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "calendar_mcp",
+      "name": "Calendar MCP",
+      "description": "Calendar and scheduling operations for creating, searching, updating, deleting, and checking event availability.",
+      "tools": [
+        {
+          "tool_id": "create_calendar_event",
+          "name": "Create Calendar Event",
+          "operation_id": "CALENDAR_CREATE",
+          "taxonomy": {
+            "class": "communication",
+            "type": "calendar"
+          },
+          "description": "Create a new calendar event for a specified date, time, duration, location, and optional attendees.",
+          "positive_examples": [
+            "schedule a meeting tomorrow",
+            "create a calendar event",
+            "put lunch on my calendar"
+          ],
+          "negative_examples": [
+            "find an existing meeting",
+            "check when I'm free",
+            "send an email invitation without creating an event"
+          ],
+          "input_schema": {
+            "title": {
+              "type": "string",
+              "required": true
+            },
+            "start_time": {
+              "type": "string",
+              "required": true
+            },
+            "end_time": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "search_calendar_events",
+          "name": "Search Calendar Events",
+          "operation_id": "CALENDAR_SEARCH",
+          "taxonomy": {
+            "class": "communication",
+            "type": "calendar"
+          },
+          "description": "Find existing calendar events matching a date range, title, participant, location, or query.",
+          "positive_examples": [
+            "find my meeting with Alice",
+            "what meetings do I have Friday",
+            "search my calendar"
+          ],
+          "negative_examples": [
+            "create a new event",
+            "check free time only",
+            "search email"
+          ],
+          "input_schema": {
+            "query": {
+              "type": "string",
+              "required": false
+            },
+            "start_time": {
+              "type": "string",
+              "required": false
+            },
+            "end_time": {
+              "type": "string",
+              "required": false
+            }
+          }
+        },
+        {
+          "tool_id": "update_calendar_event",
+          "name": "Update Calendar Event",
+          "operation_id": "CALENDAR_UPDATE",
+          "taxonomy": {
+            "class": "communication",
+            "type": "calendar"
+          },
+          "description": "Modify an existing calendar event's title, time, attendees, location, or description.",
+          "positive_examples": [
+            "move my meeting to 4pm",
+            "change the event title",
+            "add Alice to this meeting"
+          ],
+          "negative_examples": [
+            "create another event",
+            "delete the event",
+            "search events"
+          ],
+          "input_schema": {
+            "event_id": {
+              "type": "string",
+              "required": true
+            },
+            "updates": {
+              "type": "object",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "delete_calendar_event",
+          "name": "Delete Calendar Event",
+          "operation_id": "CALENDAR_DELETE",
+          "taxonomy": {
+            "class": "communication",
+            "type": "calendar"
+          },
+          "description": "Cancel or remove an existing calendar event.",
+          "positive_examples": [
+            "cancel this meeting",
+            "remove this event from my calendar",
+            "delete tomorrow's appointment"
+          ],
+          "negative_examples": [
+            "update the meeting time",
+            "archive email",
+            "delete a file"
+          ],
+          "input_schema": {
+            "event_id": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "check_calendar_availability",
+          "name": "Check Calendar Availability",
+          "operation_id": "CALENDAR_AVAILABILITY",
+          "taxonomy": {
+            "class": "communication",
+            "type": "calendar"
+          },
+          "description": "Determine open and occupied time intervals within a requested date or time range.",
+          "positive_examples": [
+            "when am I free tomorrow",
+            "find an open slot on Friday",
+            "check my availability"
+          ],
+          "negative_examples": [
+            "search for a named meeting",
+            "create an event",
+            "list all calendar events"
+          ],
+          "input_schema": {
+            "start_time": {
+              "type": "string",
+              "required": true
+            },
+            "end_time": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "messaging_mcp",
+      "name": "Messaging MCP",
+      "description": "Synthetic team messaging operations involving channels, messages, threads, workspace history, and search.",
+      "tools": [
+        {
+          "tool_id": "send_channel_message",
+          "name": "Send Channel Message",
+          "operation_id": "MESSAGE_SEND",
+          "taxonomy": {
+            "class": "communication",
+            "type": "messaging"
+          },
+          "description": "Send a new message to a specified team communication channel.",
+          "positive_examples": [
+            "post this to engineering",
+            "send a Slack message to general",
+            "message the team channel"
+          ],
+          "negative_examples": [
+            "send an email",
+            "reply inside an existing thread",
+            "search messages"
+          ],
+          "input_schema": {
+            "channel": {
+              "type": "string",
+              "required": true
+            },
+            "message": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "search_messages",
+          "name": "Search Messages",
+          "operation_id": "MESSAGE_SEARCH",
+          "taxonomy": {
+            "class": "communication",
+            "type": "messaging"
+          },
+          "description": "Search historical team messages across channels and conversations.",
+          "positive_examples": [
+            "find Slack messages about deployment",
+            "search our chats for pricing",
+            "find where someone mentioned FAISS"
+          ],
+          "negative_examples": [
+            "search emails",
+            "get one channel's recent history",
+            "send a new message"
+          ],
+          "input_schema": {
+            "query": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "reply_to_thread",
+          "name": "Reply to Thread",
+          "operation_id": "MESSAGE_THREAD_REPLY",
+          "taxonomy": {
+            "class": "communication",
+            "type": "messaging"
+          },
+          "description": "Post a response within an existing threaded team conversation.",
+          "positive_examples": [
+            "reply to this Slack thread",
+            "respond in the existing conversation",
+            "add this to the thread"
+          ],
+          "negative_examples": [
+            "send a new channel message",
+            "reply to email",
+            "search chats"
+          ],
+          "input_schema": {
+            "thread_id": {
+              "type": "string",
+              "required": true
+            },
+            "message": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "list_channels",
+          "name": "List Channels",
+          "operation_id": "CHANNEL_LIST",
+          "taxonomy": {
+            "class": "communication",
+            "type": "messaging"
+          },
+          "description": "Return available communication channels in the synthetic messaging workspace.",
+          "positive_examples": [
+            "list Slack channels",
+            "what channels are available",
+            "show workspace channels"
+          ],
+          "negative_examples": [
+            "list directory contents",
+            "get messages from one channel",
+            "search channel messages"
+          ],
+          "input_schema": {}
+        },
+        {
+          "tool_id": "get_channel_history",
+          "name": "Get Channel History",
+          "operation_id": "CHANNEL_HISTORY",
+          "taxonomy": {
+            "class": "communication",
+            "type": "messaging"
+          },
+          "description": "Retrieve recent messages posted to a selected messaging channel.",
+          "positive_examples": [
+            "show recent messages in engineering",
+            "what happened in general today",
+            "get channel history"
+          ],
+          "negative_examples": [
+            "search all messages",
+            "list channels",
+            "read email history"
+          ],
+          "input_schema": {
+            "channel": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "git_mcp",
+      "name": "Git MCP",
+      "description": "Source-control operations for repositories, branches, commits, diffs, status, and history.",
+      "tools": [
+        {
+          "tool_id": "get_git_status",
+          "name": "Get Git Status",
+          "operation_id": "GIT_STATUS",
+          "taxonomy": {
+            "class": "development",
+            "type": "git"
+          },
+          "description": "Return the current working-tree and staging status of a Git repository.",
+          "positive_examples": [
+            "git status",
+            "what files have changed",
+            "show staged and unstaged changes"
+          ],
+          "negative_examples": [
+            "show the actual diff",
+            "list commits",
+            "list branches"
+          ],
+          "input_schema": {
+            "repo_path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "get_git_diff",
+          "name": "Get Git Diff",
+          "operation_id": "GIT_DIFF",
+          "taxonomy": {
+            "class": "development",
+            "type": "git"
+          },
+          "description": "Show line-level differences between repository states, commits, branches, or working files.",
+          "positive_examples": [
+            "show me the git diff",
+            "what code changed",
+            "compare these branches"
+          ],
+          "negative_examples": [
+            "show only repository status",
+            "list commits",
+            "create a branch"
+          ],
+          "input_schema": {
+            "repo_path": {
+              "type": "string",
+              "required": true
+            },
+            "base": {
+              "type": "string",
+              "required": false
+            },
+            "target": {
+              "type": "string",
+              "required": false
+            }
+          }
+        },
+        {
+          "tool_id": "get_commit_history",
+          "name": "Get Commit History",
+          "operation_id": "GIT_COMMIT_HISTORY",
+          "taxonomy": {
+            "class": "development",
+            "type": "git"
+          },
+          "description": "Retrieve recent commits and associated metadata from a Git repository.",
+          "positive_examples": [
+            "show recent commits",
+            "git log",
+            "what was committed yesterday"
+          ],
+          "negative_examples": [
+            "create a commit",
+            "show current diff",
+            "list branches"
+          ],
+          "input_schema": {
+            "repo_path": {
+              "type": "string",
+              "required": true
+            },
+            "limit": {
+              "type": "integer",
+              "required": false
+            }
+          }
+        },
+        {
+          "tool_id": "list_git_branches",
+          "name": "List Git Branches",
+          "operation_id": "GIT_BRANCH_LIST",
+          "taxonomy": {
+            "class": "development",
+            "type": "git"
+          },
+          "description": "List local and remote branches available in a Git repository.",
+          "positive_examples": [
+            "show git branches",
+            "what branches exist",
+            "list remote branches"
+          ],
+          "negative_examples": [
+            "create a branch",
+            "show commits",
+            "list filesystem directories"
+          ],
+          "input_schema": {
+            "repo_path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "create_git_branch",
+          "name": "Create Git Branch",
+          "operation_id": "GIT_CREATE_BRANCH",
+          "taxonomy": {
+            "class": "development",
+            "type": "git"
+          },
+          "description": "Create a new Git branch from the specified revision or current repository state.",
+          "positive_examples": [
+            "create a branch called experiment",
+            "make a new git branch",
+            "branch from main"
+          ],
+          "negative_examples": [
+            "list branches",
+            "create a commit",
+            "move a file"
+          ],
+          "input_schema": {
+            "repo_path": {
+              "type": "string",
+              "required": true
+            },
+            "branch_name": {
+              "type": "string",
+              "required": true
+            },
+            "base": {
+              "type": "string",
+              "required": false
+            }
+          }
+        },
+        {
+          "tool_id": "create_git_commit",
+          "name": "Create Git Commit",
+          "operation_id": "GIT_COMMIT",
+          "taxonomy": {
+            "class": "development",
+            "type": "git"
+          },
+          "description": "Create a new Git commit containing staged repository changes.",
+          "positive_examples": [
+            "commit these changes",
+            "make a git commit",
+            "save staged changes with this message"
+          ],
+          "negative_examples": [
+            "show commit history",
+            "create a branch",
+            "write a file"
+          ],
+          "input_schema": {
+            "repo_path": {
+              "type": "string",
+              "required": true
+            },
+            "message": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "issue_tracker_mcp",
+      "name": "Issue Tracker MCP",
+      "description": "Software issue and project-tracking operations for searching, reading, creating, updating, and commenting on development tasks.",
+      "tools": [
+        {
+          "tool_id": "search_issues",
+          "name": "Search Issues",
+          "operation_id": "ISSUE_SEARCH",
+          "taxonomy": {
+            "class": "development",
+            "type": "issues"
+          },
+          "description": "Search software issues using keywords, labels, states, repositories, or natural-language descriptions.",
+          "positive_examples": [
+            "find bugs mentioning authentication",
+            "search GitHub issues for crash",
+            "find open issues about routing"
+          ],
+          "negative_examples": [
+            "search git commits",
+            "read a known issue",
+            "search web pages"
+          ],
+          "input_schema": {
+            "query": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "read_issue",
+          "name": "Read Issue",
+          "operation_id": "ISSUE_READ",
+          "taxonomy": {
+            "class": "development",
+            "type": "issues"
+          },
+          "description": "Retrieve the title, body, comments, labels, state, and metadata of a specific issue.",
+          "positive_examples": [
+            "open issue 42",
+            "show me this GitHub issue",
+            "read the bug report"
+          ],
+          "negative_examples": [
+            "search issues",
+            "create a new issue",
+            "read an email"
+          ],
+          "input_schema": {
+            "issue_id": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "create_issue",
+          "name": "Create Issue",
+          "operation_id": "ISSUE_CREATE",
+          "taxonomy": {
+            "class": "development",
+            "type": "issues"
+          },
+          "description": "Create a new software issue with a title, description, and optional metadata.",
+          "positive_examples": [
+            "create a bug report",
+            "open a new issue",
+            "file an issue for this problem"
+          ],
+          "negative_examples": [
+            "comment on an existing issue",
+            "update an issue",
+            "create a calendar event"
+          ],
+          "input_schema": {
+            "title": {
+              "type": "string",
+              "required": true
+            },
+            "body": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "update_issue",
+          "name": "Update Issue",
+          "operation_id": "ISSUE_UPDATE",
+          "taxonomy": {
+            "class": "development",
+            "type": "issues"
+          },
+          "description": "Modify an existing issue's state, title, description, labels, assignment, or other properties.",
+          "positive_examples": [
+            "close this issue",
+            "assign this bug to Alice",
+            "change the issue label"
+          ],
+          "negative_examples": [
+            "create a new issue",
+            "comment on the issue",
+            "search issues"
+          ],
+          "input_schema": {
+            "issue_id": {
+              "type": "string",
+              "required": true
+            },
+            "updates": {
+              "type": "object",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "comment_on_issue",
+          "name": "Comment on Issue",
+          "operation_id": "ISSUE_COMMENT",
+          "taxonomy": {
+            "class": "development",
+            "type": "issues"
+          },
+          "description": "Add a new comment to an existing software issue or development task.",
+          "positive_examples": [
+            "comment on this issue",
+            "post this response to the bug",
+            "add a note to issue 42"
+          ],
+          "negative_examples": [
+            "update the issue description",
+            "reply to Slack",
+            "create a new issue"
+          ],
+          "input_schema": {
+            "issue_id": {
+              "type": "string",
+              "required": true
+            },
+            "comment": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "text_mcp",
+      "name": "Text MCP",
+      "description": "Natural-language transformation and analysis operations including summarization, translation, sentiment, extraction, rewriting, and classification.",
+      "tools": [
+        {
+          "tool_id": "summarize_text",
+          "name": "Summarize Text",
+          "operation_id": "TEXT_SUMMARIZE",
+          "taxonomy": {
+            "class": "language",
+            "type": "text"
+          },
+          "description": "Condense supplied plain text while preserving its most important information.",
+          "positive_examples": [
+            "summarize this paragraph",
+            "make this text shorter",
+            "give me the key points of this text"
+          ],
+          "negative_examples": [
+            "summarize a research paper",
+            "summarize an entire document",
+            "rewrite this in a nicer tone"
+          ],
+          "input_schema": {
+            "text": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "translate_text",
+          "name": "Translate Text",
+          "operation_id": "TEXT_TRANSLATE",
+          "taxonomy": {
+            "class": "language",
+            "type": "text"
+          },
+          "description": "Translate supplied text from one language into another while preserving meaning and intent.",
+          "positive_examples": [
+            "translate this to Hindi",
+            "convert this sentence to French",
+            "what is this in Marathi"
+          ],
+          "negative_examples": [
+            "rewrite this in simpler English",
+            "detect sentiment",
+            "extract entities"
+          ],
+          "input_schema": {
+            "text": {
+              "type": "string",
+              "required": true
+            },
+            "target_language": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "analyze_sentiment",
+          "name": "Analyze Sentiment",
+          "operation_id": "TEXT_SENTIMENT",
+          "taxonomy": {
+            "class": "language",
+            "type": "analysis"
+          },
+          "description": "Determine whether supplied text expresses positive, negative, neutral, or mixed sentiment.",
+          "positive_examples": [
+            "is this review positive",
+            "analyze the sentiment of this message",
+            "does this sound negative"
+          ],
+          "negative_examples": [
+            "classify this into a topic",
+            "extract keywords",
+            "rewrite the text"
+          ],
+          "input_schema": {
+            "text": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "extract_keywords",
+          "name": "Extract Keywords",
+          "operation_id": "TEXT_KEYWORDS",
+          "taxonomy": {
+            "class": "language",
+            "type": "analysis"
+          },
+          "description": "Identify important keywords, phrases, and concepts appearing in supplied text.",
+          "positive_examples": [
+            "extract keywords from this article",
+            "what are the key phrases",
+            "give me important terms"
+          ],
+          "negative_examples": [
+            "extract named entities",
+            "summarize the text",
+            "classify the text"
+          ],
+          "input_schema": {
+            "text": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "extract_entities",
+          "name": "Extract Entities",
+          "operation_id": "TEXT_ENTITIES",
+          "taxonomy": {
+            "class": "language",
+            "type": "analysis"
+          },
+          "description": "Extract named entities such as people, organizations, places, dates, products, or events from text.",
+          "positive_examples": [
+            "extract company names from this",
+            "find people and places mentioned here",
+            "identify named entities"
+          ],
+          "negative_examples": [
+            "extract keywords",
+            "summarize this text",
+            "search a document"
+          ],
+          "input_schema": {
+            "text": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "rewrite_text",
+          "name": "Rewrite Text",
+          "operation_id": "TEXT_REWRITE",
+          "taxonomy": {
+            "class": "language",
+            "type": "transformation"
+          },
+          "description": "Rewrite supplied text according to a requested tone, style, length, clarity, or audience.",
+          "positive_examples": [
+            "make this more professional",
+            "rewrite this politely",
+            "make this sentence clearer"
+          ],
+          "negative_examples": [
+            "translate this",
+            "summarize this",
+            "classify sentiment"
+          ],
+          "input_schema": {
+            "text": {
+              "type": "string",
+              "required": true
+            },
+            "instruction": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "classify_text",
+          "name": "Classify Text",
+          "operation_id": "TEXT_CLASSIFY",
+          "taxonomy": {
+            "class": "language",
+            "type": "analysis"
+          },
+          "description": "Assign supplied text to one of a predefined set of semantic categories.",
+          "positive_examples": [
+            "classify this support ticket",
+            "which category does this message belong to",
+            "label this text as billing or technical"
+          ],
+          "negative_examples": [
+            "analyze positive or negative sentiment",
+            "extract keywords",
+            "rewrite this text"
+          ],
+          "input_schema": {
+            "text": {
+              "type": "string",
+              "required": true
+            },
+            "categories": {
+              "type": "array",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "math_mcp",
+      "name": "Math MCP",
+      "description": "Deterministic mathematical and numerical operations for arithmetic, statistics, percentages, finance, and equations.",
+      "tools": [
+        {
+          "tool_id": "calculate_expression",
+          "name": "Calculate Expression",
+          "operation_id": "CALCULATOR",
+          "taxonomy": {
+            "class": "computation",
+            "type": "math"
+          },
+          "description": "Evaluate a mathematical arithmetic expression and return its numerical result.",
+          "positive_examples": [
+            "calculate 45 times 12",
+            "what is 17.5 divided by 3",
+            "evaluate this expression"
+          ],
+          "negative_examples": [
+            "calculate compound interest",
+            "describe a dataset",
+            "solve a linear equation"
+          ],
+          "input_schema": {
+            "expression": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "calculate_descriptive_statistics",
+          "name": "Calculate Descriptive Statistics",
+          "operation_id": "STATISTICS_DESCRIBE",
+          "taxonomy": {
+            "class": "computation",
+            "type": "statistics"
+          },
+          "description": "Compute descriptive statistics such as mean, median, variance, standard deviation, minimum, and maximum for numeric values.",
+          "positive_examples": [
+            "calculate mean and median",
+            "give me descriptive statistics",
+            "find standard deviation"
+          ],
+          "negative_examples": [
+            "group a dataset by category",
+            "calculate percentage change",
+            "aggregate SQL data"
+          ],
+          "input_schema": {
+            "values": {
+              "type": "array",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "calculate_percentage_change",
+          "name": "Calculate Percentage Change",
+          "operation_id": "PERCENTAGE_CHANGE",
+          "taxonomy": {
+            "class": "computation",
+            "type": "math"
+          },
+          "description": "Calculate the percentage increase or decrease between two numeric values.",
+          "positive_examples": [
+            "what percentage increase is 100 to 125",
+            "calculate percentage change",
+            "how much did revenue decline in percent"
+          ],
+          "negative_examples": [
+            "calculate a percentage of a number",
+            "calculate compound growth",
+            "get descriptive statistics"
+          ],
+          "input_schema": {
+            "old_value": {
+              "type": "number",
+              "required": true
+            },
+            "new_value": {
+              "type": "number",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "calculate_compound_interest",
+          "name": "Calculate Compound Interest",
+          "operation_id": "COMPOUND_INTEREST",
+          "taxonomy": {
+            "class": "computation",
+            "type": "finance"
+          },
+          "description": "Calculate future value from principal, interest rate, compounding frequency, and duration.",
+          "positive_examples": [
+            "what will 1000 become at 8 percent for 5 years",
+            "calculate compound interest",
+            "future value with annual compounding"
+          ],
+          "negative_examples": [
+            "calculate percentage change",
+            "calculate simple arithmetic",
+            "convert currencies"
+          ],
+          "input_schema": {
+            "principal": {
+              "type": "number",
+              "required": true
+            },
+            "annual_rate": {
+              "type": "number",
+              "required": true
+            },
+            "years": {
+              "type": "number",
+              "required": true
+            },
+            "compounds_per_year": {
+              "type": "integer",
+              "required": false
+            }
+          }
+        },
+        {
+          "tool_id": "solve_linear_equation",
+          "name": "Solve Linear Equation",
+          "operation_id": "LINEAR_EQUATION_SOLVE",
+          "taxonomy": {
+            "class": "computation",
+            "type": "algebra"
+          },
+          "description": "Solve a linear equation or small system of linear equations for unknown variables.",
+          "positive_examples": [
+            "solve 2x plus 5 equals 17",
+            "find x in this linear equation",
+            "solve this linear system"
+          ],
+          "negative_examples": [
+            "evaluate arithmetic",
+            "calculate statistics",
+            "calculate compound interest"
+          ],
+          "input_schema": {
+            "equation": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "data_analysis_mcp",
+      "name": "Data Analysis MCP",
+      "description": "Operations for inspecting, filtering, sorting, grouping, transforming, and analyzing tabular datasets.",
+      "tools": [
+        {
+          "tool_id": "inspect_dataset",
+          "name": "Inspect Dataset",
+          "operation_id": "DATASET_INSPECT",
+          "taxonomy": {
+            "class": "data",
+            "type": "tabular"
+          },
+          "description": "Return dataset columns, types, dimensions, null counts, and representative sample values.",
+          "positive_examples": [
+            "inspect this CSV",
+            "what columns are in this dataset",
+            "show dataset structure"
+          ],
+          "negative_examples": [
+            "inspect a database schema",
+            "filter the dataset",
+            "calculate statistics only"
+          ],
+          "input_schema": {
+            "dataset": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "filter_dataset",
+          "name": "Filter Dataset",
+          "operation_id": "DATASET_FILTER",
+          "taxonomy": {
+            "class": "data",
+            "type": "tabular"
+          },
+          "description": "Select rows from a dataset according to supplied conditions or predicates.",
+          "positive_examples": [
+            "show rows where revenue is over 1000",
+            "filter this dataset by country",
+            "keep only active customers"
+          ],
+          "negative_examples": [
+            "sort the dataset",
+            "group rows",
+            "run a SQL query"
+          ],
+          "input_schema": {
+            "dataset": {
+              "type": "string",
+              "required": true
+            },
+            "condition": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "sort_dataset",
+          "name": "Sort Dataset",
+          "operation_id": "DATASET_SORT",
+          "taxonomy": {
+            "class": "data",
+            "type": "tabular"
+          },
+          "description": "Sort dataset rows according to one or more columns and ordering rules.",
+          "positive_examples": [
+            "sort by revenue descending",
+            "order the dataset by date",
+            "sort customers alphabetically"
+          ],
+          "negative_examples": [
+            "filter dataset rows",
+            "group dataset rows",
+            "sort files in a directory"
+          ],
+          "input_schema": {
+            "dataset": {
+              "type": "string",
+              "required": true
+            },
+            "columns": {
+              "type": "array",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "group_dataset",
+          "name": "Group Dataset",
+          "operation_id": "DATASET_GROUP",
+          "taxonomy": {
+            "class": "data",
+            "type": "tabular"
+          },
+          "description": "Group dataset rows according to categorical values and compute requested aggregations.",
+          "positive_examples": [
+            "group sales by country",
+            "average revenue by category",
+            "count users per plan"
+          ],
+          "negative_examples": [
+            "aggregate a SQL database",
+            "calculate simple statistics",
+            "sort the dataset"
+          ],
+          "input_schema": {
+            "dataset": {
+              "type": "string",
+              "required": true
+            },
+            "group_by": {
+              "type": "array",
+              "required": true
+            },
+            "aggregations": {
+              "type": "object",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "create_calculated_column",
+          "name": "Create Calculated Column",
+          "operation_id": "DATASET_COLUMN_CREATE",
+          "taxonomy": {
+            "class": "data",
+            "type": "tabular"
+          },
+          "description": "Add a derived column to a dataset by applying a deterministic expression to existing fields.",
+          "positive_examples": [
+            "add a profit margin column",
+            "create total price from quantity and unit price",
+            "derive age from birth year"
+          ],
+          "negative_examples": [
+            "insert a database column",
+            "filter rows",
+            "calculate one arithmetic expression"
+          ],
+          "input_schema": {
+            "dataset": {
+              "type": "string",
+              "required": true
+            },
+            "column_name": {
+              "type": "string",
+              "required": true
+            },
+            "expression": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "analyze_missing_values",
+          "name": "Analyze Missing Values",
+          "operation_id": "DATASET_MISSING_VALUES",
+          "taxonomy": {
+            "class": "data",
+            "type": "tabular"
+          },
+          "description": "Identify missing or null values and summarize their distribution across a tabular dataset.",
+          "positive_examples": [
+            "which columns have missing data",
+            "analyze null values",
+            "show missing-value percentages"
+          ],
+          "negative_examples": [
+            "inspect general dataset structure",
+            "fill missing values",
+            "validate JSON"
+          ],
+          "input_schema": {
+            "dataset": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "json_mcp",
+      "name": "JSON MCP",
+      "description": "Structured JSON operations for parsing, querying, validation, transformation, and comparison.",
+      "tools": [
+        {
+          "tool_id": "parse_json",
+          "name": "Parse JSON",
+          "operation_id": "JSON_PARSE",
+          "taxonomy": {
+            "class": "data",
+            "type": "json"
+          },
+          "description": "Parse serialized JSON input and return its structured representation or parsing errors.",
+          "positive_examples": [
+            "parse this JSON string",
+            "is this valid JSON syntax",
+            "convert this JSON text into an object"
+          ],
+          "negative_examples": [
+            "validate against a JSON schema",
+            "query nested JSON",
+            "transform JSON fields"
+          ],
+          "input_schema": {
+            "json": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "query_json",
+          "name": "Query JSON",
+          "operation_id": "JSON_QUERY",
+          "taxonomy": {
+            "class": "data",
+            "type": "json"
+          },
+          "description": "Retrieve values from nested JSON using a structured path or field-based request.",
+          "positive_examples": [
+            "get user.name from this JSON",
+            "find the price field",
+            "extract this nested JSON property"
+          ],
+          "negative_examples": [
+            "validate JSON",
+            "compare two JSON objects",
+            "query SQL"
+          ],
+          "input_schema": {
+            "data": {
+              "type": "object",
+              "required": true
+            },
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "validate_json_schema",
+          "name": "Validate JSON Schema",
+          "operation_id": "JSON_VALIDATE",
+          "taxonomy": {
+            "class": "data",
+            "type": "json"
+          },
+          "description": "Validate JSON data against a supplied JSON Schema and report validation violations.",
+          "positive_examples": [
+            "validate this JSON against this schema",
+            "does this payload match the schema",
+            "check required JSON fields"
+          ],
+          "negative_examples": [
+            "check only JSON syntax",
+            "query a JSON path",
+            "compare JSON objects"
+          ],
+          "input_schema": {
+            "data": {
+              "type": "object",
+              "required": true
+            },
+            "schema": {
+              "type": "object",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "transform_json",
+          "name": "Transform JSON",
+          "operation_id": "JSON_TRANSFORM",
+          "taxonomy": {
+            "class": "data",
+            "type": "json"
+          },
+          "description": "Restructure JSON data by selecting, renaming, mapping, nesting, or removing fields.",
+          "positive_examples": [
+            "rename these JSON fields",
+            "convert this JSON structure",
+            "map this payload into another schema"
+          ],
+          "negative_examples": [
+            "compare JSON",
+            "validate JSON",
+            "rewrite plain text"
+          ],
+          "input_schema": {
+            "data": {
+              "type": "object",
+              "required": true
+            },
+            "transformation": {
+              "type": "object",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "compare_json",
+          "name": "Compare JSON",
+          "operation_id": "JSON_COMPARE",
+          "taxonomy": {
+            "class": "data",
+            "type": "json"
+          },
+          "description": "Compare two JSON structures and report additions, removals, and changed values.",
+          "positive_examples": [
+            "compare these JSON objects",
+            "what changed between these payloads",
+            "diff these JSON files"
+          ],
+          "negative_examples": [
+            "git diff",
+            "validate JSON",
+            "compare research papers"
+          ],
+          "input_schema": {
+            "left": {
+              "type": "object",
+              "required": true
+            },
+            "right": {
+              "type": "object",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "system_mcp",
+      "name": "System MCP",
+      "description": "Safe synthetic system-information operations for machine state, storage, memory, processes, and environment data.",
+      "tools": [
+        {
+          "tool_id": "get_system_info",
+          "name": "Get System Info",
+          "operation_id": "SYSTEM_INFO",
+          "taxonomy": {
+            "class": "system",
+            "type": "host"
+          },
+          "description": "Return operating system, architecture, hostname, processor, and runtime information.",
+          "positive_examples": [
+            "what OS is this machine running",
+            "show system information",
+            "what architecture is this computer"
+          ],
+          "negative_examples": [
+            "show memory usage",
+            "show disk usage",
+            "list running processes"
+          ],
+          "input_schema": {}
+        },
+        {
+          "tool_id": "get_disk_usage",
+          "name": "Get Disk Usage",
+          "operation_id": "DISK_USAGE",
+          "taxonomy": {
+            "class": "system",
+            "type": "resources"
+          },
+          "description": "Return total, used, and available disk storage for a specified filesystem location.",
+          "positive_examples": [
+            "how much disk space is left",
+            "show storage usage",
+            "check free space on this drive"
+          ],
+          "negative_examples": [
+            "show memory usage",
+            "show file size",
+            "inspect a directory"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": false
+            }
+          }
+        },
+        {
+          "tool_id": "get_memory_usage",
+          "name": "Get Memory Usage",
+          "operation_id": "MEMORY_USAGE",
+          "taxonomy": {
+            "class": "system",
+            "type": "resources"
+          },
+          "description": "Return total, used, and available system memory information.",
+          "positive_examples": [
+            "how much RAM is being used",
+            "show memory usage",
+            "how much memory is free"
+          ],
+          "negative_examples": [
+            "show disk usage",
+            "show file size",
+            "list processes"
+          ],
+          "input_schema": {}
+        },
+        {
+          "tool_id": "list_processes",
+          "name": "List Processes",
+          "operation_id": "PROCESS_LIST",
+          "taxonomy": {
+            "class": "system",
+            "type": "processes"
+          },
+          "description": "Return currently running synthetic processes and basic process metadata.",
+          "positive_examples": [
+            "show running processes",
+            "what programs are running",
+            "list system processes"
+          ],
+          "negative_examples": [
+            "list files",
+            "show memory usage",
+            "read environment variable"
+          ],
+          "input_schema": {}
+        },
+        {
+          "tool_id": "read_environment_variable",
+          "name": "Read Environment Variable",
+          "operation_id": "ENVIRONMENT_READ",
+          "taxonomy": {
+            "class": "system",
+            "type": "environment"
+          },
+          "description": "Return the value of an allowed synthetic environment variable.",
+          "positive_examples": [
+            "what is the value of APP_ENV",
+            "read this environment variable",
+            "show the configured environment setting"
+          ],
+          "negative_examples": [
+            "read a file",
+            "show system information",
+            "modify an environment variable"
+          ],
+          "input_schema": {
+            "name": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "geo_mcp",
+      "name": "Geo MCP",
+      "description": "Geographic operations for locations, coordinates, distances, time zones, and country information.",
+      "tools": [
+        {
+          "tool_id": "geocode_location",
+          "name": "Geocode Location",
+          "operation_id": "GEOCODE",
+          "taxonomy": {
+            "class": "geography",
+            "type": "location"
+          },
+          "description": "Convert a place name or postal address into latitude and longitude coordinates.",
+          "positive_examples": [
+            "get coordinates for Mumbai",
+            "geocode this address",
+            "what are the coordinates of this place"
+          ],
+          "negative_examples": [
+            "convert coordinates to an address",
+            "calculate distance",
+            "find timezone"
+          ],
+          "input_schema": {
+            "location": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "reverse_geocode",
+          "name": "Reverse Geocode",
+          "operation_id": "REVERSE_GEOCODE",
+          "taxonomy": {
+            "class": "geography",
+            "type": "location"
+          },
+          "description": "Convert latitude and longitude coordinates into a human-readable geographic location.",
+          "positive_examples": [
+            "what place is at these coordinates",
+            "reverse geocode 19.07,72.87",
+            "convert lat long to an address"
+          ],
+          "negative_examples": [
+            "get coordinates for Mumbai",
+            "calculate geographic distance",
+            "lookup country information"
+          ],
+          "input_schema": {
+            "latitude": {
+              "type": "number",
+              "required": true
+            },
+            "longitude": {
+              "type": "number",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "calculate_geographic_distance",
+          "name": "Calculate Geographic Distance",
+          "operation_id": "GEO_DISTANCE",
+          "taxonomy": {
+            "class": "geography",
+            "type": "distance"
+          },
+          "description": "Calculate approximate geographic distance between two coordinates or named locations.",
+          "positive_examples": [
+            "distance from Mumbai to Pune",
+            "how far apart are these coordinates",
+            "calculate geographic distance"
+          ],
+          "negative_examples": [
+            "geocode a place",
+            "calculate Euclidean math",
+            "find timezone"
+          ],
+          "input_schema": {
+            "origin": {
+              "type": "string",
+              "required": true
+            },
+            "destination": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "lookup_timezone",
+          "name": "Lookup Timezone",
+          "operation_id": "TIMEZONE_LOOKUP",
+          "taxonomy": {
+            "class": "geography",
+            "type": "timezone"
+          },
+          "description": "Determine the timezone associated with a geographic location.",
+          "positive_examples": [
+            "what timezone is Mumbai in",
+            "find timezone for San Francisco",
+            "which timezone does this location use"
+          ],
+          "negative_examples": [
+            "what time is it now",
+            "geocode the location",
+            "lookup country data"
+          ],
+          "input_schema": {
+            "location": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "lookup_country_information",
+          "name": "Lookup Country Information",
+          "operation_id": "COUNTRY_LOOKUP",
+          "taxonomy": {
+            "class": "geography",
+            "type": "country"
+          },
+          "description": "Retrieve basic synthetic geographic information about a country such as capital, region, and country code.",
+          "positive_examples": [
+            "what is the capital of Japan",
+            "show information about India",
+            "what is Germany's country code"
+          ],
+          "negative_examples": [
+            "find coordinates for a city",
+            "calculate distance",
+            "translate a country name"
+          ],
+          "input_schema": {
+            "country": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "media_mcp",
+      "name": "Media MCP",
+      "description": "Synthetic image and media operations for metadata, dimensions, resizing, cropping, format conversion, and content description.",
+      "tools": [
+        {
+          "tool_id": "get_image_metadata",
+          "name": "Get Image Metadata",
+          "operation_id": "IMAGE_METADATA",
+          "taxonomy": {
+            "class": "media",
+            "type": "image"
+          },
+          "description": "Retrieve image format, dimensions, file size, and associated image metadata.",
+          "positive_examples": [
+            "what size is this image",
+            "get metadata for this PNG",
+            "what format is this image"
+          ],
+          "negative_examples": [
+            "get generic file metadata",
+            "describe what is in the image",
+            "resize the image"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "resize_image",
+          "name": "Resize Image",
+          "operation_id": "IMAGE_RESIZE",
+          "taxonomy": {
+            "class": "media",
+            "type": "image"
+          },
+          "description": "Resize an image to specified dimensions.",
+          "positive_examples": [
+            "resize this image to 500 by 500",
+            "make this image smaller",
+            "change the image dimensions"
+          ],
+          "negative_examples": [
+            "crop the image",
+            "convert image format",
+            "get image metadata"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            },
+            "width": {
+              "type": "integer",
+              "required": true
+            },
+            "height": {
+              "type": "integer",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "crop_image",
+          "name": "Crop Image",
+          "operation_id": "IMAGE_CROP",
+          "taxonomy": {
+            "class": "media",
+            "type": "image"
+          },
+          "description": "Extract a rectangular region from an existing image.",
+          "positive_examples": [
+            "crop the top-left part of this image",
+            "cut this image to this rectangle",
+            "extract this region from the image"
+          ],
+          "negative_examples": [
+            "resize the whole image",
+            "convert to PNG",
+            "describe the image"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            },
+            "x": {
+              "type": "integer",
+              "required": true
+            },
+            "y": {
+              "type": "integer",
+              "required": true
+            },
+            "width": {
+              "type": "integer",
+              "required": true
+            },
+            "height": {
+              "type": "integer",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "convert_image_format",
+          "name": "Convert Image Format",
+          "operation_id": "IMAGE_FORMAT_CONVERT",
+          "taxonomy": {
+            "class": "media",
+            "type": "image"
+          },
+          "description": "Convert an image between supported formats such as PNG, JPEG, and WebP.",
+          "positive_examples": [
+            "convert this PNG to JPEG",
+            "change this image to WebP",
+            "save this image in another format"
+          ],
+          "negative_examples": [
+            "resize this image",
+            "convert text encoding",
+            "extract image metadata"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            },
+            "format": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "describe_image",
+          "name": "Describe Image",
+          "operation_id": "IMAGE_DESCRIBE",
+          "taxonomy": {
+            "class": "media",
+            "type": "image"
+          },
+          "description": "Produce a textual description of visible objects, layout, and content in an image.",
+          "positive_examples": [
+            "what is in this image",
+            "describe this photo",
+            "tell me what you see"
+          ],
+          "negative_examples": [
+            "get image dimensions",
+            "resize the image",
+            "extract text from PDF"
+          ],
+          "input_schema": {
+            "path": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "server_id": "utility_mcp",
+      "name": "Utility MCP",
+      "description": "General deterministic utility operations involving dates, identifiers, hashing, encoding, and decoding.",
+      "tools": [
+        {
+          "tool_id": "calculate_date_difference",
+          "name": "Calculate Date Difference",
+          "operation_id": "DATE_DIFFERENCE",
+          "taxonomy": {
+            "class": "utility",
+            "type": "date"
+          },
+          "description": "Calculate the elapsed duration between two supplied calendar dates or timestamps.",
+          "positive_examples": [
+            "how many days between these dates",
+            "calculate date difference",
+            "how long from August 1 to August 20"
+          ],
+          "negative_examples": [
+            "add 10 days to a date",
+            "check calendar availability",
+            "calculate geographic distance"
+          ],
+          "input_schema": {
+            "start": {
+              "type": "string",
+              "required": true
+            },
+            "end": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "add_date_duration",
+          "name": "Add Date Duration",
+          "operation_id": "DATE_ADD",
+          "taxonomy": {
+            "class": "utility",
+            "type": "date"
+          },
+          "description": "Add a specified duration in days, weeks, months, or years to a calendar date.",
+          "positive_examples": [
+            "add 10 days to this date",
+            "what date is three weeks after August 1",
+            "move this date forward two months"
+          ],
+          "negative_examples": [
+            "calculate difference between dates",
+            "create a calendar event",
+            "find timezone"
+          ],
+          "input_schema": {
+            "date": {
+              "type": "string",
+              "required": true
+            },
+            "amount": {
+              "type": "integer",
+              "required": true
+            },
+            "unit": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "generate_uuid",
+          "name": "Generate UUID",
+          "operation_id": "UUID_GENERATE",
+          "taxonomy": {
+            "class": "utility",
+            "type": "identifier"
+          },
+          "description": "Generate a valid universally unique identifier.",
+          "positive_examples": [
+            "generate a UUID",
+            "give me a unique identifier",
+            "create a random UUID"
+          ],
+          "negative_examples": [
+            "hash this text",
+            "generate a random password",
+            "encode this string"
+          ],
+          "input_schema": {}
+        },
+        {
+          "tool_id": "hash_text",
+          "name": "Hash Text",
+          "operation_id": "HASH_TEXT",
+          "taxonomy": {
+            "class": "utility",
+            "type": "encoding"
+          },
+          "description": "Compute a deterministic cryptographic digest of supplied text using a specified hashing algorithm.",
+          "positive_examples": [
+            "hash this text with SHA256",
+            "calculate the MD5 digest",
+            "generate a hash of this string"
+          ],
+          "negative_examples": [
+            "Base64 encode this",
+            "encrypt this text",
+            "generate a UUID"
+          ],
+          "input_schema": {
+            "text": {
+              "type": "string",
+              "required": true
+            },
+            "algorithm": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "encode_base64",
+          "name": "Base64 Encode",
+          "operation_id": "BASE64_ENCODE",
+          "taxonomy": {
+            "class": "utility",
+            "type": "encoding"
+          },
+          "description": "Convert supplied text or bytes into Base64 representation.",
+          "positive_examples": [
+            "encode this text as Base64",
+            "convert this string to Base64",
+            "Base64 encode this"
+          ],
+          "negative_examples": [
+            "decode Base64",
+            "hash this text",
+            "convert JSON"
+          ],
+          "input_schema": {
+            "data": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        {
+          "tool_id": "decode_base64",
+          "name": "Base64 Decode",
+          "operation_id": "BASE64_DECODE",
+          "taxonomy": {
+            "class": "utility",
+            "type": "encoding"
+          },
+          "description": "Decode valid Base64 input back into its original text or byte representation.",
+          "positive_examples": [
+            "decode this Base64",
+            "convert this Base64 string back to text",
+            "what does this Base64 value contain"
+          ],
+          "negative_examples": [
+            "encode text as Base64",
+            "hash this value",
+            "parse JSON"
+          ],
+          "input_schema": {
+            "data": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

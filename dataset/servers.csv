@@ -1,0 +1,19 @@
+server_position,server_id,server_name,server_description,tool_count
+1,filesystem_mcp,Filesystem MCP,"Local filesystem operations for reading, writing, inspecting, copying, moving, deleting, and discovering files and directories.",8
+2,document_mcp,Document MCP,"Document-oriented operations for extracting, searching, summarizing, and inspecting structured and unstructured documents.",5
+3,database_mcp,Database MCP,"Structured relational database operations for querying, inspecting, inserting, updating, deleting, and aggregating data.",6
+4,web_mcp,Web MCP,"Synthetic web retrieval and extraction operations for pages, links, metadata, search results, and structured information.",6
+5,research_mcp,Research MCP,"Academic and technical research operations for papers, metadata, citations, comparisons, and summaries.",5
+6,email_mcp,Email MCP,"Synthetic email operations for sending, searching, reading, replying, drafting, and archiving messages.",6
+7,calendar_mcp,Calendar MCP,"Calendar and scheduling operations for creating, searching, updating, deleting, and checking event availability.",5
+8,messaging_mcp,Messaging MCP,"Synthetic team messaging operations involving channels, messages, threads, workspace history, and search.",5
+9,git_mcp,Git MCP,"Source-control operations for repositories, branches, commits, diffs, status, and history.",6
+10,issue_tracker_mcp,Issue Tracker MCP,"Software issue and project-tracking operations for searching, reading, creating, updating, and commenting on development tasks.",5
+11,text_mcp,Text MCP,"Natural-language transformation and analysis operations including summarization, translation, sentiment, extraction, rewriting, and classification.",7
+12,math_mcp,Math MCP,"Deterministic mathematical and numerical operations for arithmetic, statistics, percentages, finance, and equations.",5
+13,data_analysis_mcp,Data Analysis MCP,"Operations for inspecting, filtering, sorting, grouping, transforming, and analyzing tabular datasets.",6
+14,json_mcp,JSON MCP,"Structured JSON operations for parsing, querying, validation, transformation, and comparison.",5
+15,system_mcp,System MCP,"Safe synthetic system-information operations for machine state, storage, memory, processes, and environment data.",5
+16,geo_mcp,Geo MCP,"Geographic operations for locations, coordinates, distances, time zones, and country information.",5
+17,media_mcp,Media MCP,"Synthetic image and media operations for metadata, dimensions, resizing, cropping, format conversion, and content description.",5
+18,utility_mcp,Utility MCP,"General deterministic utility operations involving dates, identifiers, hashing, encoding, and decoding.",6

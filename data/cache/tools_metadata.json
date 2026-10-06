@@ -1,0 +1,810 @@
+{
+  "0": {
+    "operation_id": "FILE_READ",
+    "tool_id": "read_file",
+    "server_id": "filesystem_mcp",
+    "name": "Read File",
+    "taxonomy_class": "data",
+    "taxonomy_type": "filesystem"
+  },
+  "1": {
+    "operation_id": "FILE_WRITE",
+    "tool_id": "write_file",
+    "server_id": "filesystem_mcp",
+    "name": "Write File",
+    "taxonomy_class": "data",
+    "taxonomy_type": "filesystem"
+  },
+  "2": {
+    "operation_id": "FILE_APPEND",
+    "tool_id": "append_file",
+    "server_id": "filesystem_mcp",
+    "name": "Append File",
+    "taxonomy_class": "data",
+    "taxonomy_type": "filesystem"
+  },
+  "3": {
+    "operation_id": "FILE_COPY",
+    "tool_id": "copy_file",
+    "server_id": "filesystem_mcp",
+    "name": "Copy File",
+    "taxonomy_class": "data",
+    "taxonomy_type": "filesystem"
+  },
+  "4": {
+    "operation_id": "FILE_MOVE",
+    "tool_id": "move_file",
+    "server_id": "filesystem_mcp",
+    "name": "Move File",
+    "taxonomy_class": "data",
+    "taxonomy_type": "filesystem"
+  },
+  "5": {
+    "operation_id": "FILE_DELETE",
+    "tool_id": "delete_file",
+    "server_id": "filesystem_mcp",
+    "name": "Delete File",
+    "taxonomy_class": "data",
+    "taxonomy_type": "filesystem"
+  },
+  "6": {
+    "operation_id": "DIRECTORY_LIST",
+    "tool_id": "list_directory",
+    "server_id": "filesystem_mcp",
+    "name": "List Directory",
+    "taxonomy_class": "data",
+    "taxonomy_type": "filesystem"
+  },
+  "7": {
+    "operation_id": "FILE_METADATA",
+    "tool_id": "get_file_metadata",
+    "server_id": "filesystem_mcp",
+    "name": "Get File Metadata",
+    "taxonomy_class": "data",
+    "taxonomy_type": "filesystem"
+  },
+  "8": {
+    "operation_id": "PDF_TEXT_EXTRACT",
+    "tool_id": "extract_pdf_text",
+    "server_id": "document_mcp",
+    "name": "Extract PDF Text",
+    "taxonomy_class": "documents",
+    "taxonomy_type": "pdf"
+  },
+  "9": {
+    "operation_id": "DOCX_TEXT_EXTRACT",
+    "tool_id": "extract_docx_text",
+    "server_id": "document_mcp",
+    "name": "Extract DOCX Text",
+    "taxonomy_class": "documents",
+    "taxonomy_type": "docx"
+  },
+  "10": {
+    "operation_id": "DOCUMENT_SUMMARIZE",
+    "tool_id": "summarize_document",
+    "server_id": "document_mcp",
+    "name": "Summarize Document",
+    "taxonomy_class": "documents",
+    "taxonomy_type": "analysis"
+  },
+  "11": {
+    "operation_id": "DOCUMENT_SEARCH",
+    "tool_id": "search_document",
+    "server_id": "document_mcp",
+    "name": "Search Document",
+    "taxonomy_class": "documents",
+    "taxonomy_type": "retrieval"
+  },
+  "12": {
+    "operation_id": "DOCUMENT_SECTION_EXTRACT",
+    "tool_id": "extract_document_section",
+    "server_id": "document_mcp",
+    "name": "Extract Document Section",
+    "taxonomy_class": "documents",
+    "taxonomy_type": "retrieval"
+  },
+  "13": {
+    "operation_id": "SQL_QUERY",
+    "tool_id": "execute_sql_query",
+    "server_id": "database_mcp",
+    "name": "Execute SQL Query",
+    "taxonomy_class": "data",
+    "taxonomy_type": "database"
+  },
+  "14": {
+    "operation_id": "DATABASE_SCHEMA_INSPECT",
+    "tool_id": "inspect_database_schema",
+    "server_id": "database_mcp",
+    "name": "Inspect Database Schema",
+    "taxonomy_class": "data",
+    "taxonomy_type": "database"
+  },
+  "15": {
+    "operation_id": "DATABASE_INSERT",
+    "tool_id": "insert_database_record",
+    "server_id": "database_mcp",
+    "name": "Insert Database Record",
+    "taxonomy_class": "data",
+    "taxonomy_type": "database"
+  },
+  "16": {
+    "operation_id": "DATABASE_UPDATE",
+    "tool_id": "update_database_record",
+    "server_id": "database_mcp",
+    "name": "Update Database Record",
+    "taxonomy_class": "data",
+    "taxonomy_type": "database"
+  },
+  "17": {
+    "operation_id": "DATABASE_DELETE",
+    "tool_id": "delete_database_record",
+    "server_id": "database_mcp",
+    "name": "Delete Database Record",
+    "taxonomy_class": "data",
+    "taxonomy_type": "database"
+  },
+  "18": {
+    "operation_id": "DATABASE_AGGREGATE",
+    "tool_id": "aggregate_database_data",
+    "server_id": "database_mcp",
+    "name": "Aggregate Database Data",
+    "taxonomy_class": "data",
+    "taxonomy_type": "database"
+  },
+  "19": {
+    "operation_id": "WEB_FETCH",
+    "tool_id": "fetch_web_page",
+    "server_id": "web_mcp",
+    "name": "Fetch Web Page",
+    "taxonomy_class": "web",
+    "taxonomy_type": "retrieval"
+  },
+  "20": {
+    "operation_id": "WEB_TEXT_EXTRACT",
+    "tool_id": "extract_web_text",
+    "server_id": "web_mcp",
+    "name": "Extract Web Text",
+    "taxonomy_class": "web",
+    "taxonomy_type": "extraction"
+  },
+  "21": {
+    "operation_id": "WEB_LINK_EXTRACT",
+    "tool_id": "extract_web_links",
+    "server_id": "web_mcp",
+    "name": "Extract Web Links",
+    "taxonomy_class": "web",
+    "taxonomy_type": "extraction"
+  },
+  "22": {
+    "operation_id": "WEB_METADATA",
+    "tool_id": "extract_web_metadata",
+    "server_id": "web_mcp",
+    "name": "Extract Web Metadata",
+    "taxonomy_class": "web",
+    "taxonomy_type": "metadata"
+  },
+  "23": {
+    "operation_id": "WEB_STRUCTURED_EXTRACT",
+    "tool_id": "extract_structured_web_data",
+    "server_id": "web_mcp",
+    "name": "Extract Structured Web Data",
+    "taxonomy_class": "web",
+    "taxonomy_type": "extraction"
+  },
+  "24": {
+    "operation_id": "WEB_SEARCH",
+    "tool_id": "search_web",
+    "server_id": "web_mcp",
+    "name": "Search Web",
+    "taxonomy_class": "web",
+    "taxonomy_type": "search"
+  },
+  "25": {
+    "operation_id": "PAPER_SEARCH",
+    "tool_id": "search_research_papers",
+    "server_id": "research_mcp",
+    "name": "Search Research Papers",
+    "taxonomy_class": "research",
+    "taxonomy_type": "academic"
+  },
+  "26": {
+    "operation_id": "PAPER_METADATA",
+    "tool_id": "get_paper_metadata",
+    "server_id": "research_mcp",
+    "name": "Get Paper Metadata",
+    "taxonomy_class": "research",
+    "taxonomy_type": "academic"
+  },
+  "27": {
+    "operation_id": "PAPER_CITATIONS",
+    "tool_id": "get_paper_citations",
+    "server_id": "research_mcp",
+    "name": "Get Paper Citations",
+    "taxonomy_class": "research",
+    "taxonomy_type": "academic"
+  },
+  "28": {
+    "operation_id": "PAPER_SUMMARIZE",
+    "tool_id": "summarize_research_paper",
+    "server_id": "research_mcp",
+    "name": "Summarize Research Paper",
+    "taxonomy_class": "research",
+    "taxonomy_type": "analysis"
+  },
+  "29": {
+    "operation_id": "PAPER_COMPARE",
+    "tool_id": "compare_research_papers",
+    "server_id": "research_mcp",
+    "name": "Compare Research Papers",
+    "taxonomy_class": "research",
+    "taxonomy_type": "analysis"
+  },
+  "30": {
+    "operation_id": "EMAIL_SEND",
+    "tool_id": "send_email",
+    "server_id": "email_mcp",
+    "name": "Send Email",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "email"
+  },
+  "31": {
+    "operation_id": "EMAIL_SEARCH",
+    "tool_id": "search_email",
+    "server_id": "email_mcp",
+    "name": "Search Email",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "email"
+  },
+  "32": {
+    "operation_id": "EMAIL_READ",
+    "tool_id": "read_email",
+    "server_id": "email_mcp",
+    "name": "Read Email",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "email"
+  },
+  "33": {
+    "operation_id": "EMAIL_REPLY",
+    "tool_id": "reply_email",
+    "server_id": "email_mcp",
+    "name": "Reply Email",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "email"
+  },
+  "34": {
+    "operation_id": "EMAIL_DRAFT",
+    "tool_id": "create_email_draft",
+    "server_id": "email_mcp",
+    "name": "Create Email Draft",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "email"
+  },
+  "35": {
+    "operation_id": "EMAIL_ARCHIVE",
+    "tool_id": "archive_email",
+    "server_id": "email_mcp",
+    "name": "Archive Email",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "email"
+  },
+  "36": {
+    "operation_id": "CALENDAR_CREATE",
+    "tool_id": "create_calendar_event",
+    "server_id": "calendar_mcp",
+    "name": "Create Calendar Event",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "calendar"
+  },
+  "37": {
+    "operation_id": "CALENDAR_SEARCH",
+    "tool_id": "search_calendar_events",
+    "server_id": "calendar_mcp",
+    "name": "Search Calendar Events",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "calendar"
+  },
+  "38": {
+    "operation_id": "CALENDAR_UPDATE",
+    "tool_id": "update_calendar_event",
+    "server_id": "calendar_mcp",
+    "name": "Update Calendar Event",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "calendar"
+  },
+  "39": {
+    "operation_id": "CALENDAR_DELETE",
+    "tool_id": "delete_calendar_event",
+    "server_id": "calendar_mcp",
+    "name": "Delete Calendar Event",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "calendar"
+  },
+  "40": {
+    "operation_id": "CALENDAR_AVAILABILITY",
+    "tool_id": "check_calendar_availability",
+    "server_id": "calendar_mcp",
+    "name": "Check Calendar Availability",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "calendar"
+  },
+  "41": {
+    "operation_id": "MESSAGE_SEND",
+    "tool_id": "send_channel_message",
+    "server_id": "messaging_mcp",
+    "name": "Send Channel Message",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "messaging"
+  },
+  "42": {
+    "operation_id": "MESSAGE_SEARCH",
+    "tool_id": "search_messages",
+    "server_id": "messaging_mcp",
+    "name": "Search Messages",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "messaging"
+  },
+  "43": {
+    "operation_id": "MESSAGE_THREAD_REPLY",
+    "tool_id": "reply_to_thread",
+    "server_id": "messaging_mcp",
+    "name": "Reply to Thread",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "messaging"
+  },
+  "44": {
+    "operation_id": "CHANNEL_LIST",
+    "tool_id": "list_channels",
+    "server_id": "messaging_mcp",
+    "name": "List Channels",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "messaging"
+  },
+  "45": {
+    "operation_id": "CHANNEL_HISTORY",
+    "tool_id": "get_channel_history",
+    "server_id": "messaging_mcp",
+    "name": "Get Channel History",
+    "taxonomy_class": "communication",
+    "taxonomy_type": "messaging"
+  },
+  "46": {
+    "operation_id": "GIT_STATUS",
+    "tool_id": "get_git_status",
+    "server_id": "git_mcp",
+    "name": "Get Git Status",
+    "taxonomy_class": "development",
+    "taxonomy_type": "git"
+  },
+  "47": {
+    "operation_id": "GIT_DIFF",
+    "tool_id": "get_git_diff",
+    "server_id": "git_mcp",
+    "name": "Get Git Diff",
+    "taxonomy_class": "development",
+    "taxonomy_type": "git"
+  },
+  "48": {
+    "operation_id": "GIT_COMMIT_HISTORY",
+    "tool_id": "get_commit_history",
+    "server_id": "git_mcp",
+    "name": "Get Commit History",
+    "taxonomy_class": "development",
+    "taxonomy_type": "git"
+  },
+  "49": {
+    "operation_id": "GIT_BRANCH_LIST",
+    "tool_id": "list_git_branches",
+    "server_id": "git_mcp",
+    "name": "List Git Branches",
+    "taxonomy_class": "development",
+    "taxonomy_type": "git"
+  },
+  "50": {
+    "operation_id": "GIT_CREATE_BRANCH",
+    "tool_id": "create_git_branch",
+    "server_id": "git_mcp",
+    "name": "Create Git Branch",
+    "taxonomy_class": "development",
+    "taxonomy_type": "git"
+  },
+  "51": {
+    "operation_id": "GIT_COMMIT",
+    "tool_id": "create_git_commit",
+    "server_id": "git_mcp",
+    "name": "Create Git Commit",
+    "taxonomy_class": "development",
+    "taxonomy_type": "git"
+  },
+  "52": {
+    "operation_id": "ISSUE_SEARCH",
+    "tool_id": "search_issues",
+    "server_id": "issue_tracker_mcp",
+    "name": "Search Issues",
+    "taxonomy_class": "development",
+    "taxonomy_type": "issues"
+  },
+  "53": {
+    "operation_id": "ISSUE_READ",
+    "tool_id": "read_issue",
+    "server_id": "issue_tracker_mcp",
+    "name": "Read Issue",
+    "taxonomy_class": "development",
+    "taxonomy_type": "issues"
+  },
+  "54": {
+    "operation_id": "ISSUE_CREATE",
+    "tool_id": "create_issue",
+    "server_id": "issue_tracker_mcp",
+    "name": "Create Issue",
+    "taxonomy_class": "development",
+    "taxonomy_type": "issues"
+  },
+  "55": {
+    "operation_id": "ISSUE_UPDATE",
+    "tool_id": "update_issue",
+    "server_id": "issue_tracker_mcp",
+    "name": "Update Issue",
+    "taxonomy_class": "development",
+    "taxonomy_type": "issues"
+  },
+  "56": {
+    "operation_id": "ISSUE_COMMENT",
+    "tool_id": "comment_on_issue",
+    "server_id": "issue_tracker_mcp",
+    "name": "Comment on Issue",
+    "taxonomy_class": "development",
+    "taxonomy_type": "issues"
+  },
+  "57": {
+    "operation_id": "TEXT_SUMMARIZE",
+    "tool_id": "summarize_text",
+    "server_id": "text_mcp",
+    "name": "Summarize Text",
+    "taxonomy_class": "language",
+    "taxonomy_type": "text"
+  },
+  "58": {
+    "operation_id": "TEXT_TRANSLATE",
+    "tool_id": "translate_text",
+    "server_id": "text_mcp",
+    "name": "Translate Text",
+    "taxonomy_class": "language",
+    "taxonomy_type": "text"
+  },
+  "59": {
+    "operation_id": "TEXT_SENTIMENT",
+    "tool_id": "analyze_sentiment",
+    "server_id": "text_mcp",
+    "name": "Analyze Sentiment",
+    "taxonomy_class": "language",
+    "taxonomy_type": "analysis"
+  },
+  "60": {
+    "operation_id": "TEXT_KEYWORDS",
+    "tool_id": "extract_keywords",
+    "server_id": "text_mcp",
+    "name": "Extract Keywords",
+    "taxonomy_class": "language",
+    "taxonomy_type": "analysis"
+  },
+  "61": {
+    "operation_id": "TEXT_ENTITIES",
+    "tool_id": "extract_entities",
+    "server_id": "text_mcp",
+    "name": "Extract Entities",
+    "taxonomy_class": "language",
+    "taxonomy_type": "analysis"
+  },
+  "62": {
+    "operation_id": "TEXT_REWRITE",
+    "tool_id": "rewrite_text",
+    "server_id": "text_mcp",
+    "name": "Rewrite Text",
+    "taxonomy_class": "language",
+    "taxonomy_type": "transformation"
+  },
+  "63": {
+    "operation_id": "TEXT_CLASSIFY",
+    "tool_id": "classify_text",
+    "server_id": "text_mcp",
+    "name": "Classify Text",
+    "taxonomy_class": "language",
+    "taxonomy_type": "analysis"
+  },
+  "64": {
+    "operation_id": "CALCULATOR",
+    "tool_id": "calculate_expression",
+    "server_id": "math_mcp",
+    "name": "Calculate Expression",
+    "taxonomy_class": "computation",
+    "taxonomy_type": "math"
+  },
+  "65": {
+    "operation_id": "STATISTICS_DESCRIBE",
+    "tool_id": "calculate_descriptive_statistics",
+    "server_id": "math_mcp",
+    "name": "Calculate Descriptive Statistics",
+    "taxonomy_class": "computation",
+    "taxonomy_type": "statistics"
+  },
+  "66": {
+    "operation_id": "PERCENTAGE_CHANGE",
+    "tool_id": "calculate_percentage_change",
+    "server_id": "math_mcp",
+    "name": "Calculate Percentage Change",
+    "taxonomy_class": "computation",
+    "taxonomy_type": "math"
+  },
+  "67": {
+    "operation_id": "COMPOUND_INTEREST",
+    "tool_id": "calculate_compound_interest",
+    "server_id": "math_mcp",
+    "name": "Calculate Compound Interest",
+    "taxonomy_class": "computation",
+    "taxonomy_type": "finance"
+  },
+  "68": {
+    "operation_id": "LINEAR_EQUATION_SOLVE",
+    "tool_id": "solve_linear_equation",
+    "server_id": "math_mcp",
+    "name": "Solve Linear Equation",
+    "taxonomy_class": "computation",
+    "taxonomy_type": "algebra"
+  },
+  "69": {
+    "operation_id": "DATASET_INSPECT",
+    "tool_id": "inspect_dataset",
+    "server_id": "data_analysis_mcp",
+    "name": "Inspect Dataset",
+    "taxonomy_class": "data",
+    "taxonomy_type": "tabular"
+  },
+  "70": {
+    "operation_id": "DATASET_FILTER",
+    "tool_id": "filter_dataset",
+    "server_id": "data_analysis_mcp",
+    "name": "Filter Dataset",
+    "taxonomy_class": "data",
+    "taxonomy_type": "tabular"
+  },
+  "71": {
+    "operation_id": "DATASET_SORT",
+    "tool_id": "sort_dataset",
+    "server_id": "data_analysis_mcp",
+    "name": "Sort Dataset",
+    "taxonomy_class": "data",
+    "taxonomy_type": "tabular"
+  },
+  "72": {
+    "operation_id": "DATASET_GROUP",
+    "tool_id": "group_dataset",
+    "server_id": "data_analysis_mcp",
+    "name": "Group Dataset",
+    "taxonomy_class": "data",
+    "taxonomy_type": "tabular"
+  },
+  "73": {
+    "operation_id": "DATASET_COLUMN_CREATE",
+    "tool_id": "create_calculated_column",
+    "server_id": "data_analysis_mcp",
+    "name": "Create Calculated Column",
+    "taxonomy_class": "data",
+    "taxonomy_type": "tabular"
+  },
+  "74": {
+    "operation_id": "DATASET_MISSING_VALUES",
+    "tool_id": "analyze_missing_values",
+    "server_id": "data_analysis_mcp",
+    "name": "Analyze Missing Values",
+    "taxonomy_class": "data",
+    "taxonomy_type": "tabular"
+  },
+  "75": {
+    "operation_id": "JSON_PARSE",
+    "tool_id": "parse_json",
+    "server_id": "json_mcp",
+    "name": "Parse JSON",
+    "taxonomy_class": "data",
+    "taxonomy_type": "json"
+  },
+  "76": {
+    "operation_id": "JSON_QUERY",
+    "tool_id": "query_json",
+    "server_id": "json_mcp",
+    "name": "Query JSON",
+    "taxonomy_class": "data",
+    "taxonomy_type": "json"
+  },
+  "77": {
+    "operation_id": "JSON_VALIDATE",
+    "tool_id": "validate_json_schema",
+    "server_id": "json_mcp",
+    "name": "Validate JSON Schema",
+    "taxonomy_class": "data",
+    "taxonomy_type": "json"
+  },
+  "78": {
+    "operation_id": "JSON_TRANSFORM",
+    "tool_id": "transform_json",
+    "server_id": "json_mcp",
+    "name": "Transform JSON",
+    "taxonomy_class": "data",
+    "taxonomy_type": "json"
+  },
+  "79": {
+    "operation_id": "JSON_COMPARE",
+    "tool_id": "compare_json",
+    "server_id": "json_mcp",
+    "name": "Compare JSON",
+    "taxonomy_class": "data",
+    "taxonomy_type": "json"
+  },
+  "80": {
+    "operation_id": "SYSTEM_INFO",
+    "tool_id": "get_system_info",
+    "server_id": "system_mcp",
+    "name": "Get System Info",
+    "taxonomy_class": "system",
+    "taxonomy_type": "host"
+  },
+  "81": {
+    "operation_id": "DISK_USAGE",
+    "tool_id": "get_disk_usage",
+    "server_id": "system_mcp",
+    "name": "Get Disk Usage",
+    "taxonomy_class": "system",
+    "taxonomy_type": "resources"
+  },
+  "82": {
+    "operation_id": "MEMORY_USAGE",
+    "tool_id": "get_memory_usage",
+    "server_id": "system_mcp",
+    "name": "Get Memory Usage",
+    "taxonomy_class": "system",
+    "taxonomy_type": "resources"
+  },
+  "83": {
+    "operation_id": "PROCESS_LIST",
+    "tool_id": "list_processes",
+    "server_id": "system_mcp",
+    "name": "List Processes",
+    "taxonomy_class": "system",
+    "taxonomy_type": "processes"
+  },
+  "84": {
+    "operation_id": "ENVIRONMENT_READ",
+    "tool_id": "read_environment_variable",
+    "server_id": "system_mcp",
+    "name": "Read Environment Variable",
+    "taxonomy_class": "system",
+    "taxonomy_type": "environment"
+  },
+  "85": {
+    "operation_id": "GEOCODE",
+    "tool_id": "geocode_location",
+    "server_id": "geo_mcp",
+    "name": "Geocode Location",
+    "taxonomy_class": "geography",
+    "taxonomy_type": "location"
+  },
+  "86": {
+    "operation_id": "REVERSE_GEOCODE",
+    "tool_id": "reverse_geocode",
+    "server_id": "geo_mcp",
+    "name": "Reverse Geocode",
+    "taxonomy_class": "geography",
+    "taxonomy_type": "location"
+  },
+  "87": {
+    "operation_id": "GEO_DISTANCE",
+    "tool_id": "calculate_geographic_distance",
+    "server_id": "geo_mcp",
+    "name": "Calculate Geographic Distance",
+    "taxonomy_class": "geography",
+    "taxonomy_type": "distance"
+  },
+  "88": {
+    "operation_id": "TIMEZONE_LOOKUP",
+    "tool_id": "lookup_timezone",
+    "server_id": "geo_mcp",
+    "name": "Lookup Timezone",
+    "taxonomy_class": "geography",
+    "taxonomy_type": "timezone"
+  },
+  "89": {
+    "operation_id": "COUNTRY_LOOKUP",
+    "tool_id": "lookup_country_information",
+    "server_id": "geo_mcp",
+    "name": "Lookup Country Information",
+    "taxonomy_class": "geography",
+    "taxonomy_type": "country"
+  },
+  "90": {
+    "operation_id": "IMAGE_METADATA",
+    "tool_id": "get_image_metadata",
+    "server_id": "media_mcp",
+    "name": "Get Image Metadata",
+    "taxonomy_class": "media",
+    "taxonomy_type": "image"
+  },
+  "91": {
+    "operation_id": "IMAGE_RESIZE",
+    "tool_id": "resize_image",
+    "server_id": "media_mcp",
+    "name": "Resize Image",
+    "taxonomy_class": "media",
+    "taxonomy_type": "image"
+  },
+  "92": {
+    "operation_id": "IMAGE_CROP",
+    "tool_id": "crop_image",
+    "server_id": "media_mcp",
+    "name": "Crop Image",
+    "taxonomy_class": "media",
+    "taxonomy_type": "image"
+  },
+  "93": {
+    "operation_id": "IMAGE_FORMAT_CONVERT",
+    "tool_id": "convert_image_format",
+    "server_id": "media_mcp",
+    "name": "Convert Image Format",
+    "taxonomy_class": "media",
+    "taxonomy_type": "image"
+  },
+  "94": {
+    "operation_id": "IMAGE_DESCRIBE",
+    "tool_id": "describe_image",
+    "server_id": "media_mcp",
+    "name": "Describe Image",
+    "taxonomy_class": "media",
+    "taxonomy_type": "image"
+  },
+  "95": {
+    "operation_id": "DATE_DIFFERENCE",
+    "tool_id": "calculate_date_difference",
+    "server_id": "utility_mcp",
+    "name": "Calculate Date Difference",
+    "taxonomy_class": "utility",
+    "taxonomy_type": "date"
+  },
+  "96": {
+    "operation_id": "DATE_ADD",
+    "tool_id": "add_date_duration",
+    "server_id": "utility_mcp",
+    "name": "Add Date Duration",
+    "taxonomy_class": "utility",
+    "taxonomy_type": "date"
+  },
+  "97": {
+    "operation_id": "UUID_GENERATE",
+    "tool_id": "generate_uuid",
+    "server_id": "utility_mcp",
+    "name": "Generate UUID",
+    "taxonomy_class": "utility",
+    "taxonomy_type": "identifier"
+  },
+  "98": {
+    "operation_id": "HASH_TEXT",
+    "tool_id": "hash_text",
+    "server_id": "utility_mcp",
+    "name": "Hash Text",
+    "taxonomy_class": "utility",
+    "taxonomy_type": "encoding"
+  },
+  "99": {
+    "operation_id": "BASE64_ENCODE",
+    "tool_id": "encode_base64",
+    "server_id": "utility_mcp",
+    "name": "Base64 Encode",
+    "taxonomy_class": "utility",
+    "taxonomy_type": "encoding"
+  },
+  "100": {
+    "operation_id": "BASE64_DECODE",
+    "tool_id": "decode_base64",
+    "server_id": "utility_mcp",
+    "name": "Base64 Decode",
+    "taxonomy_class": "utility",
+    "taxonomy_type": "encoding"
+  }
+}

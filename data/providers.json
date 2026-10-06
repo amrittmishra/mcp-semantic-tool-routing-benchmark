@@ -1,0 +1,2875 @@
+{
+  "version": "2.0",
+  "branch": "qos",
+  "note": "Profiles attach to REAL providers declared in data/tools_qos.json, each a distinct MCP server. Stored separately from the tool registry so a reputation update does not change the registry hash and invalidate the FAISS index.",
+  "task_classes": {
+    "default": {
+      "success_rate": 0.2,
+      "output_correctness": 0.25,
+      "latency": 0.15,
+      "cost": 0.1,
+      "schema_compliance": 0.1,
+      "availability": 0.1,
+      "capability_fidelity": 0.1
+    },
+    "analysis": {
+      "success_rate": 0.15,
+      "output_correctness": 0.4,
+      "latency": 0.05,
+      "cost": 0.05,
+      "schema_compliance": 0.1,
+      "availability": 0.05,
+      "capability_fidelity": 0.2
+    },
+    "interactive": {
+      "success_rate": 0.15,
+      "output_correctness": 0.1,
+      "latency": 0.45,
+      "cost": 0.05,
+      "schema_compliance": 0.1,
+      "availability": 0.1,
+      "capability_fidelity": 0.05
+    },
+    "budget": {
+      "success_rate": 0.15,
+      "output_correctness": 0.15,
+      "latency": 0.1,
+      "cost": 0.45,
+      "schema_compliance": 0.05,
+      "availability": 0.05,
+      "capability_fidelity": 0.05
+    }
+  },
+  "providers": {
+    "FILE_READ": [
+      {
+        "provider_id": "filesystem_mcp",
+        "display_name": "filesystem",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "filesystem_mcp",
+        "tool_id": "read_file",
+        "profile": {
+          "success_rate": 0.9697,
+          "output_correctness": 0.936,
+          "latency_ms": 99.1,
+          "cost_units": 1.043,
+          "schema_compliance": 0.9907,
+          "availability": 0.9933,
+          "capability_fidelity": 0.9329
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_turbo_mcp",
+        "display_name": "filesystem_turbo",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "filesystem_turbo_mcp",
+        "tool_id": "read_file__filesystem_turbo",
+        "profile": {
+          "success_rate": 0.9304,
+          "output_correctness": 0.823,
+          "latency_ms": 28.0,
+          "cost_units": 0.435,
+          "schema_compliance": 0.935,
+          "availability": 0.9806,
+          "capability_fidelity": 0.9161
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_vault_mcp",
+        "display_name": "filesystem_vault",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "filesystem_vault_mcp",
+        "tool_id": "read_file__filesystem_vault",
+        "profile": {
+          "success_rate": 0.9824,
+          "output_correctness": 0.9678,
+          "latency_ms": 305.5,
+          "cost_units": 3.127,
+          "schema_compliance": 0.9958,
+          "availability": 0.9906,
+          "capability_fidelity": 0.9942
+        },
+        "observations": 0
+      }
+    ],
+    "FILE_WRITE": [
+      {
+        "provider_id": "filesystem_mcp",
+        "display_name": "filesystem",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "filesystem_mcp",
+        "tool_id": "write_file",
+        "profile": {
+          "success_rate": 0.9614,
+          "output_correctness": 0.9643,
+          "latency_ms": 77.4,
+          "cost_units": 1.087,
+          "schema_compliance": 0.9824,
+          "availability": 0.9928,
+          "capability_fidelity": 0.9708
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_turbo_mcp",
+        "display_name": "filesystem_turbo",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "filesystem_turbo_mcp",
+        "tool_id": "write_file__filesystem_turbo",
+        "profile": {
+          "success_rate": 0.9108,
+          "output_correctness": 0.8665,
+          "latency_ms": 34.2,
+          "cost_units": 0.586,
+          "schema_compliance": 0.9601,
+          "availability": 0.9716,
+          "capability_fidelity": 0.8548
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_vault_mcp",
+        "display_name": "filesystem_vault",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "filesystem_vault_mcp",
+        "tool_id": "write_file__filesystem_vault",
+        "profile": {
+          "success_rate": 0.9839,
+          "output_correctness": 0.9838,
+          "latency_ms": 265.5,
+          "cost_units": 2.24,
+          "schema_compliance": 0.9959,
+          "availability": 0.9913,
+          "capability_fidelity": 0.9705
+        },
+        "observations": 0
+      }
+    ],
+    "FILE_APPEND": [
+      {
+        "provider_id": "filesystem_mcp",
+        "display_name": "filesystem",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "filesystem_mcp",
+        "tool_id": "append_file",
+        "profile": {
+          "success_rate": 0.9838,
+          "output_correctness": 0.958,
+          "latency_ms": 74.6,
+          "cost_units": 1.345,
+          "schema_compliance": 0.9905,
+          "availability": 0.9979,
+          "capability_fidelity": 0.9665
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_turbo_mcp",
+        "display_name": "filesystem_turbo",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "filesystem_turbo_mcp",
+        "tool_id": "append_file__filesystem_turbo",
+        "profile": {
+          "success_rate": 0.9173,
+          "output_correctness": 0.8984,
+          "latency_ms": 18.5,
+          "cost_units": 0.609,
+          "schema_compliance": 0.9716,
+          "availability": 0.9738,
+          "capability_fidelity": 0.8891
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_vault_mcp",
+        "display_name": "filesystem_vault",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "filesystem_vault_mcp",
+        "tool_id": "append_file__filesystem_vault",
+        "profile": {
+          "success_rate": 0.9807,
+          "output_correctness": 0.9834,
+          "latency_ms": 332.9,
+          "cost_units": 2.602,
+          "schema_compliance": 0.9988,
+          "availability": 0.9894,
+          "capability_fidelity": 0.9843
+        },
+        "observations": 0
+      }
+    ],
+    "FILE_COPY": [
+      {
+        "provider_id": "filesystem_mcp",
+        "display_name": "filesystem",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "filesystem_mcp",
+        "tool_id": "copy_file",
+        "profile": {
+          "success_rate": 0.9778,
+          "output_correctness": 0.9532,
+          "latency_ms": 87.4,
+          "cost_units": 1.504,
+          "schema_compliance": 0.9989,
+          "availability": 0.9943,
+          "capability_fidelity": 0.9632
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_vault_mcp",
+        "display_name": "filesystem_vault",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "filesystem_vault_mcp",
+        "tool_id": "copy_file__filesystem_vault",
+        "profile": {
+          "success_rate": 0.9812,
+          "output_correctness": 0.9846,
+          "latency_ms": 309.4,
+          "cost_units": 3.19,
+          "schema_compliance": 0.9982,
+          "availability": 0.989,
+          "capability_fidelity": 0.9735
+        },
+        "observations": 0
+      }
+    ],
+    "FILE_MOVE": [
+      {
+        "provider_id": "filesystem_mcp",
+        "display_name": "filesystem",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "filesystem_mcp",
+        "tool_id": "move_file",
+        "profile": {
+          "success_rate": 0.9801,
+          "output_correctness": 0.9309,
+          "latency_ms": 87.7,
+          "cost_units": 1.101,
+          "schema_compliance": 0.9823,
+          "availability": 0.9905,
+          "capability_fidelity": 0.9684
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_vault_mcp",
+        "display_name": "filesystem_vault",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "filesystem_vault_mcp",
+        "tool_id": "move_file__filesystem_vault",
+        "profile": {
+          "success_rate": 0.9825,
+          "output_correctness": 0.9687,
+          "latency_ms": 258.2,
+          "cost_units": 3.02,
+          "schema_compliance": 0.9908,
+          "availability": 0.9913,
+          "capability_fidelity": 0.9792
+        },
+        "observations": 0
+      }
+    ],
+    "FILE_DELETE": [
+      {
+        "provider_id": "filesystem_mcp",
+        "display_name": "filesystem",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "filesystem_mcp",
+        "tool_id": "delete_file",
+        "profile": {
+          "success_rate": 0.9865,
+          "output_correctness": 0.9628,
+          "latency_ms": 111.8,
+          "cost_units": 1.167,
+          "schema_compliance": 0.9883,
+          "availability": 0.9932,
+          "capability_fidelity": 0.9742
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_vault_mcp",
+        "display_name": "filesystem_vault",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "filesystem_vault_mcp",
+        "tool_id": "delete_file__filesystem_vault",
+        "profile": {
+          "success_rate": 0.9982,
+          "output_correctness": 0.9653,
+          "latency_ms": 215.2,
+          "cost_units": 2.125,
+          "schema_compliance": 0.9923,
+          "availability": 0.9918,
+          "capability_fidelity": 0.9806
+        },
+        "observations": 0
+      }
+    ],
+    "DIRECTORY_LIST": [
+      {
+        "provider_id": "filesystem_mcp",
+        "display_name": "filesystem",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "filesystem_mcp",
+        "tool_id": "list_directory",
+        "profile": {
+          "success_rate": 0.9679,
+          "output_correctness": 0.9302,
+          "latency_ms": 85.1,
+          "cost_units": 1.222,
+          "schema_compliance": 0.9913,
+          "availability": 0.9986,
+          "capability_fidelity": 0.9645
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_turbo_mcp",
+        "display_name": "filesystem_turbo",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "filesystem_turbo_mcp",
+        "tool_id": "list_directory__filesystem_turbo",
+        "profile": {
+          "success_rate": 0.9309,
+          "output_correctness": 0.8694,
+          "latency_ms": 35.3,
+          "cost_units": 0.427,
+          "schema_compliance": 0.9795,
+          "availability": 0.9895,
+          "capability_fidelity": 0.92
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_vault_mcp",
+        "display_name": "filesystem_vault",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "filesystem_vault_mcp",
+        "tool_id": "list_directory__filesystem_vault",
+        "profile": {
+          "success_rate": 0.9952,
+          "output_correctness": 0.9737,
+          "latency_ms": 259.8,
+          "cost_units": 1.945,
+          "schema_compliance": 0.9963,
+          "availability": 0.9859,
+          "capability_fidelity": 0.9624
+        },
+        "observations": 0
+      }
+    ],
+    "FILE_METADATA": [
+      {
+        "provider_id": "filesystem_mcp",
+        "display_name": "filesystem",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "filesystem_mcp",
+        "tool_id": "get_file_metadata",
+        "profile": {
+          "success_rate": 0.9663,
+          "output_correctness": 0.9365,
+          "latency_ms": 80.4,
+          "cost_units": 1.032,
+          "schema_compliance": 0.98,
+          "availability": 0.9914,
+          "capability_fidelity": 0.9351
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_turbo_mcp",
+        "display_name": "filesystem_turbo",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "filesystem_turbo_mcp",
+        "tool_id": "get_file_metadata__filesystem_turbo",
+        "profile": {
+          "success_rate": 0.9218,
+          "output_correctness": 0.822,
+          "latency_ms": 41.2,
+          "cost_units": 0.707,
+          "schema_compliance": 0.9382,
+          "availability": 0.9763,
+          "capability_fidelity": 0.8778
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "filesystem_vault_mcp",
+        "display_name": "filesystem_vault",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "filesystem_vault_mcp",
+        "tool_id": "get_file_metadata__filesystem_vault",
+        "profile": {
+          "success_rate": 0.9869,
+          "output_correctness": 0.9643,
+          "latency_ms": 349.8,
+          "cost_units": 3.19,
+          "schema_compliance": 0.9947,
+          "availability": 0.9918,
+          "capability_fidelity": 0.963
+        },
+        "observations": 0
+      }
+    ],
+    "PDF_TEXT_EXTRACT": [
+      {
+        "provider_id": "document_mcp",
+        "display_name": "document",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "document_mcp",
+        "tool_id": "extract_pdf_text",
+        "profile": {
+          "success_rate": 0.9631,
+          "output_correctness": 0.9437,
+          "latency_ms": 75.9,
+          "cost_units": 1.497,
+          "schema_compliance": 0.9832,
+          "availability": 0.9902,
+          "capability_fidelity": 0.9775
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "docmind_mcp",
+        "display_name": "docmind",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "docmind_mcp",
+        "tool_id": "extract_pdf_text__docmind",
+        "profile": {
+          "success_rate": 0.99,
+          "output_correctness": 0.9651,
+          "latency_ms": 288.6,
+          "cost_units": 1.838,
+          "schema_compliance": 0.9953,
+          "availability": 0.9987,
+          "capability_fidelity": 0.9902
+        },
+        "observations": 0
+      }
+    ],
+    "DOCX_TEXT_EXTRACT": [
+      {
+        "provider_id": "document_mcp",
+        "display_name": "document",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "document_mcp",
+        "tool_id": "extract_docx_text",
+        "profile": {
+          "success_rate": 0.9809,
+          "output_correctness": 0.9404,
+          "latency_ms": 82.0,
+          "cost_units": 1.1,
+          "schema_compliance": 0.9954,
+          "availability": 0.9948,
+          "capability_fidelity": 0.969
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "docmind_mcp",
+        "display_name": "docmind",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "docmind_mcp",
+        "tool_id": "extract_docx_text__docmind",
+        "profile": {
+          "success_rate": 0.9863,
+          "output_correctness": 0.9678,
+          "latency_ms": 342.3,
+          "cost_units": 3.179,
+          "schema_compliance": 0.9985,
+          "availability": 0.9963,
+          "capability_fidelity": 0.9886
+        },
+        "observations": 0
+      }
+    ],
+    "DOCUMENT_SUMMARIZE": [
+      {
+        "provider_id": "document_mcp",
+        "display_name": "document",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "document_mcp",
+        "tool_id": "summarize_document",
+        "profile": {
+          "success_rate": 0.9822,
+          "output_correctness": 0.9391,
+          "latency_ms": 91.1,
+          "cost_units": 1.213,
+          "schema_compliance": 0.9806,
+          "availability": 0.9903,
+          "capability_fidelity": 0.944
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "docmind_mcp",
+        "display_name": "docmind",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "docmind_mcp",
+        "tool_id": "summarize_document__docmind",
+        "profile": {
+          "success_rate": 0.9849,
+          "output_correctness": 0.9842,
+          "latency_ms": 371.3,
+          "cost_units": 2.426,
+          "schema_compliance": 0.9994,
+          "availability": 0.9988,
+          "capability_fidelity": 0.9934
+        },
+        "observations": 0
+      }
+    ],
+    "DOCUMENT_SEARCH": [
+      {
+        "provider_id": "document_mcp",
+        "display_name": "document",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "document_mcp",
+        "tool_id": "search_document",
+        "profile": {
+          "success_rate": 0.9709,
+          "output_correctness": 0.9388,
+          "latency_ms": 73.6,
+          "cost_units": 1.118,
+          "schema_compliance": 0.9841,
+          "availability": 0.9956,
+          "capability_fidelity": 0.975
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "docmind_mcp",
+        "display_name": "docmind",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "docmind_mcp",
+        "tool_id": "search_document__docmind",
+        "profile": {
+          "success_rate": 0.996,
+          "output_correctness": 0.9768,
+          "latency_ms": 310.6,
+          "cost_units": 2.92,
+          "schema_compliance": 0.9908,
+          "availability": 0.9942,
+          "capability_fidelity": 0.9918
+        },
+        "observations": 0
+      }
+    ],
+    "DOCUMENT_SECTION_EXTRACT": [
+      {
+        "provider_id": "document_mcp",
+        "display_name": "document",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "document_mcp",
+        "tool_id": "extract_document_section",
+        "profile": {
+          "success_rate": 0.9835,
+          "output_correctness": 0.96,
+          "latency_ms": 88.7,
+          "cost_units": 1.107,
+          "schema_compliance": 0.9958,
+          "availability": 0.993,
+          "capability_fidelity": 0.97
+        },
+        "observations": 0
+      }
+    ],
+    "SQL_QUERY": [
+      {
+        "provider_id": "database_mcp",
+        "display_name": "database",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "database_mcp",
+        "tool_id": "execute_sql_query",
+        "profile": {
+          "success_rate": 0.9891,
+          "output_correctness": 0.9458,
+          "latency_ms": 84.1,
+          "cost_units": 1.568,
+          "schema_compliance": 0.9945,
+          "availability": 0.9915,
+          "capability_fidelity": 0.9364
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "datacrunch_mcp",
+        "display_name": "datacrunch",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "datacrunch_mcp",
+        "tool_id": "execute_sql_query__datacrunch",
+        "profile": {
+          "success_rate": 0.9829,
+          "output_correctness": 0.9917,
+          "latency_ms": 341.3,
+          "cost_units": 2.005,
+          "schema_compliance": 0.9983,
+          "availability": 0.9987,
+          "capability_fidelity": 0.983
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "swiftdata_mcp",
+        "display_name": "swiftdata",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "swiftdata_mcp",
+        "tool_id": "execute_sql_query__swiftdata",
+        "profile": {
+          "success_rate": 0.921,
+          "output_correctness": 0.8639,
+          "latency_ms": 18.9,
+          "cost_units": 0.407,
+          "schema_compliance": 0.9834,
+          "availability": 0.9862,
+          "capability_fidelity": 0.8921
+        },
+        "observations": 0
+      }
+    ],
+    "DATABASE_SCHEMA_INSPECT": [
+      {
+        "provider_id": "database_mcp",
+        "display_name": "database",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "database_mcp",
+        "tool_id": "inspect_database_schema",
+        "profile": {
+          "success_rate": 0.988,
+          "output_correctness": 0.9474,
+          "latency_ms": 112.3,
+          "cost_units": 1.496,
+          "schema_compliance": 0.9842,
+          "availability": 0.9923,
+          "capability_fidelity": 0.9446
+        },
+        "observations": 0
+      }
+    ],
+    "DATABASE_INSERT": [
+      {
+        "provider_id": "database_mcp",
+        "display_name": "database",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "database_mcp",
+        "tool_id": "insert_database_record",
+        "profile": {
+          "success_rate": 0.9672,
+          "output_correctness": 0.9535,
+          "latency_ms": 75.6,
+          "cost_units": 1.251,
+          "schema_compliance": 0.9826,
+          "availability": 0.9982,
+          "capability_fidelity": 0.9477
+        },
+        "observations": 0
+      }
+    ],
+    "DATABASE_UPDATE": [
+      {
+        "provider_id": "database_mcp",
+        "display_name": "database",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "database_mcp",
+        "tool_id": "update_database_record",
+        "profile": {
+          "success_rate": 0.9737,
+          "output_correctness": 0.9533,
+          "latency_ms": 114.3,
+          "cost_units": 1.252,
+          "schema_compliance": 0.9984,
+          "availability": 0.9945,
+          "capability_fidelity": 0.9566
+        },
+        "observations": 0
+      }
+    ],
+    "DATABASE_DELETE": [
+      {
+        "provider_id": "database_mcp",
+        "display_name": "database",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "database_mcp",
+        "tool_id": "delete_database_record",
+        "profile": {
+          "success_rate": 0.9757,
+          "output_correctness": 0.9307,
+          "latency_ms": 86.4,
+          "cost_units": 1.11,
+          "schema_compliance": 0.9801,
+          "availability": 0.9972,
+          "capability_fidelity": 0.9386
+        },
+        "observations": 0
+      }
+    ],
+    "DATABASE_AGGREGATE": [
+      {
+        "provider_id": "database_mcp",
+        "display_name": "database",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "database_mcp",
+        "tool_id": "aggregate_database_data",
+        "profile": {
+          "success_rate": 0.9742,
+          "output_correctness": 0.959,
+          "latency_ms": 93.4,
+          "cost_units": 1.196,
+          "schema_compliance": 0.9904,
+          "availability": 0.995,
+          "capability_fidelity": 0.9692
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "datacrunch_mcp",
+        "display_name": "datacrunch",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "datacrunch_mcp",
+        "tool_id": "aggregate_database_data__datacrunch",
+        "profile": {
+          "success_rate": 0.982,
+          "output_correctness": 0.9796,
+          "latency_ms": 229.7,
+          "cost_units": 2.188,
+          "schema_compliance": 0.9977,
+          "availability": 0.9921,
+          "capability_fidelity": 0.9797
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "swiftdata_mcp",
+        "display_name": "swiftdata",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "swiftdata_mcp",
+        "tool_id": "aggregate_database_data__swiftdata",
+        "profile": {
+          "success_rate": 0.9456,
+          "output_correctness": 0.893,
+          "latency_ms": 28.3,
+          "cost_units": 0.706,
+          "schema_compliance": 0.9578,
+          "availability": 0.9828,
+          "capability_fidelity": 0.9054
+        },
+        "observations": 0
+      }
+    ],
+    "WEB_FETCH": [
+      {
+        "provider_id": "web_mcp",
+        "display_name": "web",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "web_mcp",
+        "tool_id": "fetch_web_page",
+        "profile": {
+          "success_rate": 0.9736,
+          "output_correctness": 0.9513,
+          "latency_ms": 88.7,
+          "cost_units": 1.565,
+          "schema_compliance": 0.994,
+          "availability": 0.9979,
+          "capability_fidelity": 0.9771
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "websense_mcp",
+        "display_name": "websense",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "websense_mcp",
+        "tool_id": "fetch_web_page__websense",
+        "profile": {
+          "success_rate": 0.9156,
+          "output_correctness": 0.8648,
+          "latency_ms": 43.3,
+          "cost_units": 0.82,
+          "schema_compliance": 0.9375,
+          "availability": 0.973,
+          "capability_fidelity": 0.8854
+        },
+        "observations": 0
+      }
+    ],
+    "WEB_TEXT_EXTRACT": [
+      {
+        "provider_id": "web_mcp",
+        "display_name": "web",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "web_mcp",
+        "tool_id": "extract_web_text",
+        "profile": {
+          "success_rate": 0.9622,
+          "output_correctness": 0.9396,
+          "latency_ms": 64.4,
+          "cost_units": 1.402,
+          "schema_compliance": 0.9957,
+          "availability": 0.9981,
+          "capability_fidelity": 0.9377
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "websense_mcp",
+        "display_name": "websense",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "websense_mcp",
+        "tool_id": "extract_web_text__websense",
+        "profile": {
+          "success_rate": 0.943,
+          "output_correctness": 0.8728,
+          "latency_ms": 19.3,
+          "cost_units": 0.841,
+          "schema_compliance": 0.9832,
+          "availability": 0.9755,
+          "capability_fidelity": 0.9262
+        },
+        "observations": 0
+      }
+    ],
+    "WEB_LINK_EXTRACT": [
+      {
+        "provider_id": "web_mcp",
+        "display_name": "web",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "web_mcp",
+        "tool_id": "extract_web_links",
+        "profile": {
+          "success_rate": 0.9719,
+          "output_correctness": 0.9495,
+          "latency_ms": 119.4,
+          "cost_units": 1.499,
+          "schema_compliance": 0.9832,
+          "availability": 0.9939,
+          "capability_fidelity": 0.9558
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "websense_mcp",
+        "display_name": "websense",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "websense_mcp",
+        "tool_id": "extract_web_links__websense",
+        "profile": {
+          "success_rate": 0.9203,
+          "output_correctness": 0.8357,
+          "latency_ms": 24.6,
+          "cost_units": 0.761,
+          "schema_compliance": 0.9311,
+          "availability": 0.9839,
+          "capability_fidelity": 0.8852
+        },
+        "observations": 0
+      }
+    ],
+    "WEB_METADATA": [
+      {
+        "provider_id": "web_mcp",
+        "display_name": "web",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "web_mcp",
+        "tool_id": "extract_web_metadata",
+        "profile": {
+          "success_rate": 0.9605,
+          "output_correctness": 0.9433,
+          "latency_ms": 97.4,
+          "cost_units": 1.307,
+          "schema_compliance": 0.9813,
+          "availability": 0.9989,
+          "capability_fidelity": 0.9694
+        },
+        "observations": 0
+      }
+    ],
+    "WEB_STRUCTURED_EXTRACT": [
+      {
+        "provider_id": "web_mcp",
+        "display_name": "web",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "web_mcp",
+        "tool_id": "extract_structured_web_data",
+        "profile": {
+          "success_rate": 0.9892,
+          "output_correctness": 0.9342,
+          "latency_ms": 75.9,
+          "cost_units": 1.024,
+          "schema_compliance": 0.9956,
+          "availability": 0.9924,
+          "capability_fidelity": 0.9365
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "websense_mcp",
+        "display_name": "websense",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "websense_mcp",
+        "tool_id": "extract_structured_web_data__websense",
+        "profile": {
+          "success_rate": 0.9253,
+          "output_correctness": 0.8929,
+          "latency_ms": 39.6,
+          "cost_units": 0.529,
+          "schema_compliance": 0.9382,
+          "availability": 0.993,
+          "capability_fidelity": 0.8956
+        },
+        "observations": 0
+      }
+    ],
+    "WEB_SEARCH": [
+      {
+        "provider_id": "web_mcp",
+        "display_name": "web",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "web_mcp",
+        "tool_id": "search_web",
+        "profile": {
+          "success_rate": 0.981,
+          "output_correctness": 0.9336,
+          "latency_ms": 63.5,
+          "cost_units": 1.413,
+          "schema_compliance": 0.9885,
+          "availability": 0.9907,
+          "capability_fidelity": 0.9769
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "websense_mcp",
+        "display_name": "websense",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "websense_mcp",
+        "tool_id": "search_web__websense",
+        "profile": {
+          "success_rate": 0.9381,
+          "output_correctness": 0.8841,
+          "latency_ms": 17.5,
+          "cost_units": 0.828,
+          "schema_compliance": 0.9337,
+          "availability": 0.9916,
+          "capability_fidelity": 0.8863
+        },
+        "observations": 0
+      }
+    ],
+    "PAPER_SEARCH": [
+      {
+        "provider_id": "research_mcp",
+        "display_name": "research",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "research_mcp",
+        "tool_id": "search_research_papers",
+        "profile": {
+          "success_rate": 0.9702,
+          "output_correctness": 0.9521,
+          "latency_ms": 115.6,
+          "cost_units": 1.161,
+          "schema_compliance": 0.9826,
+          "availability": 0.9947,
+          "capability_fidelity": 0.9419
+        },
+        "observations": 0
+      }
+    ],
+    "PAPER_METADATA": [
+      {
+        "provider_id": "research_mcp",
+        "display_name": "research",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "research_mcp",
+        "tool_id": "get_paper_metadata",
+        "profile": {
+          "success_rate": 0.9633,
+          "output_correctness": 0.9365,
+          "latency_ms": 63.0,
+          "cost_units": 1.121,
+          "schema_compliance": 0.9862,
+          "availability": 0.9927,
+          "capability_fidelity": 0.968
+        },
+        "observations": 0
+      }
+    ],
+    "PAPER_CITATIONS": [
+      {
+        "provider_id": "research_mcp",
+        "display_name": "research",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "research_mcp",
+        "tool_id": "get_paper_citations",
+        "profile": {
+          "success_rate": 0.9687,
+          "output_correctness": 0.95,
+          "latency_ms": 70.7,
+          "cost_units": 1.208,
+          "schema_compliance": 0.9804,
+          "availability": 0.9923,
+          "capability_fidelity": 0.9308
+        },
+        "observations": 0
+      }
+    ],
+    "PAPER_SUMMARIZE": [
+      {
+        "provider_id": "research_mcp",
+        "display_name": "research",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "research_mcp",
+        "tool_id": "summarize_research_paper",
+        "profile": {
+          "success_rate": 0.982,
+          "output_correctness": 0.952,
+          "latency_ms": 71.4,
+          "cost_units": 1.285,
+          "schema_compliance": 0.9987,
+          "availability": 0.991,
+          "capability_fidelity": 0.9709
+        },
+        "observations": 0
+      }
+    ],
+    "PAPER_COMPARE": [
+      {
+        "provider_id": "research_mcp",
+        "display_name": "research",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "research_mcp",
+        "tool_id": "compare_research_papers",
+        "profile": {
+          "success_rate": 0.973,
+          "output_correctness": 0.9498,
+          "latency_ms": 110.1,
+          "cost_units": 1.236,
+          "schema_compliance": 0.9901,
+          "availability": 0.9962,
+          "capability_fidelity": 0.9791
+        },
+        "observations": 0
+      }
+    ],
+    "EMAIL_SEND": [
+      {
+        "provider_id": "email_mcp",
+        "display_name": "email",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "email_mcp",
+        "tool_id": "send_email",
+        "profile": {
+          "success_rate": 0.9703,
+          "output_correctness": 0.9633,
+          "latency_ms": 102.4,
+          "cost_units": 1.382,
+          "schema_compliance": 0.9881,
+          "availability": 0.9931,
+          "capability_fidelity": 0.9327
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "comms_unified_mcp",
+        "display_name": "comms_unified",
+        "tier": "budget",
+        "incumbent": false,
+        "server_id": "comms_unified_mcp",
+        "tool_id": "send_email__comms_unified",
+        "profile": {
+          "success_rate": 0.8704,
+          "output_correctness": 0.7671,
+          "latency_ms": 171.5,
+          "cost_units": 0.277,
+          "schema_compliance": 0.9114,
+          "availability": 0.9625,
+          "capability_fidelity": 0.8841
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "mailworks_mcp",
+        "display_name": "mailworks",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "mailworks_mcp",
+        "tool_id": "send_email__mailworks",
+        "profile": {
+          "success_rate": 0.9965,
+          "output_correctness": 0.9835,
+          "latency_ms": 236.4,
+          "cost_units": 2.139,
+          "schema_compliance": 0.9929,
+          "availability": 0.9914,
+          "capability_fidelity": 0.9655
+        },
+        "observations": 0
+      }
+    ],
+    "EMAIL_SEARCH": [
+      {
+        "provider_id": "email_mcp",
+        "display_name": "email",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "email_mcp",
+        "tool_id": "search_email",
+        "profile": {
+          "success_rate": 0.9734,
+          "output_correctness": 0.9405,
+          "latency_ms": 117.7,
+          "cost_units": 1.584,
+          "schema_compliance": 0.9909,
+          "availability": 0.9922,
+          "capability_fidelity": 0.9783
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "comms_unified_mcp",
+        "display_name": "comms_unified",
+        "tier": "budget",
+        "incumbent": false,
+        "server_id": "comms_unified_mcp",
+        "tool_id": "search_email__comms_unified",
+        "profile": {
+          "success_rate": 0.8848,
+          "output_correctness": 0.7957,
+          "latency_ms": 90.1,
+          "cost_units": 0.314,
+          "schema_compliance": 0.9332,
+          "availability": 0.9751,
+          "capability_fidelity": 0.8201
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "mailworks_mcp",
+        "display_name": "mailworks",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "mailworks_mcp",
+        "tool_id": "search_email__mailworks",
+        "profile": {
+          "success_rate": 0.9896,
+          "output_correctness": 0.9602,
+          "latency_ms": 232.8,
+          "cost_units": 1.926,
+          "schema_compliance": 0.994,
+          "availability": 0.9856,
+          "capability_fidelity": 0.9608
+        },
+        "observations": 0
+      }
+    ],
+    "EMAIL_READ": [
+      {
+        "provider_id": "email_mcp",
+        "display_name": "email",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "email_mcp",
+        "tool_id": "read_email",
+        "profile": {
+          "success_rate": 0.9691,
+          "output_correctness": 0.9393,
+          "latency_ms": 95.1,
+          "cost_units": 1.318,
+          "schema_compliance": 0.995,
+          "availability": 0.9959,
+          "capability_fidelity": 0.9658
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "comms_unified_mcp",
+        "display_name": "comms_unified",
+        "tier": "budget",
+        "incumbent": false,
+        "server_id": "comms_unified_mcp",
+        "tool_id": "read_email__comms_unified",
+        "profile": {
+          "success_rate": 0.9303,
+          "output_correctness": 0.799,
+          "latency_ms": 125.9,
+          "cost_units": 0.495,
+          "schema_compliance": 0.9105,
+          "availability": 0.9817,
+          "capability_fidelity": 0.8643
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "mailworks_mcp",
+        "display_name": "mailworks",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "mailworks_mcp",
+        "tool_id": "read_email__mailworks",
+        "profile": {
+          "success_rate": 0.9808,
+          "output_correctness": 0.9892,
+          "latency_ms": 358.4,
+          "cost_units": 2.678,
+          "schema_compliance": 0.9973,
+          "availability": 0.9964,
+          "capability_fidelity": 0.9649
+        },
+        "observations": 0
+      }
+    ],
+    "EMAIL_REPLY": [
+      {
+        "provider_id": "email_mcp",
+        "display_name": "email",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "email_mcp",
+        "tool_id": "reply_email",
+        "profile": {
+          "success_rate": 0.9757,
+          "output_correctness": 0.9502,
+          "latency_ms": 110.1,
+          "cost_units": 1.483,
+          "schema_compliance": 0.9965,
+          "availability": 0.9953,
+          "capability_fidelity": 0.9746
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "mailworks_mcp",
+        "display_name": "mailworks",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "mailworks_mcp",
+        "tool_id": "reply_email__mailworks",
+        "profile": {
+          "success_rate": 0.993,
+          "output_correctness": 0.9843,
+          "latency_ms": 226.0,
+          "cost_units": 1.844,
+          "schema_compliance": 0.9913,
+          "availability": 0.99,
+          "capability_fidelity": 0.9637
+        },
+        "observations": 0
+      }
+    ],
+    "EMAIL_DRAFT": [
+      {
+        "provider_id": "email_mcp",
+        "display_name": "email",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "email_mcp",
+        "tool_id": "create_email_draft",
+        "profile": {
+          "success_rate": 0.9851,
+          "output_correctness": 0.9523,
+          "latency_ms": 97.7,
+          "cost_units": 1.376,
+          "schema_compliance": 0.9936,
+          "availability": 0.9944,
+          "capability_fidelity": 0.9302
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "mailworks_mcp",
+        "display_name": "mailworks",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "mailworks_mcp",
+        "tool_id": "create_email_draft__mailworks",
+        "profile": {
+          "success_rate": 0.9952,
+          "output_correctness": 0.9862,
+          "latency_ms": 280.6,
+          "cost_units": 2.549,
+          "schema_compliance": 0.9966,
+          "availability": 0.9859,
+          "capability_fidelity": 0.9858
+        },
+        "observations": 0
+      }
+    ],
+    "EMAIL_ARCHIVE": [
+      {
+        "provider_id": "email_mcp",
+        "display_name": "email",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "email_mcp",
+        "tool_id": "archive_email",
+        "profile": {
+          "success_rate": 0.9676,
+          "output_correctness": 0.933,
+          "latency_ms": 75.9,
+          "cost_units": 1.438,
+          "schema_compliance": 0.9841,
+          "availability": 0.9967,
+          "capability_fidelity": 0.9788
+        },
+        "observations": 0
+      }
+    ],
+    "CALENDAR_CREATE": [
+      {
+        "provider_id": "calendar_mcp",
+        "display_name": "calendar",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "calendar_mcp",
+        "tool_id": "create_calendar_event",
+        "profile": {
+          "success_rate": 0.9748,
+          "output_correctness": 0.9453,
+          "latency_ms": 88.7,
+          "cost_units": 1.41,
+          "schema_compliance": 0.9953,
+          "availability": 0.9956,
+          "capability_fidelity": 0.9621
+        },
+        "observations": 0
+      }
+    ],
+    "CALENDAR_SEARCH": [
+      {
+        "provider_id": "calendar_mcp",
+        "display_name": "calendar",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "calendar_mcp",
+        "tool_id": "search_calendar_events",
+        "profile": {
+          "success_rate": 0.9623,
+          "output_correctness": 0.9359,
+          "latency_ms": 75.2,
+          "cost_units": 1.446,
+          "schema_compliance": 0.9861,
+          "availability": 0.9951,
+          "capability_fidelity": 0.9306
+        },
+        "observations": 0
+      }
+    ],
+    "CALENDAR_UPDATE": [
+      {
+        "provider_id": "calendar_mcp",
+        "display_name": "calendar",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "calendar_mcp",
+        "tool_id": "update_calendar_event",
+        "profile": {
+          "success_rate": 0.9618,
+          "output_correctness": 0.9408,
+          "latency_ms": 100.3,
+          "cost_units": 1.415,
+          "schema_compliance": 0.9935,
+          "availability": 0.9926,
+          "capability_fidelity": 0.9558
+        },
+        "observations": 0
+      }
+    ],
+    "CALENDAR_DELETE": [
+      {
+        "provider_id": "calendar_mcp",
+        "display_name": "calendar",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "calendar_mcp",
+        "tool_id": "delete_calendar_event",
+        "profile": {
+          "success_rate": 0.9739,
+          "output_correctness": 0.9487,
+          "latency_ms": 67.1,
+          "cost_units": 1.536,
+          "schema_compliance": 0.984,
+          "availability": 0.9988,
+          "capability_fidelity": 0.9768
+        },
+        "observations": 0
+      }
+    ],
+    "CALENDAR_AVAILABILITY": [
+      {
+        "provider_id": "calendar_mcp",
+        "display_name": "calendar",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "calendar_mcp",
+        "tool_id": "check_calendar_availability",
+        "profile": {
+          "success_rate": 0.9605,
+          "output_correctness": 0.9484,
+          "latency_ms": 109.2,
+          "cost_units": 1.581,
+          "schema_compliance": 0.989,
+          "availability": 0.9924,
+          "capability_fidelity": 0.9405
+        },
+        "observations": 0
+      }
+    ],
+    "MESSAGE_SEND": [
+      {
+        "provider_id": "messaging_mcp",
+        "display_name": "messaging",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "messaging_mcp",
+        "tool_id": "send_channel_message",
+        "profile": {
+          "success_rate": 0.9884,
+          "output_correctness": 0.9384,
+          "latency_ms": 94.9,
+          "cost_units": 1.085,
+          "schema_compliance": 0.9905,
+          "availability": 0.9986,
+          "capability_fidelity": 0.9366
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "comms_unified_mcp",
+        "display_name": "comms_unified",
+        "tier": "budget",
+        "incumbent": false,
+        "server_id": "comms_unified_mcp",
+        "tool_id": "send_channel_message__comms_unified",
+        "profile": {
+          "success_rate": 0.9256,
+          "output_correctness": 0.8109,
+          "latency_ms": 187.6,
+          "cost_units": 0.411,
+          "schema_compliance": 0.9162,
+          "availability": 0.9869,
+          "capability_fidelity": 0.8486
+        },
+        "observations": 0
+      }
+    ],
+    "MESSAGE_SEARCH": [
+      {
+        "provider_id": "messaging_mcp",
+        "display_name": "messaging",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "messaging_mcp",
+        "tool_id": "search_messages",
+        "profile": {
+          "success_rate": 0.9607,
+          "output_correctness": 0.9301,
+          "latency_ms": 89.5,
+          "cost_units": 1.27,
+          "schema_compliance": 0.986,
+          "availability": 0.9913,
+          "capability_fidelity": 0.9472
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "comms_unified_mcp",
+        "display_name": "comms_unified",
+        "tier": "budget",
+        "incumbent": false,
+        "server_id": "comms_unified_mcp",
+        "tool_id": "search_messages__comms_unified",
+        "profile": {
+          "success_rate": 0.8853,
+          "output_correctness": 0.844,
+          "latency_ms": 90.2,
+          "cost_units": 0.425,
+          "schema_compliance": 0.9587,
+          "availability": 0.9636,
+          "capability_fidelity": 0.8926
+        },
+        "observations": 0
+      }
+    ],
+    "MESSAGE_THREAD_REPLY": [
+      {
+        "provider_id": "messaging_mcp",
+        "display_name": "messaging",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "messaging_mcp",
+        "tool_id": "reply_to_thread",
+        "profile": {
+          "success_rate": 0.9814,
+          "output_correctness": 0.9661,
+          "latency_ms": 77.4,
+          "cost_units": 1.223,
+          "schema_compliance": 0.9879,
+          "availability": 0.999,
+          "capability_fidelity": 0.9595
+        },
+        "observations": 0
+      }
+    ],
+    "CHANNEL_LIST": [
+      {
+        "provider_id": "messaging_mcp",
+        "display_name": "messaging",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "messaging_mcp",
+        "tool_id": "list_channels",
+        "profile": {
+          "success_rate": 0.9708,
+          "output_correctness": 0.9471,
+          "latency_ms": 76.5,
+          "cost_units": 1.029,
+          "schema_compliance": 0.982,
+          "availability": 0.9975,
+          "capability_fidelity": 0.9443
+        },
+        "observations": 0
+      }
+    ],
+    "CHANNEL_HISTORY": [
+      {
+        "provider_id": "messaging_mcp",
+        "display_name": "messaging",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "messaging_mcp",
+        "tool_id": "get_channel_history",
+        "profile": {
+          "success_rate": 0.9881,
+          "output_correctness": 0.94,
+          "latency_ms": 75.9,
+          "cost_units": 1.307,
+          "schema_compliance": 0.9838,
+          "availability": 0.9934,
+          "capability_fidelity": 0.9778
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "comms_unified_mcp",
+        "display_name": "comms_unified",
+        "tier": "budget",
+        "incumbent": false,
+        "server_id": "comms_unified_mcp",
+        "tool_id": "get_channel_history__comms_unified",
+        "profile": {
+          "success_rate": 0.9307,
+          "output_correctness": 0.8412,
+          "latency_ms": 159.4,
+          "cost_units": 0.474,
+          "schema_compliance": 0.9658,
+          "availability": 0.9765,
+          "capability_fidelity": 0.872
+        },
+        "observations": 0
+      }
+    ],
+    "GIT_STATUS": [
+      {
+        "provider_id": "git_mcp",
+        "display_name": "git",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "git_mcp",
+        "tool_id": "get_git_status",
+        "profile": {
+          "success_rate": 0.9615,
+          "output_correctness": 0.9593,
+          "latency_ms": 87.1,
+          "cost_units": 1.452,
+          "schema_compliance": 0.9929,
+          "availability": 0.9926,
+          "capability_fidelity": 0.9324
+        },
+        "observations": 0
+      }
+    ],
+    "GIT_DIFF": [
+      {
+        "provider_id": "git_mcp",
+        "display_name": "git",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "git_mcp",
+        "tool_id": "get_git_diff",
+        "profile": {
+          "success_rate": 0.9878,
+          "output_correctness": 0.9351,
+          "latency_ms": 88.3,
+          "cost_units": 1.206,
+          "schema_compliance": 0.986,
+          "availability": 0.9967,
+          "capability_fidelity": 0.9788
+        },
+        "observations": 0
+      }
+    ],
+    "GIT_COMMIT_HISTORY": [
+      {
+        "provider_id": "git_mcp",
+        "display_name": "git",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "git_mcp",
+        "tool_id": "get_commit_history",
+        "profile": {
+          "success_rate": 0.9678,
+          "output_correctness": 0.9562,
+          "latency_ms": 78.1,
+          "cost_units": 1.334,
+          "schema_compliance": 0.9879,
+          "availability": 0.9915,
+          "capability_fidelity": 0.9381
+        },
+        "observations": 0
+      }
+    ],
+    "GIT_BRANCH_LIST": [
+      {
+        "provider_id": "git_mcp",
+        "display_name": "git",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "git_mcp",
+        "tool_id": "list_git_branches",
+        "profile": {
+          "success_rate": 0.9662,
+          "output_correctness": 0.9662,
+          "latency_ms": 89.8,
+          "cost_units": 1.132,
+          "schema_compliance": 0.9981,
+          "availability": 0.999,
+          "capability_fidelity": 0.9525
+        },
+        "observations": 0
+      }
+    ],
+    "GIT_CREATE_BRANCH": [
+      {
+        "provider_id": "git_mcp",
+        "display_name": "git",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "git_mcp",
+        "tool_id": "create_git_branch",
+        "profile": {
+          "success_rate": 0.9642,
+          "output_correctness": 0.9377,
+          "latency_ms": 65.4,
+          "cost_units": 1.205,
+          "schema_compliance": 0.9818,
+          "availability": 0.9922,
+          "capability_fidelity": 0.9429
+        },
+        "observations": 0
+      }
+    ],
+    "GIT_COMMIT": [
+      {
+        "provider_id": "git_mcp",
+        "display_name": "git",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "git_mcp",
+        "tool_id": "create_git_commit",
+        "profile": {
+          "success_rate": 0.9771,
+          "output_correctness": 0.9655,
+          "latency_ms": 105.0,
+          "cost_units": 1.248,
+          "schema_compliance": 0.9883,
+          "availability": 0.9947,
+          "capability_fidelity": 0.9488
+        },
+        "observations": 0
+      }
+    ],
+    "ISSUE_SEARCH": [
+      {
+        "provider_id": "issue_tracker_mcp",
+        "display_name": "issue_tracker",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "issue_tracker_mcp",
+        "tool_id": "search_issues",
+        "profile": {
+          "success_rate": 0.9701,
+          "output_correctness": 0.9325,
+          "latency_ms": 76.7,
+          "cost_units": 1.581,
+          "schema_compliance": 0.9825,
+          "availability": 0.9945,
+          "capability_fidelity": 0.9615
+        },
+        "observations": 0
+      }
+    ],
+    "ISSUE_READ": [
+      {
+        "provider_id": "issue_tracker_mcp",
+        "display_name": "issue_tracker",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "issue_tracker_mcp",
+        "tool_id": "read_issue",
+        "profile": {
+          "success_rate": 0.9859,
+          "output_correctness": 0.9386,
+          "latency_ms": 76.3,
+          "cost_units": 1.149,
+          "schema_compliance": 0.988,
+          "availability": 0.994,
+          "capability_fidelity": 0.9777
+        },
+        "observations": 0
+      }
+    ],
+    "ISSUE_CREATE": [
+      {
+        "provider_id": "issue_tracker_mcp",
+        "display_name": "issue_tracker",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "issue_tracker_mcp",
+        "tool_id": "create_issue",
+        "profile": {
+          "success_rate": 0.9855,
+          "output_correctness": 0.9649,
+          "latency_ms": 61.3,
+          "cost_units": 1.019,
+          "schema_compliance": 0.9942,
+          "availability": 0.9981,
+          "capability_fidelity": 0.9537
+        },
+        "observations": 0
+      }
+    ],
+    "ISSUE_UPDATE": [
+      {
+        "provider_id": "issue_tracker_mcp",
+        "display_name": "issue_tracker",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "issue_tracker_mcp",
+        "tool_id": "update_issue",
+        "profile": {
+          "success_rate": 0.9776,
+          "output_correctness": 0.93,
+          "latency_ms": 83.5,
+          "cost_units": 1.556,
+          "schema_compliance": 0.9965,
+          "availability": 0.9977,
+          "capability_fidelity": 0.9786
+        },
+        "observations": 0
+      }
+    ],
+    "ISSUE_COMMENT": [
+      {
+        "provider_id": "issue_tracker_mcp",
+        "display_name": "issue_tracker",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "issue_tracker_mcp",
+        "tool_id": "comment_on_issue",
+        "profile": {
+          "success_rate": 0.9675,
+          "output_correctness": 0.9344,
+          "latency_ms": 69.3,
+          "cost_units": 1.313,
+          "schema_compliance": 0.9936,
+          "availability": 0.9985,
+          "capability_fidelity": 0.9661
+        },
+        "observations": 0
+      }
+    ],
+    "TEXT_SUMMARIZE": [
+      {
+        "provider_id": "text_mcp",
+        "display_name": "text",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "text_mcp",
+        "tool_id": "summarize_text",
+        "profile": {
+          "success_rate": 0.9794,
+          "output_correctness": 0.9606,
+          "latency_ms": 87.4,
+          "cost_units": 1.331,
+          "schema_compliance": 0.9808,
+          "availability": 0.997,
+          "capability_fidelity": 0.9416
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "docmind_mcp",
+        "display_name": "docmind",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "docmind_mcp",
+        "tool_id": "summarize_text__docmind",
+        "profile": {
+          "success_rate": 0.9975,
+          "output_correctness": 0.9826,
+          "latency_ms": 240.8,
+          "cost_units": 1.979,
+          "schema_compliance": 0.9925,
+          "availability": 0.9939,
+          "capability_fidelity": 0.9845
+        },
+        "observations": 0
+      }
+    ],
+    "TEXT_TRANSLATE": [
+      {
+        "provider_id": "text_mcp",
+        "display_name": "text",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "text_mcp",
+        "tool_id": "translate_text",
+        "profile": {
+          "success_rate": 0.9634,
+          "output_correctness": 0.9328,
+          "latency_ms": 91.5,
+          "cost_units": 1.35,
+          "schema_compliance": 0.9878,
+          "availability": 0.992,
+          "capability_fidelity": 0.9601
+        },
+        "observations": 0
+      }
+    ],
+    "TEXT_SENTIMENT": [
+      {
+        "provider_id": "text_mcp",
+        "display_name": "text",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "text_mcp",
+        "tool_id": "analyze_sentiment",
+        "profile": {
+          "success_rate": 0.9603,
+          "output_correctness": 0.9421,
+          "latency_ms": 87.6,
+          "cost_units": 1.575,
+          "schema_compliance": 0.9929,
+          "availability": 0.998,
+          "capability_fidelity": 0.9538
+        },
+        "observations": 0
+      }
+    ],
+    "TEXT_KEYWORDS": [
+      {
+        "provider_id": "text_mcp",
+        "display_name": "text",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "text_mcp",
+        "tool_id": "extract_keywords",
+        "profile": {
+          "success_rate": 0.967,
+          "output_correctness": 0.9399,
+          "latency_ms": 117.6,
+          "cost_units": 1.423,
+          "schema_compliance": 0.9861,
+          "availability": 0.9902,
+          "capability_fidelity": 0.9549
+        },
+        "observations": 0
+      }
+    ],
+    "TEXT_ENTITIES": [
+      {
+        "provider_id": "text_mcp",
+        "display_name": "text",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "text_mcp",
+        "tool_id": "extract_entities",
+        "profile": {
+          "success_rate": 0.9802,
+          "output_correctness": 0.9468,
+          "latency_ms": 75.4,
+          "cost_units": 1.4,
+          "schema_compliance": 0.9985,
+          "availability": 0.992,
+          "capability_fidelity": 0.9317
+        },
+        "observations": 0
+      }
+    ],
+    "TEXT_REWRITE": [
+      {
+        "provider_id": "text_mcp",
+        "display_name": "text",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "text_mcp",
+        "tool_id": "rewrite_text",
+        "profile": {
+          "success_rate": 0.9701,
+          "output_correctness": 0.9468,
+          "latency_ms": 101.0,
+          "cost_units": 1.119,
+          "schema_compliance": 0.9959,
+          "availability": 0.9967,
+          "capability_fidelity": 0.9552
+        },
+        "observations": 0
+      }
+    ],
+    "TEXT_CLASSIFY": [
+      {
+        "provider_id": "text_mcp",
+        "display_name": "text",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "text_mcp",
+        "tool_id": "classify_text",
+        "profile": {
+          "success_rate": 0.9662,
+          "output_correctness": 0.9688,
+          "latency_ms": 78.7,
+          "cost_units": 1.492,
+          "schema_compliance": 0.9846,
+          "availability": 0.992,
+          "capability_fidelity": 0.968
+        },
+        "observations": 0
+      }
+    ],
+    "CALCULATOR": [
+      {
+        "provider_id": "math_mcp",
+        "display_name": "math",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "math_mcp",
+        "tool_id": "calculate_expression",
+        "profile": {
+          "success_rate": 0.9688,
+          "output_correctness": 0.9681,
+          "latency_ms": 89.7,
+          "cost_units": 1.112,
+          "schema_compliance": 0.9845,
+          "availability": 0.9938,
+          "capability_fidelity": 0.9633
+        },
+        "observations": 0
+      }
+    ],
+    "STATISTICS_DESCRIBE": [
+      {
+        "provider_id": "math_mcp",
+        "display_name": "math",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "math_mcp",
+        "tool_id": "calculate_descriptive_statistics",
+        "profile": {
+          "success_rate": 0.9885,
+          "output_correctness": 0.9359,
+          "latency_ms": 83.6,
+          "cost_units": 1.128,
+          "schema_compliance": 0.9995,
+          "availability": 0.9913,
+          "capability_fidelity": 0.9326
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "datacrunch_mcp",
+        "display_name": "datacrunch",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "datacrunch_mcp",
+        "tool_id": "calculate_descriptive_statistics__datacrunch",
+        "profile": {
+          "success_rate": 0.9811,
+          "output_correctness": 0.9738,
+          "latency_ms": 359.6,
+          "cost_units": 3.037,
+          "schema_compliance": 0.9973,
+          "availability": 0.999,
+          "capability_fidelity": 0.9926
+        },
+        "observations": 0
+      }
+    ],
+    "PERCENTAGE_CHANGE": [
+      {
+        "provider_id": "math_mcp",
+        "display_name": "math",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "math_mcp",
+        "tool_id": "calculate_percentage_change",
+        "profile": {
+          "success_rate": 0.9699,
+          "output_correctness": 0.9374,
+          "latency_ms": 116.2,
+          "cost_units": 1.448,
+          "schema_compliance": 0.9806,
+          "availability": 0.996,
+          "capability_fidelity": 0.9489
+        },
+        "observations": 0
+      }
+    ],
+    "COMPOUND_INTEREST": [
+      {
+        "provider_id": "math_mcp",
+        "display_name": "math",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "math_mcp",
+        "tool_id": "calculate_compound_interest",
+        "profile": {
+          "success_rate": 0.9712,
+          "output_correctness": 0.9433,
+          "latency_ms": 70.2,
+          "cost_units": 1.002,
+          "schema_compliance": 0.9856,
+          "availability": 0.9932,
+          "capability_fidelity": 0.9778
+        },
+        "observations": 0
+      }
+    ],
+    "LINEAR_EQUATION_SOLVE": [
+      {
+        "provider_id": "math_mcp",
+        "display_name": "math",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "math_mcp",
+        "tool_id": "solve_linear_equation",
+        "profile": {
+          "success_rate": 0.9637,
+          "output_correctness": 0.9686,
+          "latency_ms": 72.4,
+          "cost_units": 1.214,
+          "schema_compliance": 0.9964,
+          "availability": 0.9974,
+          "capability_fidelity": 0.9516
+        },
+        "observations": 0
+      }
+    ],
+    "DATASET_INSPECT": [
+      {
+        "provider_id": "data_analysis_mcp",
+        "display_name": "data_analysis",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "data_analysis_mcp",
+        "tool_id": "inspect_dataset",
+        "profile": {
+          "success_rate": 0.9615,
+          "output_correctness": 0.9489,
+          "latency_ms": 82.4,
+          "cost_units": 1.552,
+          "schema_compliance": 0.9839,
+          "availability": 0.9933,
+          "capability_fidelity": 0.9748
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "datacrunch_mcp",
+        "display_name": "datacrunch",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "datacrunch_mcp",
+        "tool_id": "inspect_dataset__datacrunch",
+        "profile": {
+          "success_rate": 0.9806,
+          "output_correctness": 0.9744,
+          "latency_ms": 342.4,
+          "cost_units": 2.873,
+          "schema_compliance": 0.9904,
+          "availability": 0.9855,
+          "capability_fidelity": 0.9622
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "swiftdata_mcp",
+        "display_name": "swiftdata",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "swiftdata_mcp",
+        "tool_id": "inspect_dataset__swiftdata",
+        "profile": {
+          "success_rate": 0.9552,
+          "output_correctness": 0.8406,
+          "latency_ms": 37.4,
+          "cost_units": 0.849,
+          "schema_compliance": 0.9486,
+          "availability": 0.9768,
+          "capability_fidelity": 0.9266
+        },
+        "observations": 0
+      }
+    ],
+    "DATASET_FILTER": [
+      {
+        "provider_id": "data_analysis_mcp",
+        "display_name": "data_analysis",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "data_analysis_mcp",
+        "tool_id": "filter_dataset",
+        "profile": {
+          "success_rate": 0.9785,
+          "output_correctness": 0.9405,
+          "latency_ms": 103.0,
+          "cost_units": 1.19,
+          "schema_compliance": 0.9855,
+          "availability": 0.99,
+          "capability_fidelity": 0.9678
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "datacrunch_mcp",
+        "display_name": "datacrunch",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "datacrunch_mcp",
+        "tool_id": "filter_dataset__datacrunch",
+        "profile": {
+          "success_rate": 0.9974,
+          "output_correctness": 0.9822,
+          "latency_ms": 368.7,
+          "cost_units": 1.834,
+          "schema_compliance": 0.9923,
+          "availability": 0.9917,
+          "capability_fidelity": 0.9935
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "swiftdata_mcp",
+        "display_name": "swiftdata",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "swiftdata_mcp",
+        "tool_id": "filter_dataset__swiftdata",
+        "profile": {
+          "success_rate": 0.9572,
+          "output_correctness": 0.8509,
+          "latency_ms": 22.5,
+          "cost_units": 0.615,
+          "schema_compliance": 0.9571,
+          "availability": 0.9932,
+          "capability_fidelity": 0.8646
+        },
+        "observations": 0
+      }
+    ],
+    "DATASET_SORT": [
+      {
+        "provider_id": "data_analysis_mcp",
+        "display_name": "data_analysis",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "data_analysis_mcp",
+        "tool_id": "sort_dataset",
+        "profile": {
+          "success_rate": 0.9841,
+          "output_correctness": 0.9595,
+          "latency_ms": 109.4,
+          "cost_units": 1.464,
+          "schema_compliance": 0.9921,
+          "availability": 0.993,
+          "capability_fidelity": 0.946
+        },
+        "observations": 0
+      }
+    ],
+    "DATASET_GROUP": [
+      {
+        "provider_id": "data_analysis_mcp",
+        "display_name": "data_analysis",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "data_analysis_mcp",
+        "tool_id": "group_dataset",
+        "profile": {
+          "success_rate": 0.9709,
+          "output_correctness": 0.9613,
+          "latency_ms": 64.7,
+          "cost_units": 1.118,
+          "schema_compliance": 0.9951,
+          "availability": 0.9922,
+          "capability_fidelity": 0.9332
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "datacrunch_mcp",
+        "display_name": "datacrunch",
+        "tier": "accurate",
+        "incumbent": false,
+        "server_id": "datacrunch_mcp",
+        "tool_id": "group_dataset__datacrunch",
+        "profile": {
+          "success_rate": 0.9806,
+          "output_correctness": 0.9793,
+          "latency_ms": 245.2,
+          "cost_units": 3.172,
+          "schema_compliance": 0.9988,
+          "availability": 0.9988,
+          "capability_fidelity": 0.9693
+        },
+        "observations": 0
+      },
+      {
+        "provider_id": "swiftdata_mcp",
+        "display_name": "swiftdata",
+        "tier": "fast",
+        "incumbent": false,
+        "server_id": "swiftdata_mcp",
+        "tool_id": "group_dataset__swiftdata",
+        "profile": {
+          "success_rate": 0.905,
+          "output_correctness": 0.8277,
+          "latency_ms": 30.0,
+          "cost_units": 0.755,
+          "schema_compliance": 0.9546,
+          "availability": 0.9759,
+          "capability_fidelity": 0.8833
+        },
+        "observations": 0
+      }
+    ],
+    "DATASET_COLUMN_CREATE": [
+      {
+        "provider_id": "data_analysis_mcp",
+        "display_name": "data_analysis",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "data_analysis_mcp",
+        "tool_id": "create_calculated_column",
+        "profile": {
+          "success_rate": 0.9786,
+          "output_correctness": 0.957,
+          "latency_ms": 104.9,
+          "cost_units": 1.508,
+          "schema_compliance": 0.9933,
+          "availability": 0.9911,
+          "capability_fidelity": 0.972
+        },
+        "observations": 0
+      }
+    ],
+    "DATASET_MISSING_VALUES": [
+      {
+        "provider_id": "data_analysis_mcp",
+        "display_name": "data_analysis",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "data_analysis_mcp",
+        "tool_id": "analyze_missing_values",
+        "profile": {
+          "success_rate": 0.9688,
+          "output_correctness": 0.9527,
+          "latency_ms": 82.4,
+          "cost_units": 1.443,
+          "schema_compliance": 0.984,
+          "availability": 0.9922,
+          "capability_fidelity": 0.9423
+        },
+        "observations": 0
+      }
+    ],
+    "JSON_PARSE": [
+      {
+        "provider_id": "json_mcp",
+        "display_name": "json",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "json_mcp",
+        "tool_id": "parse_json",
+        "profile": {
+          "success_rate": 0.9646,
+          "output_correctness": 0.9654,
+          "latency_ms": 94.7,
+          "cost_units": 1.196,
+          "schema_compliance": 0.9879,
+          "availability": 0.9989,
+          "capability_fidelity": 0.9554
+        },
+        "observations": 0
+      }
+    ],
+    "JSON_QUERY": [
+      {
+        "provider_id": "json_mcp",
+        "display_name": "json",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "json_mcp",
+        "tool_id": "query_json",
+        "profile": {
+          "success_rate": 0.9669,
+          "output_correctness": 0.9623,
+          "latency_ms": 99.2,
+          "cost_units": 1.595,
+          "schema_compliance": 0.982,
+          "availability": 0.9943,
+          "capability_fidelity": 0.971
+        },
+        "observations": 0
+      }
+    ],
+    "JSON_VALIDATE": [
+      {
+        "provider_id": "json_mcp",
+        "display_name": "json",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "json_mcp",
+        "tool_id": "validate_json_schema",
+        "profile": {
+          "success_rate": 0.9852,
+          "output_correctness": 0.9666,
+          "latency_ms": 62.4,
+          "cost_units": 1.176,
+          "schema_compliance": 0.9824,
+          "availability": 0.9917,
+          "capability_fidelity": 0.9786
+        },
+        "observations": 0
+      }
+    ],
+    "JSON_TRANSFORM": [
+      {
+        "provider_id": "json_mcp",
+        "display_name": "json",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "json_mcp",
+        "tool_id": "transform_json",
+        "profile": {
+          "success_rate": 0.9775,
+          "output_correctness": 0.9672,
+          "latency_ms": 82.3,
+          "cost_units": 1.52,
+          "schema_compliance": 0.989,
+          "availability": 0.9923,
+          "capability_fidelity": 0.9689
+        },
+        "observations": 0
+      }
+    ],
+    "JSON_COMPARE": [
+      {
+        "provider_id": "json_mcp",
+        "display_name": "json",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "json_mcp",
+        "tool_id": "compare_json",
+        "profile": {
+          "success_rate": 0.9884,
+          "output_correctness": 0.9342,
+          "latency_ms": 95.8,
+          "cost_units": 1.372,
+          "schema_compliance": 0.9844,
+          "availability": 0.9933,
+          "capability_fidelity": 0.9371
+        },
+        "observations": 0
+      }
+    ],
+    "SYSTEM_INFO": [
+      {
+        "provider_id": "system_mcp",
+        "display_name": "system",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "system_mcp",
+        "tool_id": "get_system_info",
+        "profile": {
+          "success_rate": 0.9661,
+          "output_correctness": 0.9402,
+          "latency_ms": 96.0,
+          "cost_units": 1.391,
+          "schema_compliance": 0.9841,
+          "availability": 0.9901,
+          "capability_fidelity": 0.9464
+        },
+        "observations": 0
+      }
+    ],
+    "DISK_USAGE": [
+      {
+        "provider_id": "system_mcp",
+        "display_name": "system",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "system_mcp",
+        "tool_id": "get_disk_usage",
+        "profile": {
+          "success_rate": 0.9803,
+          "output_correctness": 0.9374,
+          "latency_ms": 78.7,
+          "cost_units": 1.122,
+          "schema_compliance": 0.9959,
+          "availability": 0.9949,
+          "capability_fidelity": 0.9332
+        },
+        "observations": 0
+      }
+    ],
+    "MEMORY_USAGE": [
+      {
+        "provider_id": "system_mcp",
+        "display_name": "system",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "system_mcp",
+        "tool_id": "get_memory_usage",
+        "profile": {
+          "success_rate": 0.963,
+          "output_correctness": 0.9458,
+          "latency_ms": 93.0,
+          "cost_units": 1.384,
+          "schema_compliance": 0.9818,
+          "availability": 0.9915,
+          "capability_fidelity": 0.9648
+        },
+        "observations": 0
+      }
+    ],
+    "PROCESS_LIST": [
+      {
+        "provider_id": "system_mcp",
+        "display_name": "system",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "system_mcp",
+        "tool_id": "list_processes",
+        "profile": {
+          "success_rate": 0.9723,
+          "output_correctness": 0.9413,
+          "latency_ms": 78.5,
+          "cost_units": 1.572,
+          "schema_compliance": 0.9862,
+          "availability": 0.9951,
+          "capability_fidelity": 0.9479
+        },
+        "observations": 0
+      }
+    ],
+    "ENVIRONMENT_READ": [
+      {
+        "provider_id": "system_mcp",
+        "display_name": "system",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "system_mcp",
+        "tool_id": "read_environment_variable",
+        "profile": {
+          "success_rate": 0.9725,
+          "output_correctness": 0.9646,
+          "latency_ms": 119.8,
+          "cost_units": 1.218,
+          "schema_compliance": 0.9839,
+          "availability": 0.9966,
+          "capability_fidelity": 0.9402
+        },
+        "observations": 0
+      }
+    ],
+    "GEOCODE": [
+      {
+        "provider_id": "geo_mcp",
+        "display_name": "geo",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "geo_mcp",
+        "tool_id": "geocode_location",
+        "profile": {
+          "success_rate": 0.9602,
+          "output_correctness": 0.9661,
+          "latency_ms": 85.4,
+          "cost_units": 1.492,
+          "schema_compliance": 0.9881,
+          "availability": 0.9979,
+          "capability_fidelity": 0.953
+        },
+        "observations": 0
+      }
+    ],
+    "REVERSE_GEOCODE": [
+      {
+        "provider_id": "geo_mcp",
+        "display_name": "geo",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "geo_mcp",
+        "tool_id": "reverse_geocode",
+        "profile": {
+          "success_rate": 0.9649,
+          "output_correctness": 0.9306,
+          "latency_ms": 93.1,
+          "cost_units": 1.384,
+          "schema_compliance": 0.9982,
+          "availability": 0.9908,
+          "capability_fidelity": 0.9611
+        },
+        "observations": 0
+      }
+    ],
+    "GEO_DISTANCE": [
+      {
+        "provider_id": "geo_mcp",
+        "display_name": "geo",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "geo_mcp",
+        "tool_id": "calculate_geographic_distance",
+        "profile": {
+          "success_rate": 0.9711,
+          "output_correctness": 0.9502,
+          "latency_ms": 68.8,
+          "cost_units": 1.17,
+          "schema_compliance": 0.9904,
+          "availability": 0.9983,
+          "capability_fidelity": 0.9354
+        },
+        "observations": 0
+      }
+    ],
+    "TIMEZONE_LOOKUP": [
+      {
+        "provider_id": "geo_mcp",
+        "display_name": "geo",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "geo_mcp",
+        "tool_id": "lookup_timezone",
+        "profile": {
+          "success_rate": 0.9747,
+          "output_correctness": 0.9622,
+          "latency_ms": 118.0,
+          "cost_units": 1.118,
+          "schema_compliance": 0.9825,
+          "availability": 0.9985,
+          "capability_fidelity": 0.9788
+        },
+        "observations": 0
+      }
+    ],
+    "COUNTRY_LOOKUP": [
+      {
+        "provider_id": "geo_mcp",
+        "display_name": "geo",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "geo_mcp",
+        "tool_id": "lookup_country_information",
+        "profile": {
+          "success_rate": 0.9745,
+          "output_correctness": 0.9321,
+          "latency_ms": 115.6,
+          "cost_units": 1.233,
+          "schema_compliance": 0.9981,
+          "availability": 0.9956,
+          "capability_fidelity": 0.9712
+        },
+        "observations": 0
+      }
+    ],
+    "IMAGE_METADATA": [
+      {
+        "provider_id": "media_mcp",
+        "display_name": "media",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "media_mcp",
+        "tool_id": "get_image_metadata",
+        "profile": {
+          "success_rate": 0.9648,
+          "output_correctness": 0.9614,
+          "latency_ms": 73.3,
+          "cost_units": 1.243,
+          "schema_compliance": 0.9969,
+          "availability": 0.9975,
+          "capability_fidelity": 0.9391
+        },
+        "observations": 0
+      }
+    ],
+    "IMAGE_RESIZE": [
+      {
+        "provider_id": "media_mcp",
+        "display_name": "media",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "media_mcp",
+        "tool_id": "resize_image",
+        "profile": {
+          "success_rate": 0.9665,
+          "output_correctness": 0.946,
+          "latency_ms": 91.1,
+          "cost_units": 1.23,
+          "schema_compliance": 0.9825,
+          "availability": 0.9922,
+          "capability_fidelity": 0.9662
+        },
+        "observations": 0
+      }
+    ],
+    "IMAGE_CROP": [
+      {
+        "provider_id": "media_mcp",
+        "display_name": "media",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "media_mcp",
+        "tool_id": "crop_image",
+        "profile": {
+          "success_rate": 0.9869,
+          "output_correctness": 0.9316,
+          "latency_ms": 93.7,
+          "cost_units": 1.454,
+          "schema_compliance": 0.9808,
+          "availability": 0.9975,
+          "capability_fidelity": 0.9359
+        },
+        "observations": 0
+      }
+    ],
+    "IMAGE_FORMAT_CONVERT": [
+      {
+        "provider_id": "media_mcp",
+        "display_name": "media",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "media_mcp",
+        "tool_id": "convert_image_format",
+        "profile": {
+          "success_rate": 0.978,
+          "output_correctness": 0.952,
+          "latency_ms": 97.6,
+          "cost_units": 1.184,
+          "schema_compliance": 0.9884,
+          "availability": 0.9952,
+          "capability_fidelity": 0.9513
+        },
+        "observations": 0
+      }
+    ],
+    "IMAGE_DESCRIBE": [
+      {
+        "provider_id": "media_mcp",
+        "display_name": "media",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "media_mcp",
+        "tool_id": "describe_image",
+        "profile": {
+          "success_rate": 0.9798,
+          "output_correctness": 0.9479,
+          "latency_ms": 86.3,
+          "cost_units": 1.014,
+          "schema_compliance": 0.9924,
+          "availability": 0.9944,
+          "capability_fidelity": 0.9418
+        },
+        "observations": 0
+      }
+    ],
+    "DATE_DIFFERENCE": [
+      {
+        "provider_id": "utility_mcp",
+        "display_name": "utility",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "utility_mcp",
+        "tool_id": "calculate_date_difference",
+        "profile": {
+          "success_rate": 0.9829,
+          "output_correctness": 0.9612,
+          "latency_ms": 87.5,
+          "cost_units": 1.108,
+          "schema_compliance": 0.9895,
+          "availability": 0.991,
+          "capability_fidelity": 0.9364
+        },
+        "observations": 0
+      }
+    ],
+    "DATE_ADD": [
+      {
+        "provider_id": "utility_mcp",
+        "display_name": "utility",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "utility_mcp",
+        "tool_id": "add_date_duration",
+        "profile": {
+          "success_rate": 0.9729,
+          "output_correctness": 0.9337,
+          "latency_ms": 86.5,
+          "cost_units": 1.306,
+          "schema_compliance": 0.9808,
+          "availability": 0.9957,
+          "capability_fidelity": 0.9341
+        },
+        "observations": 0
+      }
+    ],
+    "UUID_GENERATE": [
+      {
+        "provider_id": "utility_mcp",
+        "display_name": "utility",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "utility_mcp",
+        "tool_id": "generate_uuid",
+        "profile": {
+          "success_rate": 0.982,
+          "output_correctness": 0.9611,
+          "latency_ms": 90.7,
+          "cost_units": 1.033,
+          "schema_compliance": 0.9901,
+          "availability": 0.9934,
+          "capability_fidelity": 0.9775
+        },
+        "observations": 0
+      }
+    ],
+    "HASH_TEXT": [
+      {
+        "provider_id": "utility_mcp",
+        "display_name": "utility",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "utility_mcp",
+        "tool_id": "hash_text",
+        "profile": {
+          "success_rate": 0.9641,
+          "output_correctness": 0.9643,
+          "latency_ms": 119.8,
+          "cost_units": 1.439,
+          "schema_compliance": 0.9963,
+          "availability": 0.9917,
+          "capability_fidelity": 0.9791
+        },
+        "observations": 0
+      }
+    ],
+    "BASE64_ENCODE": [
+      {
+        "provider_id": "utility_mcp",
+        "display_name": "utility",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "utility_mcp",
+        "tool_id": "encode_base64",
+        "profile": {
+          "success_rate": 0.9748,
+          "output_correctness": 0.9683,
+          "latency_ms": 115.0,
+          "cost_units": 1.099,
+          "schema_compliance": 0.9958,
+          "availability": 0.9984,
+          "capability_fidelity": 0.9333
+        },
+        "observations": 0
+      }
+    ],
+    "BASE64_DECODE": [
+      {
+        "provider_id": "utility_mcp",
+        "display_name": "utility",
+        "tier": "incumbent",
+        "incumbent": true,
+        "server_id": "utility_mcp",
+        "tool_id": "decode_base64",
+        "profile": {
+          "success_rate": 0.9705,
+          "output_correctness": 0.9602,
+          "latency_ms": 69.5,
+          "cost_units": 1.538,
+          "schema_compliance": 0.9855,
+          "availability": 0.9973,
+          "capability_fidelity": 0.9372
+        },
+        "observations": 0
+      }
+    ]
+  }
+}

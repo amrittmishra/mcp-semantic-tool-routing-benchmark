@@ -1,0 +1,506 @@
+query_id,query_text,query_variant,expected_operation_id,expected_tool_id,expected_server_id
+file_read_001,Can you show me what is inside report.txt?,1,FILE_READ,read_file,filesystem_mcp
+file_read_002,I need to see the contents of /tmp/config.yaml,2,FILE_READ,read_file,filesystem_mcp
+file_read_003,Pull up notes.md so I can look at it,3,FILE_READ,read_file,filesystem_mcp
+file_read_004,cat the file at ./data/summary.txt,4,FILE_READ,read_file,filesystem_mcp
+file_read_005,What does the changelog file actually say?,5,FILE_READ,read_file,filesystem_mcp
+file_write_001,"Save this summary into results.txt, overwriting whatever is there",1,FILE_WRITE,write_file,filesystem_mcp
+file_write_002,Put the following JSON into config.json as its entire contents,2,FILE_WRITE,write_file,filesystem_mcp
+file_write_003,I want a new file called draft.md holding this paragraph,3,FILE_WRITE,write_file,filesystem_mcp
+file_write_004,Overwrite output.log with an empty string,4,FILE_WRITE,write_file,filesystem_mcp
+file_write_005,Store this text at /tmp/out.txt from scratch,5,FILE_WRITE,write_file,filesystem_mcp
+file_append_001,Add this line to the bottom of changelog.md without touching the rest,1,FILE_APPEND,append_file,filesystem_mcp
+file_append_002,Tack this entry onto the end of the audit log,2,FILE_APPEND,append_file,filesystem_mcp
+file_append_003,Keep what is already in notes.txt and stick this at the end,3,FILE_APPEND,append_file,filesystem_mcp
+file_append_004,Extend deploy.log with one more record,4,FILE_APPEND,append_file,filesystem_mcp
+file_append_005,Append a closing note to the existing README,5,FILE_APPEND,append_file,filesystem_mcp
+file_copy_001,Duplicate config.yaml into config.backup.yaml,1,FILE_COPY,copy_file,filesystem_mcp
+file_copy_002,Make a second copy of report.pdf in the archive folder,2,FILE_COPY,copy_file,filesystem_mcp
+file_copy_003,I want the same file to also exist under /tmp/mirror/,3,FILE_COPY,copy_file,filesystem_mcp
+file_copy_004,Clone this file to another path but keep the original,4,FILE_COPY,copy_file,filesystem_mcp
+file_copy_005,cp the schema file into the backups directory,5,FILE_COPY,copy_file,filesystem_mcp
+file_move_001,Relocate draft.md into the published folder,1,FILE_MOVE,move_file,filesystem_mcp
+file_move_002,Move this file to /tmp/archive and remove it from where it is now,2,FILE_MOVE,move_file,filesystem_mcp
+file_move_003,Rename output.txt to results-final.txt,3,FILE_MOVE,move_file,filesystem_mcp
+file_move_004,Shift the log file over to the archive directory,4,FILE_MOVE,move_file,filesystem_mcp
+file_move_005,mv the report into last-quarter/,5,FILE_MOVE,move_file,filesystem_mcp
+file_delete_001,Get rid of the temporary file at /tmp/scratch.txt,1,FILE_DELETE,delete_file,filesystem_mcp
+file_delete_002,Remove stale-cache.bin from disk,2,FILE_DELETE,delete_file,filesystem_mcp
+file_delete_003,"I no longer need old-report.pdf, erase it",3,FILE_DELETE,delete_file,filesystem_mcp
+file_delete_004,rm the leftover build artifact,4,FILE_DELETE,delete_file,filesystem_mcp
+file_delete_005,Wipe out that obsolete config file,5,FILE_DELETE,delete_file,filesystem_mcp
+directory_list_001,What files are sitting in the reports folder?,1,DIRECTORY_LIST,list_directory,filesystem_mcp
+directory_list_002,Show me everything under /var/data,2,DIRECTORY_LIST,list_directory,filesystem_mcp
+directory_list_003,List the contents of this directory,3,DIRECTORY_LIST,list_directory,filesystem_mcp
+directory_list_004,ls the project root,4,DIRECTORY_LIST,list_directory,filesystem_mcp
+directory_list_005,Which files live inside the archive folder?,5,DIRECTORY_LIST,list_directory,filesystem_mcp
+file_metadata_001,How big is report.pdf and when was it last changed?,1,FILE_METADATA,get_file_metadata,filesystem_mcp
+file_metadata_002,Give me the size and modification time for this file,2,FILE_METADATA,get_file_metadata,filesystem_mcp
+file_metadata_003,What are the permissions on config.yaml?,3,FILE_METADATA,get_file_metadata,filesystem_mcp
+file_metadata_004,stat the log file for me,4,FILE_METADATA,get_file_metadata,filesystem_mcp
+file_metadata_005,"I want the file attributes, not its contents",5,FILE_METADATA,get_file_metadata,filesystem_mcp
+pdf_text_extract_001,Pull the text out of this PDF so I can read it,1,PDF_TEXT_EXTRACT,extract_pdf_text,document_mcp
+pdf_text_extract_002,Get the written content from quarterly-report.pdf,2,PDF_TEXT_EXTRACT,extract_pdf_text,document_mcp
+pdf_text_extract_003,I need the raw text of that PDF document,3,PDF_TEXT_EXTRACT,extract_pdf_text,document_mcp
+pdf_text_extract_004,Turn this PDF into plain text,4,PDF_TEXT_EXTRACT,extract_pdf_text,document_mcp
+pdf_text_extract_005,Extract everything written in the attached pdf file,5,PDF_TEXT_EXTRACT,extract_pdf_text,document_mcp
+docx_text_extract_001,Get the text out of this Word document,1,DOCX_TEXT_EXTRACT,extract_docx_text,document_mcp
+docx_text_extract_002,Read the content of proposal.docx as plain text,2,DOCX_TEXT_EXTRACT,extract_docx_text,document_mcp
+docx_text_extract_003,Convert the .docx file into readable text,3,DOCX_TEXT_EXTRACT,extract_docx_text,document_mcp
+docx_text_extract_004,What does this Microsoft Word file say?,4,DOCX_TEXT_EXTRACT,extract_docx_text,document_mcp
+docx_text_extract_005,Extract the written body from the docx,5,DOCX_TEXT_EXTRACT,extract_docx_text,document_mcp
+document_summarize_001,Give me the gist of this long document,1,DOCUMENT_SUMMARIZE,summarize_document,document_mcp
+document_summarize_002,Condense this report into a few key points,2,DOCUMENT_SUMMARIZE,summarize_document,document_mcp
+document_summarize_003,What are the main takeaways from this document?,3,DOCUMENT_SUMMARIZE,summarize_document,document_mcp
+document_summarize_004,TL;DR this whole document for me,4,DOCUMENT_SUMMARIZE,summarize_document,document_mcp
+document_summarize_005,Boil this paper-length document down to a short overview,5,DOCUMENT_SUMMARIZE,summarize_document,document_mcp
+document_search_001,Find where this document mentions the retention policy,1,DOCUMENT_SEARCH,search_document,document_mcp
+document_search_002,Which pages of this document talk about pricing?,2,DOCUMENT_SEARCH,search_document,document_mcp
+document_search_003,Look inside the document for the term 'indemnity',3,DOCUMENT_SEARCH,search_document,document_mcp
+document_search_004,Search this document for anything about deadlines,4,DOCUMENT_SEARCH,search_document,document_mcp
+document_search_005,Where in the document does it discuss refunds?,5,DOCUMENT_SEARCH,search_document,document_mcp
+document_section_extract_001,Give me just the Methodology section of this document,1,DOCUMENT_SECTION_EXTRACT,extract_document_section,document_mcp
+document_section_extract_002,Pull out chapter 3 from this document,2,DOCUMENT_SECTION_EXTRACT,extract_document_section,document_mcp
+document_section_extract_003,I only want the section titled Conclusions,3,DOCUMENT_SECTION_EXTRACT,extract_document_section,document_mcp
+document_section_extract_004,Extract the appendix portion of the document,4,DOCUMENT_SECTION_EXTRACT,extract_document_section,document_mcp
+document_section_extract_005,Show me the part of the document under 'Risk Factors',5,DOCUMENT_SECTION_EXTRACT,extract_document_section,document_mcp
+sql_query_001,Run this SELECT statement against the database,1,SQL_QUERY,execute_sql_query,database_mcp
+sql_query_002,Execute a query that returns the ten newest orders,2,SQL_QUERY,execute_sql_query,database_mcp
+sql_query_003,I want to run some read-only SQL and see the rows,3,SQL_QUERY,execute_sql_query,database_mcp
+sql_query_004,Fire this SQL at the database and give me the result set,4,SQL_QUERY,execute_sql_query,database_mcp
+sql_query_005,Query the users table with SQL and return the matches,5,SQL_QUERY,execute_sql_query,database_mcp
+database_schema_inspect_001,What tables and columns exist in this database?,1,DATABASE_SCHEMA_INSPECT,inspect_database_schema,database_mcp
+database_schema_inspect_002,Describe the structure of the database for me,2,DATABASE_SCHEMA_INSPECT,inspect_database_schema,database_mcp
+database_schema_inspect_003,"Show me the schema, not the data",3,DATABASE_SCHEMA_INSPECT,inspect_database_schema,database_mcp
+database_schema_inspect_004,Which columns does each table have?,4,DATABASE_SCHEMA_INSPECT,inspect_database_schema,database_mcp
+database_schema_inspect_005,Give me a layout of the database tables,5,DATABASE_SCHEMA_INSPECT,inspect_database_schema,database_mcp
+database_insert_001,Add a new row to the customers table,1,DATABASE_INSERT,insert_database_record,database_mcp
+database_insert_002,Insert this record into the orders table,2,DATABASE_INSERT,insert_database_record,database_mcp
+database_insert_003,Create a brand new database entry with these values,3,DATABASE_INSERT,insert_database_record,database_mcp
+database_insert_004,Write a fresh row into the products table,4,DATABASE_INSERT,insert_database_record,database_mcp
+database_insert_005,Put this new record into the database,5,DATABASE_INSERT,insert_database_record,database_mcp
+database_update_001,Change the status column to shipped for these orders,1,DATABASE_UPDATE,update_database_record,database_mcp
+database_update_002,Modify the existing customer row with a new email,2,DATABASE_UPDATE,update_database_record,database_mcp
+database_update_003,Update the records in the inventory table that match this condition,3,DATABASE_UPDATE,update_database_record,database_mcp
+database_update_004,Set the price field to 19.99 where the sku matches,4,DATABASE_UPDATE,update_database_record,database_mcp
+database_update_005,Edit the existing rows rather than inserting new ones,5,DATABASE_UPDATE,update_database_record,database_mcp
+database_delete_001,Remove the rows in the sessions table older than a month,1,DATABASE_DELETE,delete_database_record,database_mcp
+database_delete_002,Delete the customer record matching this id,2,DATABASE_DELETE,delete_database_record,database_mcp
+database_delete_003,Purge matching entries out of the database table,3,DATABASE_DELETE,delete_database_record,database_mcp
+database_delete_004,Drop those rows from the orders table,4,DATABASE_DELETE,delete_database_record,database_mcp
+database_delete_005,Get rid of the database records that meet this condition,5,DATABASE_DELETE,delete_database_record,database_mcp
+database_aggregate_001,What is the total revenue per region in the orders table?,1,DATABASE_AGGREGATE,aggregate_database_data,database_mcp
+database_aggregate_002,Give me the average order value grouped by month,2,DATABASE_AGGREGATE,aggregate_database_data,database_mcp
+database_aggregate_003,Count the rows in the users table by signup source,3,DATABASE_AGGREGATE,aggregate_database_data,database_mcp
+database_aggregate_004,Sum the amounts in this table and break it down by category,4,DATABASE_AGGREGATE,aggregate_database_data,database_mcp
+database_aggregate_005,Compute a grouped aggregate over the database table,5,DATABASE_AGGREGATE,aggregate_database_data,database_mcp
+web_fetch_001,Grab the raw HTML at this URL,1,WEB_FETCH,fetch_web_page,web_mcp
+web_fetch_002,Download the page source for example.com/pricing,2,WEB_FETCH,fetch_web_page,web_mcp
+web_fetch_003,Retrieve whatever this web address returns,3,WEB_FETCH,fetch_web_page,web_mcp
+web_fetch_004,Fetch that URL and give me the response body,4,WEB_FETCH,fetch_web_page,web_mcp
+web_fetch_005,Get me the unprocessed contents of this web page,5,WEB_FETCH,fetch_web_page,web_mcp
+web_text_extract_001,"Give me the readable article text from this URL, without the markup",1,WEB_TEXT_EXTRACT,extract_web_text,web_mcp
+web_text_extract_002,Strip the HTML out of this page and just show the prose,2,WEB_TEXT_EXTRACT,extract_web_text,web_mcp
+web_text_extract_003,What does this web page actually say in plain text?,3,WEB_TEXT_EXTRACT,extract_web_text,web_mcp
+web_text_extract_004,Turn this URL into clean readable content,4,WEB_TEXT_EXTRACT,extract_web_text,web_mcp
+web_text_extract_005,"I want the body copy of this page, not the tags",5,WEB_TEXT_EXTRACT,extract_web_text,web_mcp
+web_link_extract_001,List every hyperlink on this page,1,WEB_LINK_EXTRACT,extract_web_links,web_mcp
+web_link_extract_002,What URLs does this page link out to?,2,WEB_LINK_EXTRACT,extract_web_links,web_mcp
+web_link_extract_003,Collect all the anchor hrefs from this web page,3,WEB_LINK_EXTRACT,extract_web_links,web_mcp
+web_link_extract_004,Give me the outbound links on that site,4,WEB_LINK_EXTRACT,extract_web_links,web_mcp
+web_link_extract_005,Enumerate the links found at this address,5,WEB_LINK_EXTRACT,extract_web_links,web_mcp
+web_metadata_001,What are the title and meta description of this page?,1,WEB_METADATA,extract_web_metadata,web_mcp
+web_metadata_002,Get the Open Graph tags for this URL,2,WEB_METADATA,extract_web_metadata,web_mcp
+web_metadata_003,Show me the head metadata of this website,3,WEB_METADATA,extract_web_metadata,web_mcp
+web_metadata_004,I want the page title and social preview info,4,WEB_METADATA,extract_web_metadata,web_mcp
+web_metadata_005,Pull the SEO metadata from this address,5,WEB_METADATA,extract_web_metadata,web_mcp
+web_structured_extract_001,Extract product names and prices from this webpage,1,WEB_STRUCTURED_EXTRACT,extract_structured_web_data,web_mcp
+web_structured_extract_002,Scrape the table of job titles and salaries off this page,2,WEB_STRUCTURED_EXTRACT,extract_structured_web_data,web_mcp
+web_structured_extract_003,"Pull specific fields like name, rating and price into structured rows",3,WEB_STRUCTURED_EXTRACT,extract_structured_web_data,web_mcp
+web_structured_extract_004,Turn this listing page into records with the fields I name,4,WEB_STRUCTURED_EXTRACT,extract_structured_web_data,web_mcp
+web_structured_extract_005,Get me structured data for each item on this page,5,WEB_STRUCTURED_EXTRACT,extract_structured_web_data,web_mcp
+web_search_001,Search the internet for recent news on chip export rules,1,WEB_SEARCH,search_web,web_mcp
+web_search_002,Look up what the web says about MCP protocol adoption,2,WEB_SEARCH,search_web,web_mcp
+web_search_003,Google this for me and give me the top hits,3,WEB_SEARCH,search_web,web_mcp
+web_search_004,Find web pages about vector database benchmarks,4,WEB_SEARCH,search_web,web_mcp
+web_search_005,Do an online search for hotels in Lisbon,5,WEB_SEARCH,search_web,web_mcp
+paper_search_001,Find papers about semantic tool routing,1,PAPER_SEARCH,search_research_papers,research_mcp
+paper_search_002,Which academic publications cover retrieval augmented agents?,2,PAPER_SEARCH,search_research_papers,research_mcp
+paper_search_003,Search the literature for work on embedding-based tool selection,3,PAPER_SEARCH,search_research_papers,research_mcp
+paper_search_004,Look for research articles on FAISS index compression,4,PAPER_SEARCH,search_research_papers,research_mcp
+paper_search_005,I need scholarly work about LLM context window costs,5,PAPER_SEARCH,search_research_papers,research_mcp
+paper_metadata_001,Who wrote this paper and where was it published?,1,PAPER_METADATA,get_paper_metadata,research_mcp
+paper_metadata_002,"Give me the DOI, venue and year for this arXiv id",2,PAPER_METADATA,get_paper_metadata,research_mcp
+paper_metadata_003,What are the bibliographic details of this paper?,3,PAPER_METADATA,get_paper_metadata,research_mcp
+paper_metadata_004,Pull the citation record for paper 2401.01234,4,PAPER_METADATA,get_paper_metadata,research_mcp
+paper_metadata_005,I need the authors and publication venue for this study,5,PAPER_METADATA,get_paper_metadata,research_mcp
+paper_citations_001,Which papers cite this one?,1,PAPER_CITATIONS,get_paper_citations,research_mcp
+paper_citations_002,How many citations does this study have?,2,PAPER_CITATIONS,get_paper_citations,research_mcp
+paper_citations_003,Show me the works referencing this publication,3,PAPER_CITATIONS,get_paper_citations,research_mcp
+paper_citations_004,Get the citation graph around this paper id,4,PAPER_CITATIONS,get_paper_citations,research_mcp
+paper_citations_005,List downstream papers that build on this work,5,PAPER_CITATIONS,get_paper_citations,research_mcp
+paper_summarize_001,Summarize what this research paper found,1,PAPER_SUMMARIZE,summarize_research_paper,research_mcp
+paper_summarize_002,Explain this paper's contribution in a paragraph,2,PAPER_SUMMARIZE,summarize_research_paper,research_mcp
+paper_summarize_003,What is the key result of this study?,3,PAPER_SUMMARIZE,summarize_research_paper,research_mcp
+paper_summarize_004,Give me a short digest of this academic paper,4,PAPER_SUMMARIZE,summarize_research_paper,research_mcp
+paper_summarize_005,Condense the findings of this research article,5,PAPER_SUMMARIZE,summarize_research_paper,research_mcp
+paper_compare_001,How do these two papers differ in method?,1,PAPER_COMPARE,compare_research_papers,research_mcp
+paper_compare_002,Compare the findings across these three studies,2,PAPER_COMPARE,compare_research_papers,research_mcp
+paper_compare_003,Contrast the approaches taken by these publications,3,PAPER_COMPARE,compare_research_papers,research_mcp
+paper_compare_004,Put these papers side by side and tell me what differs,4,PAPER_COMPARE,compare_research_papers,research_mcp
+paper_compare_005,What is the disagreement between these research articles?,5,PAPER_COMPARE,compare_research_papers,research_mcp
+email_send_001,Email the quarterly numbers to finance@example.com right now,1,EMAIL_SEND,send_email,email_mcp
+email_send_002,Send a message to Alice letting her know the build is green,2,EMAIL_SEND,send_email,email_mcp
+email_send_003,Fire off an email to the team with this update,3,EMAIL_SEND,send_email,email_mcp
+email_send_004,Deliver this note by email to bob@example.org,4,EMAIL_SEND,send_email,email_mcp
+email_send_005,Compose and send an email about tomorrow's outage window,5,EMAIL_SEND,send_email,email_mcp
+email_search_001,Find emails from Alice,1,EMAIL_SEARCH,search_email,email_mcp
+email_search_002,Which messages in my inbox mention the invoice?,2,EMAIL_SEARCH,search_email,email_mcp
+email_search_003,Look through my mail for anything about the contract renewal,3,EMAIL_SEARCH,search_email,email_mcp
+email_search_004,Search my email for messages from the vendor last week,4,EMAIL_SEARCH,search_email,email_mcp
+email_search_005,Locate the thread where we discussed pricing over email,5,EMAIL_SEARCH,search_email,email_mcp
+email_read_001,Open the email with this message id and show me the body,1,EMAIL_READ,read_email,email_mcp
+email_read_002,What does that specific email actually say?,2,EMAIL_READ,read_email,email_mcp
+email_read_003,Display the full contents of this one message,3,EMAIL_READ,read_email,email_mcp
+email_read_004,Read me the email I just found,4,EMAIL_READ,read_email,email_mcp
+email_read_005,Show the body text of message msg_123,5,EMAIL_READ,read_email,email_mcp
+email_reply_001,Respond to Alice's email saying the numbers look right,1,EMAIL_REPLY,reply_email,email_mcp
+email_reply_002,Write a reply on that message thread confirming attendance,2,EMAIL_REPLY,reply_email,email_mcp
+email_reply_003,Answer this email with a short acknowledgement,3,EMAIL_REPLY,reply_email,email_mcp
+email_reply_004,Send a response back on that message id,4,EMAIL_REPLY,reply_email,email_mcp
+email_reply_005,Reply to the vendor's last email agreeing to the terms,5,EMAIL_REPLY,reply_email,email_mcp
+email_draft_001,Prepare an email but do not send it yet,1,EMAIL_DRAFT,create_email_draft,email_mcp
+email_draft_002,Save a draft message to legal@example.com about the renewal,2,EMAIL_DRAFT,create_email_draft,email_mcp
+email_draft_003,Write up an email and leave it in drafts for me to review,3,EMAIL_DRAFT,create_email_draft,email_mcp
+email_draft_004,Create an unsent email with this subject and body,4,EMAIL_DRAFT,create_email_draft,email_mcp
+email_draft_005,Stage an email for later sending,5,EMAIL_DRAFT,create_email_draft,email_mcp
+email_archive_001,Move this message out of my inbox into the archive,1,EMAIL_ARCHIVE,archive_email,email_mcp
+email_archive_002,"Archive that email, I am done with it",2,EMAIL_ARCHIVE,archive_email,email_mcp
+email_archive_003,File this message away without deleting it,3,EMAIL_ARCHIVE,archive_email,email_mcp
+email_archive_004,Clear this email from the inbox but keep it,4,EMAIL_ARCHIVE,archive_email,email_mcp
+email_archive_005,Stash that message in the archive folder,5,EMAIL_ARCHIVE,archive_email,email_mcp
+calendar_create_001,Schedule a meeting tomorrow at 3pm,1,CALENDAR_CREATE,create_calendar_event,calendar_mcp
+calendar_create_002,Put a design review on my calendar for Friday morning,2,CALENDAR_CREATE,create_calendar_event,calendar_mcp
+calendar_create_003,Book an hour with the team next Tuesday,3,CALENDAR_CREATE,create_calendar_event,calendar_mcp
+calendar_create_004,Add a new event called Retro at 10am,4,CALENDAR_CREATE,create_calendar_event,calendar_mcp
+calendar_create_005,Create a calendar entry for the client call on the 12th,5,CALENDAR_CREATE,create_calendar_event,calendar_mcp
+calendar_search_001,What meetings do I have this week?,1,CALENDAR_SEARCH,search_calendar_events,calendar_mcp
+calendar_search_002,Find calendar entries mentioning the board review,2,CALENDAR_SEARCH,search_calendar_events,calendar_mcp
+calendar_search_003,Which events are on my schedule next Monday?,3,CALENDAR_SEARCH,search_calendar_events,calendar_mcp
+calendar_search_004,Look up my appointments between the 1st and the 7th,4,CALENDAR_SEARCH,search_calendar_events,calendar_mcp
+calendar_search_005,Search my calendar for anything with the vendor,5,CALENDAR_SEARCH,search_calendar_events,calendar_mcp
+calendar_update_001,Push the standup back by thirty minutes,1,CALENDAR_UPDATE,update_calendar_event,calendar_mcp
+calendar_update_002,Change the title of that existing event,2,CALENDAR_UPDATE,update_calendar_event,calendar_mcp
+calendar_update_003,Move the design review to Thursday instead,3,CALENDAR_UPDATE,update_calendar_event,calendar_mcp
+calendar_update_004,Edit the meeting I already scheduled to add a location,4,CALENDAR_UPDATE,update_calendar_event,calendar_mcp
+calendar_update_005,Reschedule event evt_88 to start an hour later,5,CALENDAR_UPDATE,update_calendar_event,calendar_mcp
+calendar_delete_001,Cancel the meeting on Friday,1,CALENDAR_DELETE,delete_calendar_event,calendar_mcp
+calendar_delete_002,Remove that event from my calendar entirely,2,CALENDAR_DELETE,delete_calendar_event,calendar_mcp
+calendar_delete_003,Delete the scheduled call with the vendor,3,CALENDAR_DELETE,delete_calendar_event,calendar_mcp
+calendar_delete_004,Take the retro off my schedule,4,CALENDAR_DELETE,delete_calendar_event,calendar_mcp
+calendar_delete_005,Drop calendar event evt_42,5,CALENDAR_DELETE,delete_calendar_event,calendar_mcp
+calendar_availability_001,Am I free between 2 and 4 on Wednesday?,1,CALENDAR_AVAILABILITY,check_calendar_availability,calendar_mcp
+calendar_availability_002,Check whether that slot conflicts with anything,2,CALENDAR_AVAILABILITY,check_calendar_availability,calendar_mcp
+calendar_availability_003,Do I have an opening tomorrow afternoon?,3,CALENDAR_AVAILABILITY,check_calendar_availability,calendar_mcp
+calendar_availability_004,Is my calendar clear during this window?,4,CALENDAR_AVAILABILITY,check_calendar_availability,calendar_mcp
+calendar_availability_005,Tell me if there is a conflict at 9am Monday,5,CALENDAR_AVAILABILITY,check_calendar_availability,calendar_mcp
+message_send_001,Post an update to the #engineering channel,1,MESSAGE_SEND,send_channel_message,messaging_mcp
+message_send_002,Drop a message in the team chat about the deploy,2,MESSAGE_SEND,send_channel_message,messaging_mcp
+message_send_003,Send a note to #general saying the site is back up,3,MESSAGE_SEND,send_channel_message,messaging_mcp
+message_send_004,Ping the channel with this announcement,4,MESSAGE_SEND,send_channel_message,messaging_mcp
+message_send_005,Write this into the ops chat channel,5,MESSAGE_SEND,send_channel_message,messaging_mcp
+message_search_001,Find chat messages where someone mentioned the outage,1,MESSAGE_SEARCH,search_messages,messaging_mcp
+message_search_002,Search our team chat for talk about the migration,2,MESSAGE_SEARCH,search_messages,messaging_mcp
+message_search_003,Which messages reference the new pricing tier?,3,MESSAGE_SEARCH,search_messages,messaging_mcp
+message_search_004,Look through channel messages for the word rollback,4,MESSAGE_SEARCH,search_messages,messaging_mcp
+message_search_005,Dig up the chat where we discussed the schema change,5,MESSAGE_SEARCH,search_messages,messaging_mcp
+message_thread_reply_001,Reply inside that chat thread with the fix we applied,1,MESSAGE_THREAD_REPLY,reply_to_thread,messaging_mcp
+message_thread_reply_002,Answer in the existing thread rather than the main channel,2,MESSAGE_THREAD_REPLY,reply_to_thread,messaging_mcp
+message_thread_reply_003,Add a threaded response to that message,3,MESSAGE_THREAD_REPLY,reply_to_thread,messaging_mcp
+message_thread_reply_004,Continue the discussion in thread thr_9 with this note,4,MESSAGE_THREAD_REPLY,reply_to_thread,messaging_mcp
+message_thread_reply_005,Post a follow-up inside the same chat thread,5,MESSAGE_THREAD_REPLY,reply_to_thread,messaging_mcp
+channel_list_001,Which chat channels exist in this workspace?,1,CHANNEL_LIST,list_channels,messaging_mcp
+channel_list_002,Show me all the channels I could post to,2,CHANNEL_LIST,list_channels,messaging_mcp
+channel_list_003,Enumerate the available team channels,3,CHANNEL_LIST,list_channels,messaging_mcp
+channel_list_004,Give me a directory of chat rooms,4,CHANNEL_LIST,list_channels,messaging_mcp
+channel_list_005,What channels are set up here?,5,CHANNEL_LIST,list_channels,messaging_mcp
+channel_history_001,Show me the recent messages in #engineering,1,CHANNEL_HISTORY,get_channel_history,messaging_mcp
+channel_history_002,What has been said in the ops channel lately?,2,CHANNEL_HISTORY,get_channel_history,messaging_mcp
+channel_history_003,Pull the backlog of messages from this channel,3,CHANNEL_HISTORY,get_channel_history,messaging_mcp
+channel_history_004,Give me the last few days of chat in #general,4,CHANNEL_HISTORY,get_channel_history,messaging_mcp
+channel_history_005,Replay the conversation history of that channel,5,CHANNEL_HISTORY,get_channel_history,messaging_mcp
+git_status_001,What files have I changed but not committed yet?,1,GIT_STATUS,get_git_status,git_mcp
+git_status_002,Show me the working tree state of this repo,2,GIT_STATUS,get_git_status,git_mcp
+git_status_003,Which files are staged versus untracked right now?,3,GIT_STATUS,get_git_status,git_mcp
+git_status_004,git status on this repository please,4,GIT_STATUS,get_git_status,git_mcp
+git_status_005,Tell me what is dirty in my checkout,5,GIT_STATUS,get_git_status,git_mcp
+git_diff_001,Show me the git diff,1,GIT_DIFF,get_git_diff,git_mcp
+git_diff_002,What actually changed between main and my branch?,2,GIT_DIFF,get_git_diff,git_mcp
+git_diff_003,Display the line-level changes in this repository,3,GIT_DIFF,get_git_diff,git_mcp
+git_diff_004,Give me the patch of my uncommitted edits,4,GIT_DIFF,get_git_diff,git_mcp
+git_diff_005,Diff HEAD against the previous commit,5,GIT_DIFF,get_git_diff,git_mcp
+git_commit_history_001,Show me the last ten commits in this repo,1,GIT_COMMIT_HISTORY,get_commit_history,git_mcp
+git_commit_history_002,Who committed what over the past week?,2,GIT_COMMIT_HISTORY,get_commit_history,git_mcp
+git_commit_history_003,Give me the git log for this project,3,GIT_COMMIT_HISTORY,get_commit_history,git_mcp
+git_commit_history_004,List the recent commit messages and authors,4,GIT_COMMIT_HISTORY,get_commit_history,git_mcp
+git_commit_history_005,What is the commit history on this branch?,5,GIT_COMMIT_HISTORY,get_commit_history,git_mcp
+git_branch_list_001,Which branches exist in this repository?,1,GIT_BRANCH_LIST,list_git_branches,git_mcp
+git_branch_list_002,Show me all the git branches and which one I am on,2,GIT_BRANCH_LIST,list_git_branches,git_mcp
+git_branch_list_003,Enumerate the branches in this checkout,3,GIT_BRANCH_LIST,list_git_branches,git_mcp
+git_branch_list_004,What branches can I switch to?,4,GIT_BRANCH_LIST,list_git_branches,git_mcp
+git_branch_list_005,List the refs for this repo,5,GIT_BRANCH_LIST,list_git_branches,git_mcp
+git_create_branch_001,Make a new branch called feature/router off main,1,GIT_CREATE_BRANCH,create_git_branch,git_mcp
+git_create_branch_002,Cut a branch for this bugfix,2,GIT_CREATE_BRANCH,create_git_branch,git_mcp
+git_create_branch_003,Create a git branch named release/2.0,3,GIT_CREATE_BRANCH,create_git_branch,git_mcp
+git_create_branch_004,Start a new branch based on develop,4,GIT_CREATE_BRANCH,create_git_branch,git_mcp
+git_create_branch_005,Branch off from HEAD with the name experiment,5,GIT_CREATE_BRANCH,create_git_branch,git_mcp
+git_commit_001,Commit my staged changes with the message 'fix router threshold',1,GIT_COMMIT,create_git_commit,git_mcp
+git_commit_002,Record these changes into the repository history,2,GIT_COMMIT,create_git_commit,git_mcp
+git_commit_003,Make a commit for the work I just staged,3,GIT_COMMIT,create_git_commit,git_mcp
+git_commit_004,Save this work as a git commit with a message,4,GIT_COMMIT,create_git_commit,git_mcp
+git_commit_005,Check in the current changes with a commit message,5,GIT_COMMIT,create_git_commit,git_mcp
+issue_search_001,Find open tickets about the login failure,1,ISSUE_SEARCH,search_issues,issue_tracker_mcp
+issue_search_002,Which issues mention the router timeout?,2,ISSUE_SEARCH,search_issues,issue_tracker_mcp
+issue_search_003,Search the tracker for bugs tagged performance,3,ISSUE_SEARCH,search_issues,issue_tracker_mcp
+issue_search_004,Look for tickets assigned to the platform team,4,ISSUE_SEARCH,search_issues,issue_tracker_mcp
+issue_search_005,Are there any existing issues about this crash?,5,ISSUE_SEARCH,search_issues,issue_tracker_mcp
+issue_read_001,Open ticket ISSUE-421 and show me the details,1,ISSUE_READ,read_issue,issue_tracker_mcp
+issue_read_002,What does that specific bug report say?,2,ISSUE_READ,read_issue,issue_tracker_mcp
+issue_read_003,Display the full body of this issue,3,ISSUE_READ,read_issue,issue_tracker_mcp
+issue_read_004,Read out the description of ticket 88,4,ISSUE_READ,read_issue,issue_tracker_mcp
+issue_read_005,Show me everything on that one tracker item,5,ISSUE_READ,read_issue,issue_tracker_mcp
+issue_create_001,File a new bug about the crash on startup,1,ISSUE_CREATE,create_issue,issue_tracker_mcp
+issue_create_002,Open a ticket describing this regression,2,ISSUE_CREATE,create_issue,issue_tracker_mcp
+issue_create_003,Create an issue titled 'router returns no_match too often',3,ISSUE_CREATE,create_issue,issue_tracker_mcp
+issue_create_004,Log a new item in the tracker for this problem,4,ISSUE_CREATE,create_issue,issue_tracker_mcp
+issue_create_005,Raise a fresh ticket for the missing validation,5,ISSUE_CREATE,create_issue,issue_tracker_mcp
+issue_update_001,Change the priority on ticket ISSUE-19 to high,1,ISSUE_UPDATE,update_issue,issue_tracker_mcp
+issue_update_002,Mark that existing issue as closed,2,ISSUE_UPDATE,update_issue,issue_tracker_mcp
+issue_update_003,Edit the labels on this tracker item,3,ISSUE_UPDATE,update_issue,issue_tracker_mcp
+issue_update_004,Reassign issue 77 to the infra team,4,ISSUE_UPDATE,update_issue,issue_tracker_mcp
+issue_update_005,Modify the fields of an issue that already exists,5,ISSUE_UPDATE,update_issue,issue_tracker_mcp
+issue_comment_001,Add a note to ticket ISSUE-19 saying we reproduced it,1,ISSUE_COMMENT,comment_on_issue,issue_tracker_mcp
+issue_comment_002,Leave a comment on that issue with my findings,2,ISSUE_COMMENT,comment_on_issue,issue_tracker_mcp
+issue_comment_003,Post an update in the discussion on this bug,3,ISSUE_COMMENT,comment_on_issue,issue_tracker_mcp
+issue_comment_004,Write a follow-up remark on ticket 55,4,ISSUE_COMMENT,comment_on_issue,issue_tracker_mcp
+issue_comment_005,Comment on the tracker item without changing its fields,5,ISSUE_COMMENT,comment_on_issue,issue_tracker_mcp
+text_summarize_001,Shorten this paragraph into a couple of sentences,1,TEXT_SUMMARIZE,summarize_text,text_mcp
+text_summarize_002,Give me a brief version of this block of text,2,TEXT_SUMMARIZE,summarize_text,text_mcp
+text_summarize_003,Condense the text I am pasting here,3,TEXT_SUMMARIZE,summarize_text,text_mcp
+text_summarize_004,Summarize this passage for me,4,TEXT_SUMMARIZE,summarize_text,text_mcp
+text_summarize_005,Make this writing much shorter while keeping the meaning,5,TEXT_SUMMARIZE,summarize_text,text_mcp
+text_translate_001,Convert this text to Hindi,1,TEXT_TRANSLATE,translate_text,text_mcp
+text_translate_002,Say this sentence in Japanese instead,2,TEXT_TRANSLATE,translate_text,text_mcp
+text_translate_003,Render this paragraph in Spanish,3,TEXT_TRANSLATE,translate_text,text_mcp
+text_translate_004,I need a French version of this text,4,TEXT_TRANSLATE,translate_text,text_mcp
+text_translate_005,Translate the following into German,5,TEXT_TRANSLATE,translate_text,text_mcp
+text_sentiment_001,Is this customer review positive or negative?,1,TEXT_SENTIMENT,analyze_sentiment,text_mcp
+text_sentiment_002,Tell me the emotional tone of this message,2,TEXT_SENTIMENT,analyze_sentiment,text_mcp
+text_sentiment_003,How angry does this feedback sound?,3,TEXT_SENTIMENT,analyze_sentiment,text_mcp
+text_sentiment_004,Gauge whether this text is favourable,4,TEXT_SENTIMENT,analyze_sentiment,text_mcp
+text_sentiment_005,Classify the mood expressed in this passage,5,TEXT_SENTIMENT,analyze_sentiment,text_mcp
+text_keywords_001,What are the main terms in this passage?,1,TEXT_KEYWORDS,extract_keywords,text_mcp
+text_keywords_002,Pull out the important words from this text,2,TEXT_KEYWORDS,extract_keywords,text_mcp
+text_keywords_003,Give me keywords describing this content,3,TEXT_KEYWORDS,extract_keywords,text_mcp
+text_keywords_004,Identify the salient phrases here,4,TEXT_KEYWORDS,extract_keywords,text_mcp
+text_keywords_005,Which terms best characterize this writing?,5,TEXT_KEYWORDS,extract_keywords,text_mcp
+text_entities_001,"Find the people, places and dates named in this text",1,TEXT_ENTITIES,extract_entities,text_mcp
+text_entities_002,Which organizations are mentioned in this passage?,2,TEXT_ENTITIES,extract_entities,text_mcp
+text_entities_003,Pull out proper nouns and classify them,3,TEXT_ENTITIES,extract_entities,text_mcp
+text_entities_004,Identify named entities in this paragraph,4,TEXT_ENTITIES,extract_entities,text_mcp
+text_entities_005,Tag the persons and locations appearing here,5,TEXT_ENTITIES,extract_entities,text_mcp
+text_rewrite_001,Make this paragraph sound more formal,1,TEXT_REWRITE,rewrite_text,text_mcp
+text_rewrite_002,Rewrite this in a friendlier tone,2,TEXT_REWRITE,rewrite_text,text_mcp
+text_rewrite_003,Reword this message so it is less blunt,3,TEXT_REWRITE,rewrite_text,text_mcp
+text_rewrite_004,Rephrase this text for a technical audience,4,TEXT_REWRITE,rewrite_text,text_mcp
+text_rewrite_005,Polish this writing without changing the facts,5,TEXT_REWRITE,rewrite_text,text_mcp
+text_classify_001,Sort this ticket into one of these categories,1,TEXT_CLASSIFY,classify_text,text_mcp
+text_classify_002,Which of these labels fits this text best?,2,TEXT_CLASSIFY,classify_text,text_mcp
+text_classify_003,Assign a category to this message from my list,3,TEXT_CLASSIFY,classify_text,text_mcp
+text_classify_004,Bucket this passage into one of the given classes,4,TEXT_CLASSIFY,classify_text,text_mcp
+text_classify_005,Label this text using these predefined options,5,TEXT_CLASSIFY,classify_text,text_mcp
+calculator_001,What is 1847 times 92 minus 300?,1,CALCULATOR,calculate_expression,math_mcp
+calculator_002,Work out (45 + 15) divided by 4,2,CALCULATOR,calculate_expression,math_mcp
+calculator_003,Evaluate this arithmetic expression for me,3,CALCULATOR,calculate_expression,math_mcp
+calculator_004,Compute 2 to the power of 17,4,CALCULATOR,calculate_expression,math_mcp
+calculator_005,Do this sum: 12.5 * 3.2 + 7,5,CALCULATOR,calculate_expression,math_mcp
+statistics_describe_001,Give me the mean and standard deviation of these numbers,1,STATISTICS_DESCRIBE,calculate_descriptive_statistics,math_mcp
+statistics_describe_002,Summarize this list of values statistically,2,STATISTICS_DESCRIBE,calculate_descriptive_statistics,math_mcp
+statistics_describe_003,What is the median and spread of this data?,3,STATISTICS_DESCRIBE,calculate_descriptive_statistics,math_mcp
+statistics_describe_004,Compute descriptive stats over these measurements,4,STATISTICS_DESCRIBE,calculate_descriptive_statistics,math_mcp
+statistics_describe_005,"Tell me min, max and average for this set of numbers",5,STATISTICS_DESCRIBE,calculate_descriptive_statistics,math_mcp
+percentage_change_001,"Revenue went from 120k to 148k, what is the percent change?",1,PERCENTAGE_CHANGE,calculate_percentage_change,math_mcp
+percentage_change_002,By what percentage did this number grow?,2,PERCENTAGE_CHANGE,calculate_percentage_change,math_mcp
+percentage_change_003,Work out the percent decrease from 90 to 72,3,PERCENTAGE_CHANGE,calculate_percentage_change,math_mcp
+percentage_change_004,How much did the value increase in percentage terms?,4,PERCENTAGE_CHANGE,calculate_percentage_change,math_mcp
+percentage_change_005,Give me the relative change between these two figures,5,PERCENTAGE_CHANGE,calculate_percentage_change,math_mcp
+compound_interest_001,Calculate compound interest on 1000 at 8% for 5 years,1,COMPOUND_INTEREST,calculate_compound_interest,math_mcp
+compound_interest_002,What will 25000 grow to at 6% compounded quarterly over a decade?,2,COMPOUND_INTEREST,calculate_compound_interest,math_mcp
+compound_interest_003,Work out the future value of my deposit with compounding,3,COMPOUND_INTEREST,calculate_compound_interest,math_mcp
+compound_interest_004,How much interest accrues on 5000 at 4% annually for 3 years?,4,COMPOUND_INTEREST,calculate_compound_interest,math_mcp
+compound_interest_005,Project the balance after compounding at this rate,5,COMPOUND_INTEREST,calculate_compound_interest,math_mcp
+linear_equation_solve_001,Solve 3x + 5 = 20 for x,1,LINEAR_EQUATION_SOLVE,solve_linear_equation,math_mcp
+linear_equation_solve_002,Find the value of x in this linear equation,2,LINEAR_EQUATION_SOLVE,solve_linear_equation,math_mcp
+linear_equation_solve_003,What does x equal if 7x - 2 = 40?,3,LINEAR_EQUATION_SOLVE,solve_linear_equation,math_mcp
+linear_equation_solve_004,Work out the unknown in this first-degree equation,4,LINEAR_EQUATION_SOLVE,solve_linear_equation,math_mcp
+linear_equation_solve_005,Isolate x for me in 2x + 9 = 3x - 1,5,LINEAR_EQUATION_SOLVE,solve_linear_equation,math_mcp
+dataset_inspect_001,How many rows and columns does this dataset have?,1,DATASET_INSPECT,inspect_dataset,data_analysis_mcp
+dataset_inspect_002,Give me an overview of the structure of this table of data,2,DATASET_INSPECT,inspect_dataset,data_analysis_mcp
+dataset_inspect_003,What are the column names and types in my dataframe?,3,DATASET_INSPECT,inspect_dataset,data_analysis_mcp
+dataset_inspect_004,Profile this dataset before I analyse it,4,DATASET_INSPECT,inspect_dataset,data_analysis_mcp
+dataset_inspect_005,Describe the shape of this data file,5,DATASET_INSPECT,inspect_dataset,data_analysis_mcp
+dataset_filter_001,Keep only the rows where amount is above 100,1,DATASET_FILTER,filter_dataset,data_analysis_mcp
+dataset_filter_002,Subset this dataset to customers in Europe,2,DATASET_FILTER,filter_dataset,data_analysis_mcp
+dataset_filter_003,Drop every record that does not match this condition,3,DATASET_FILTER,filter_dataset,data_analysis_mcp
+dataset_filter_004,Filter the dataframe down to last quarter,4,DATASET_FILTER,filter_dataset,data_analysis_mcp
+dataset_filter_005,Narrow the rows using this predicate,5,DATASET_FILTER,filter_dataset,data_analysis_mcp
+dataset_sort_001,Order this dataset by revenue descending,1,DATASET_SORT,sort_dataset,data_analysis_mcp
+dataset_sort_002,Sort the rows alphabetically by customer name,2,DATASET_SORT,sort_dataset,data_analysis_mcp
+dataset_sort_003,"Rank the records by date, newest first",3,DATASET_SORT,sort_dataset,data_analysis_mcp
+dataset_sort_004,Arrange the dataframe by these two columns,4,DATASET_SORT,sort_dataset,data_analysis_mcp
+dataset_sort_005,Put the data in order of score,5,DATASET_SORT,sort_dataset,data_analysis_mcp
+dataset_group_001,Group this dataset by region and sum the sales,1,DATASET_GROUP,group_dataset,data_analysis_mcp
+dataset_group_002,Aggregate the rows per category with an average,2,DATASET_GROUP,group_dataset,data_analysis_mcp
+dataset_group_003,Roll this data up by month,3,DATASET_GROUP,group_dataset,data_analysis_mcp
+dataset_group_004,Give me counts per group in this dataframe,4,DATASET_GROUP,group_dataset,data_analysis_mcp
+dataset_group_005,Summarize the dataset grouped by product line,5,DATASET_GROUP,group_dataset,data_analysis_mcp
+dataset_column_create_001,Add a derived column that multiplies price by quantity,1,DATASET_COLUMN_CREATE,create_calculated_column,data_analysis_mcp
+dataset_column_create_002,Create a new field computed from the existing ones,2,DATASET_COLUMN_CREATE,create_calculated_column,data_analysis_mcp
+dataset_column_create_003,Append a calculated margin column to this dataframe,3,DATASET_COLUMN_CREATE,create_calculated_column,data_analysis_mcp
+dataset_column_create_004,Make a column holding revenue minus cost,4,DATASET_COLUMN_CREATE,create_calculated_column,data_analysis_mcp
+dataset_column_create_005,Derive an extra column from this expression,5,DATASET_COLUMN_CREATE,create_calculated_column,data_analysis_mcp
+dataset_missing_values_001,Which columns in this dataset have nulls?,1,DATASET_MISSING_VALUES,analyze_missing_values,data_analysis_mcp
+dataset_missing_values_002,How much data is missing per field?,2,DATASET_MISSING_VALUES,analyze_missing_values,data_analysis_mcp
+dataset_missing_values_003,Report the NaN counts across this dataframe,3,DATASET_MISSING_VALUES,analyze_missing_values,data_analysis_mcp
+dataset_missing_values_004,Find the gaps and blanks in this dataset,4,DATASET_MISSING_VALUES,analyze_missing_values,data_analysis_mcp
+dataset_missing_values_005,Show me where values are absent in this table,5,DATASET_MISSING_VALUES,analyze_missing_values,data_analysis_mcp
+json_parse_001,Turn this JSON string into an actual object,1,JSON_PARSE,parse_json,json_mcp
+json_parse_002,Deserialize this raw JSON text for me,2,JSON_PARSE,parse_json,json_mcp
+json_parse_003,Read this JSON string and give me the structure,3,JSON_PARSE,parse_json,json_mcp
+json_parse_004,Load this string as JSON,4,JSON_PARSE,parse_json,json_mcp
+json_parse_005,Convert this JSON text into parsed data,5,JSON_PARSE,parse_json,json_mcp
+json_query_001,Get the value at data.items[0].price from this object,1,JSON_QUERY,query_json,json_mcp
+json_query_002,Pull the nested field user.address.city out of this JSON,2,JSON_QUERY,query_json,json_mcp
+json_query_003,Look up this path inside the JSON document,3,JSON_QUERY,query_json,json_mcp
+json_query_004,Extract one specific key deep inside this object,4,JSON_QUERY,query_json,json_mcp
+json_query_005,What is the value at that JSON pointer?,5,JSON_QUERY,query_json,json_mcp
+json_validate_001,Does this object conform to my JSON schema?,1,JSON_VALIDATE,validate_json_schema,json_mcp
+json_validate_002,Check this payload against the schema and list violations,2,JSON_VALIDATE,validate_json_schema,json_mcp
+json_validate_003,Validate that the required fields are present per the schema,3,JSON_VALIDATE,validate_json_schema,json_mcp
+json_validate_004,Is this JSON structurally valid for the given schema?,4,JSON_VALIDATE,validate_json_schema,json_mcp
+json_validate_005,Verify my object matches this schema definition,5,JSON_VALIDATE,validate_json_schema,json_mcp
+json_transform_001,Reshape this JSON object into a different structure,1,JSON_TRANSFORM,transform_json,json_mcp
+json_transform_002,Apply this mapping to convert the JSON layout,2,JSON_TRANSFORM,transform_json,json_mcp
+json_transform_003,Restructure the keys of this object as specified,3,JSON_TRANSFORM,transform_json,json_mcp
+json_transform_004,Transform this payload into the target shape,4,JSON_TRANSFORM,transform_json,json_mcp
+json_transform_005,Remap the fields of this JSON document,5,JSON_TRANSFORM,transform_json,json_mcp
+json_compare_001,What changed between these two JSON objects?,1,JSON_COMPARE,compare_json,json_mcp
+json_compare_002,Diff these two payloads and tell me the differences,2,JSON_COMPARE,compare_json,json_mcp
+json_compare_003,Which keys differ across these two objects?,3,JSON_COMPARE,compare_json,json_mcp
+json_compare_004,Compare the old and new JSON documents,4,JSON_COMPARE,compare_json,json_mcp
+json_compare_005,Show me the delta between these two structures,5,JSON_COMPARE,compare_json,json_mcp
+system_info_001,What operating system and architecture is this machine?,1,SYSTEM_INFO,get_system_info,system_mcp
+system_info_002,Give me general details about this host,2,SYSTEM_INFO,get_system_info,system_mcp
+system_info_003,Tell me the kernel version and hostname,3,SYSTEM_INFO,get_system_info,system_mcp
+system_info_004,Report basic platform information,4,SYSTEM_INFO,get_system_info,system_mcp
+system_info_005,What kind of system am I running on?,5,SYSTEM_INFO,get_system_info,system_mcp
+disk_usage_001,How much storage space is left on this volume?,1,DISK_USAGE,get_disk_usage,system_mcp
+disk_usage_002,Report free and used disk capacity,2,DISK_USAGE,get_disk_usage,system_mcp
+disk_usage_003,Am I running out of space on /var?,3,DISK_USAGE,get_disk_usage,system_mcp
+disk_usage_004,Show me the filesystem usage numbers,4,DISK_USAGE,get_disk_usage,system_mcp
+disk_usage_005,How full is the drive?,5,DISK_USAGE,get_disk_usage,system_mcp
+memory_usage_001,How much RAM is currently in use?,1,MEMORY_USAGE,get_memory_usage,system_mcp
+memory_usage_002,Report available versus consumed memory,2,MEMORY_USAGE,get_memory_usage,system_mcp
+memory_usage_003,Is this machine short on memory?,3,MEMORY_USAGE,get_memory_usage,system_mcp
+memory_usage_004,Give me the memory utilization figures,4,MEMORY_USAGE,get_memory_usage,system_mcp
+memory_usage_005,What is the current RAM consumption?,5,MEMORY_USAGE,get_memory_usage,system_mcp
+process_list_001,Which processes are running right now?,1,PROCESS_LIST,list_processes,system_mcp
+process_list_002,Show me the active tasks and their CPU usage,2,PROCESS_LIST,list_processes,system_mcp
+process_list_003,Give me a process table for this host,3,PROCESS_LIST,list_processes,system_mcp
+process_list_004,What is currently executing on this machine?,4,PROCESS_LIST,list_processes,system_mcp
+process_list_005,List the running programs by pid,5,PROCESS_LIST,list_processes,system_mcp
+environment_read_001,What is the value of the PATH environment variable?,1,ENVIRONMENT_READ,read_environment_variable,system_mcp
+environment_read_002,Read the env var named DATABASE_URL,2,ENVIRONMENT_READ,read_environment_variable,system_mcp
+environment_read_003,Look up an environment variable's setting,3,ENVIRONMENT_READ,read_environment_variable,system_mcp
+environment_read_004,Tell me what HOME is set to,4,ENVIRONMENT_READ,read_environment_variable,system_mcp
+environment_read_005,Fetch the configured value of this shell variable,5,ENVIRONMENT_READ,read_environment_variable,system_mcp
+geocode_001,What are the coordinates of the Eiffel Tower?,1,GEOCODE,geocode_location,geo_mcp
+geocode_002,Convert this street address into latitude and longitude,2,GEOCODE,geocode_location,geo_mcp
+geocode_003,Give me the lat/long for Bengaluru,3,GEOCODE,geocode_location,geo_mcp
+geocode_004,Where is this place located in coordinate terms?,4,GEOCODE,geocode_location,geo_mcp
+geocode_005,Turn this place name into map coordinates,5,GEOCODE,geocode_location,geo_mcp
+reverse_geocode_001,"Which address sits at 48.8584, 2.2945?",1,REVERSE_GEOCODE,reverse_geocode,geo_mcp
+reverse_geocode_002,Turn these coordinates into a human-readable place,2,REVERSE_GEOCODE,reverse_geocode,geo_mcp
+reverse_geocode_003,What location corresponds to this latitude and longitude?,3,REVERSE_GEOCODE,reverse_geocode,geo_mcp
+reverse_geocode_004,Give me the street address for this map point,4,REVERSE_GEOCODE,reverse_geocode,geo_mcp
+reverse_geocode_005,Identify the place at these geographic coordinates,5,REVERSE_GEOCODE,reverse_geocode,geo_mcp
+geo_distance_001,How far apart are Paris and Berlin?,1,GEO_DISTANCE,calculate_geographic_distance,geo_mcp
+geo_distance_002,Compute the kilometres between these two cities,2,GEO_DISTANCE,calculate_geographic_distance,geo_mcp
+geo_distance_003,What is the straight-line distance from here to there?,3,GEO_DISTANCE,calculate_geographic_distance,geo_mcp
+geo_distance_004,Measure the geographic separation of these two locations,4,GEO_DISTANCE,calculate_geographic_distance,geo_mcp
+geo_distance_005,Distance between Mumbai and Delhi?,5,GEO_DISTANCE,calculate_geographic_distance,geo_mcp
+timezone_lookup_001,What time zone is Bengaluru in?,1,TIMEZONE_LOOKUP,lookup_timezone,geo_mcp
+timezone_lookup_002,Which UTC offset applies at this location?,2,TIMEZONE_LOOKUP,lookup_timezone,geo_mcp
+timezone_lookup_003,Tell me the local timezone for this city,3,TIMEZONE_LOOKUP,lookup_timezone,geo_mcp
+timezone_lookup_004,Is that place on daylight saving right now?,4,TIMEZONE_LOOKUP,lookup_timezone,geo_mcp
+timezone_lookup_005,Look up the tz database name for this location,5,TIMEZONE_LOOKUP,lookup_timezone,geo_mcp
+country_lookup_001,What is the capital and currency of Portugal?,1,COUNTRY_LOOKUP,lookup_country_information,geo_mcp
+country_lookup_002,Give me general facts about this country,2,COUNTRY_LOOKUP,lookup_country_information,geo_mcp
+country_lookup_003,Population and official language of Kenya?,3,COUNTRY_LOOKUP,lookup_country_information,geo_mcp
+country_lookup_004,Tell me country-level information for Japan,4,COUNTRY_LOOKUP,lookup_country_information,geo_mcp
+country_lookup_005,Look up basic details about this nation,5,COUNTRY_LOOKUP,lookup_country_information,geo_mcp
+image_metadata_001,What are the dimensions and format of this image?,1,IMAGE_METADATA,get_image_metadata,media_mcp
+image_metadata_002,Read the EXIF details from this photo,2,IMAGE_METADATA,get_image_metadata,media_mcp
+image_metadata_003,How many pixels wide is this picture?,3,IMAGE_METADATA,get_image_metadata,media_mcp
+image_metadata_004,Give me technical attributes of the image file,4,IMAGE_METADATA,get_image_metadata,media_mcp
+image_metadata_005,Show the image properties without altering it,5,IMAGE_METADATA,get_image_metadata,media_mcp
+image_resize_001,Scale this photo down to 800 by 600,1,IMAGE_RESIZE,resize_image,media_mcp
+image_resize_002,Make the image smaller while keeping the whole frame,2,IMAGE_RESIZE,resize_image,media_mcp
+image_resize_003,Resize this picture to thumbnail dimensions,3,IMAGE_RESIZE,resize_image,media_mcp
+image_resize_004,Shrink this image to fit 1024 pixels wide,4,IMAGE_RESIZE,resize_image,media_mcp
+image_resize_005,Change the pixel dimensions of this image,5,IMAGE_RESIZE,resize_image,media_mcp
+image_crop_001,Cut out the top-left quarter of this image,1,IMAGE_CROP,crop_image,media_mcp
+image_crop_002,Trim the picture to just this rectangular region,2,IMAGE_CROP,crop_image,media_mcp
+image_crop_003,Crop away the edges and keep the centre,3,IMAGE_CROP,crop_image,media_mcp
+image_crop_004,Take a 300x300 window out of this photo,4,IMAGE_CROP,crop_image,media_mcp
+image_crop_005,Clip the image to the bounding box I give you,5,IMAGE_CROP,crop_image,media_mcp
+image_format_convert_001,Turn this PNG into a JPEG,1,IMAGE_FORMAT_CONVERT,convert_image_format,media_mcp
+image_format_convert_002,Save the picture in webp format instead,2,IMAGE_FORMAT_CONVERT,convert_image_format,media_mcp
+image_format_convert_003,Change the file type of this image,3,IMAGE_FORMAT_CONVERT,convert_image_format,media_mcp
+image_format_convert_004,Convert my screenshot to a different image format,4,IMAGE_FORMAT_CONVERT,convert_image_format,media_mcp
+image_format_convert_005,Re-encode this photo as a TIFF,5,IMAGE_FORMAT_CONVERT,convert_image_format,media_mcp
+image_describe_001,What is happening in this picture?,1,IMAGE_DESCRIBE,describe_image,media_mcp
+image_describe_002,Describe the contents of this photo in words,2,IMAGE_DESCRIBE,describe_image,media_mcp
+image_describe_003,Caption this image for me,3,IMAGE_DESCRIBE,describe_image,media_mcp
+image_describe_004,Tell me what objects appear in this image,4,IMAGE_DESCRIBE,describe_image,media_mcp
+image_describe_005,Give me an alt-text description of the picture,5,IMAGE_DESCRIBE,describe_image,media_mcp
+date_difference_001,How many days are there between March 1 and July 4?,1,DATE_DIFFERENCE,calculate_date_difference,utility_mcp
+date_difference_002,Work out the gap between these two dates,2,DATE_DIFFERENCE,calculate_date_difference,utility_mcp
+date_difference_003,How long is it from the start date to the end date?,3,DATE_DIFFERENCE,calculate_date_difference,utility_mcp
+date_difference_004,Number of days separating 2026-01-01 and 2026-06-30?,4,DATE_DIFFERENCE,calculate_date_difference,utility_mcp
+date_difference_005,Calculate the elapsed time between these dates,5,DATE_DIFFERENCE,calculate_date_difference,utility_mcp
+date_add_001,What date is 45 days after January 10?,1,DATE_ADD,add_date_duration,utility_mcp
+date_add_002,Add three months to this date,2,DATE_ADD,add_date_duration,utility_mcp
+date_add_003,Shift this date forward by two weeks,3,DATE_ADD,add_date_duration,utility_mcp
+date_add_004,What will the date be 90 days from 2026-02-01?,4,DATE_ADD,add_date_duration,utility_mcp
+date_add_005,Advance this timestamp by six hours,5,DATE_ADD,add_date_duration,utility_mcp
+uuid_generate_001,Give me a fresh unique identifier,1,UUID_GENERATE,generate_uuid,utility_mcp
+uuid_generate_002,I need a random id for this record,2,UUID_GENERATE,generate_uuid,utility_mcp
+uuid_generate_003,Generate a UUID for me,3,UUID_GENERATE,generate_uuid,utility_mcp
+uuid_generate_004,Mint a new globally unique key,4,UUID_GENERATE,generate_uuid,utility_mcp
+uuid_generate_005,Produce a unique identifier string,5,UUID_GENERATE,generate_uuid,utility_mcp
+hash_text_001,Give me the SHA-256 digest of this string,1,HASH_TEXT,hash_text,utility_mcp
+hash_text_002,Compute an MD5 checksum for this text,2,HASH_TEXT,hash_text,utility_mcp
+hash_text_003,Hash this password string for comparison,3,HASH_TEXT,hash_text,utility_mcp
+hash_text_004,What is the cryptographic fingerprint of this content?,4,HASH_TEXT,hash_text,utility_mcp
+hash_text_005,Produce a digest of this text with sha1,5,HASH_TEXT,hash_text,utility_mcp
+base64_encode_001,Encode this string as base64,1,BASE64_ENCODE,encode_base64,utility_mcp
+base64_encode_002,Turn this text into its base64 representation,2,BASE64_ENCODE,encode_base64,utility_mcp
+base64_encode_003,Give me the b64 form of this content,3,BASE64_ENCODE,encode_base64,utility_mcp
+base64_encode_004,Convert this plain text to base64,4,BASE64_ENCODE,encode_base64,utility_mcp
+base64_encode_005,Base64 this payload for transport,5,BASE64_ENCODE,encode_base64,utility_mcp
+base64_decode_001,Decode this base64 string back to text,1,BASE64_DECODE,decode_base64,utility_mcp
+base64_decode_002,What does this b64 blob say in plain text?,2,BASE64_DECODE,decode_base64,utility_mcp
+base64_decode_003,Reverse the base64 encoding on this value,3,BASE64_DECODE,decode_base64,utility_mcp
+base64_decode_004,Turn this encoded string back into readable content,4,BASE64_DECODE,decode_base64,utility_mcp
+base64_decode_005,Un-base64 this payload,5,BASE64_DECODE,decode_base64,utility_mcp

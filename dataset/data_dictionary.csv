@@ -1,0 +1,40 @@
+file_name,column_name,data_type,nullable,description
+servers.csv,server_position,integer,false,One-based server order in the canonical registry.
+servers.csv,server_id,string,false,Stable downstream server identifier.
+servers.csv,server_name,string,false,Human-readable server name.
+servers.csv,server_description,string,false,Natural-language server description.
+servers.csv,tool_count,integer,false,Number of tools assigned to the server.
+tools.csv,registry_position,integer,false,One-based tool order in the canonical registry.
+tools.csv,operation_id,string,false,Gold semantic operation identifier and primary join key.
+tools.csv,tool_id,string,false,Concrete tool implementation identifier.
+tools.csv,tool_name,string,false,Human-readable tool name.
+tools.csv,server_id,string,false,Foreign key to servers.csv.
+tools.csv,taxonomy_class,string,false,Top-level authored taxonomy label.
+tools.csv,taxonomy_type,string,false,Second-level authored taxonomy label.
+tools.csv,description,string,false,Natural-language tool capability description.
+tools.csv,positive_example_count,integer,false,Count of positive examples for the tool.
+tools.csv,negative_example_count,integer,false,Count of negative examples for the tool.
+tools.csv,parameter_count,integer,false,Count of declared input parameters.
+tools.csv,required_parameter_count,integer,false,Count of required input parameters.
+tools.csv,required_parameters_json,JSON string,false,JSON array of required parameter names.
+tools.csv,input_schema_json,JSON string,false,Complete registry input schema serialized as compact JSON.
+queries.csv,query_id,string,false,Stable unique query identifier.
+queries.csv,query_text,string,false,Hand-authored natural-language routing request.
+queries.csv,query_variant,integer,false,One-based authoring order within the expected operation; not a difficulty label.
+queries.csv,expected_operation_id,string,false,Gold operation label; foreign key to tools.csv operation_id.
+queries.csv,expected_tool_id,string,false,Gold tool label; foreign key to tools.csv tool_id.
+queries.csv,expected_server_id,string,false,Gold server label; foreign key to servers.csv server_id.
+tool_examples.csv,operation_id,string,false,Foreign key to tools.csv operation_id.
+tool_examples.csv,tool_id,string,false,Foreign key to tools.csv tool_id.
+tool_examples.csv,example_polarity,string,false,Either positive or negative.
+tool_examples.csv,example_index,integer,false,One-based order within tool and polarity.
+tool_examples.csv,example_text,string,false,Natural-language usage or counterexample text.
+tool_parameters.csv,operation_id,string,false,Foreign key to tools.csv operation_id.
+tool_parameters.csv,tool_id,string,false,Foreign key to tools.csv tool_id.
+tool_parameters.csv,parameter_name,string,false,Input parameter name.
+tool_parameters.csv,parameter_type,string,false,Declared JSON-compatible parameter type.
+tool_parameters.csv,required,boolean,false,Whether the parameter is required.
+tool_parameters.csv,description,string,true,Optional parameter description.
+tool_parameters.csv,enum_json,JSON string,true,Optional allowed-values array as compact JSON.
+tool_parameters.csv,items_json,JSON string,true,Optional array-item schema as compact JSON.
+tool_parameters.csv,parameter_schema_json,JSON string,false,Complete parameter specification as compact JSON.
