@@ -5,108 +5,304 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MCP Semantic Tool Routing Benchmark</title>
 <meta name="description" content="505 hand-authored queries over 101 semantic operations on 18 synthetic MCP servers, with cached embeddings and evaluation code for flat, hierarchical, multi-vector, lexical, hybrid and decision-model routing.">
+<meta property="og:title" content="MCP Semantic Tool Routing Benchmark">
+<meta property="og:description" content="Data, cached embeddings and evaluation code for routing natural-language requests to MCP tools without loading every schema into context.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#5d5c58;--line:#e3e0d8;--accent:#0f6e56;--accent-soft:#e3f1ec;--card:#ffffff;--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15161a;--fg:#ececea;--muted:#a6a5a0;--line:#2c2e35;--accent:#5fd3ad;--accent-soft:#17352c;--card:#1d1f25}}
-:root[data-theme="dark"]{--bg:#15161a;--fg:#ececea;--muted:#a6a5a0;--line:#2c2e35;--accent:#5fd3ad;--accent-soft:#17352c;--card:#1d1f25}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Georgia,"Times New Roman",serif}
-main{max-width:860px;margin:0 auto;padding:40px 16px 64px}
-h1{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.15;margin:0 0 8px}
-h2{font-size:1.25rem;margin:40px 0 12px;border-top:1px solid var(--line);padding-top:24px}
-p,li{color:var(--fg)}
-.sub{color:var(--muted);font-size:1.05rem;margin:0 0 20px}
-.meta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 28px}
-.btn{display:inline-block;padding:9px 14px;border:1px solid var(--accent);border-radius:8px;color:var(--accent);text-decoration:none;font-family:system-ui,sans-serif;font-size:.95rem}
-.btn.primary{background:var(--accent);color:#fff}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:0 0 8px}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.stat b{display:block;font-size:1.5rem;font-family:system-ui,sans-serif}
-.stat span{color:var(--muted);font-size:.9rem}
-table{width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;font-size:.93rem;margin:12px 0}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--muted);font-weight:600}
-td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-tr.hl td{background:var(--accent-soft)}
-code,pre{font-family:var(--mono);font-size:.88rem}
-pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;overflow-x:auto}
-figure{margin:16px 0}
-figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff}
-figcaption{color:var(--muted);font-size:.9rem;margin-top:6px}
-.note{color:var(--muted);font-size:.93rem}
-footer{margin-top:48px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:16px}
-a{color:var(--accent)}
+:root{
+  --paper:#fcfbf8;
+  --surface:#ffffff;
+  --ink:#1c1b18;
+  --ink-2:#4a4842;
+  --ink-3:#7a776e;
+  --hair:#e7e3d9;
+  --hair-strong:#d6d1c4;
+  --accent:#1e5c50;
+  --accent-ink:#17483f;
+  --accent-wash:#eaf2ee;
+  --selection:#d7e8e1;
+  --on-accent:#ffffff;
+  --serif:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --measure:68ch;
+  --wide:58rem;
+  --radius:6px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#16171a;--surface:#1d1f23;--ink:#ebe9e3;--ink-2:#bdbab1;--ink-3:#9c998f;
+    --hair:#2b2d32;--hair-strong:#3a3d44;--accent:#7ccbb3;--accent-ink:#9adbc7;
+    --accent-wash:#1b2a26;--selection:#27463d;--on-accent:#16171a;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#16171a;--surface:#1d1f23;--ink:#ebe9e3;--ink-2:#bdbab1;--ink-3:#9c998f;
+  --hair:#2b2d32;--hair-strong:#3a3d44;--accent:#7ccbb3;--accent-ink:#9adbc7;
+  --accent-wash:#1b2a26;--selection:#27463d;--on-accent:#16171a;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--serif);font-size:1.0625rem;line-height:1.6;
+  font-feature-settings:"kern","liga","onum";
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+::selection{background:var(--selection);color:var(--ink)}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:.16em;text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+a:hover{text-decoration-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+.page{max-width:var(--wide);margin:0 auto;padding:clamp(40px,7vw,88px) 20px 72px}
+.prose{max-width:var(--measure)}
+
+/* masthead */
+header h1{
+  font-family:var(--serif);font-weight:500;font-optical-sizing:auto;
+  font-size:clamp(2.1rem,1.3rem + 3.2vw,3.4rem);line-height:1.08;letter-spacing:-0.015em;
+  margin:0 0 .55em;text-wrap:balance;max-width:20ch;
+}
+header .dek{
+  font-size:clamp(1.15rem,1rem + .6vw,1.35rem);line-height:1.45;color:var(--ink-2);
+  margin:0 0 1.4rem;max-width:var(--measure);text-wrap:pretty;
+}
+.cite{
+  font-size:.97rem;line-height:1.55;color:var(--ink-2);margin:0 0 1.6rem;max-width:var(--measure);
+  padding-left:1rem;border-left:1px solid var(--hair-strong);
+}
+.cite i{font-style:italic}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 2.6rem}
+.btn{
+  font-family:var(--sans);font-size:.9rem;font-weight:500;letter-spacing:.005em;
+  display:inline-flex;align-items:center;gap:.5em;padding:.6rem .95rem;border-radius:var(--radius);
+  text-decoration:none;border:1px solid var(--hair-strong);color:var(--ink);background:var(--surface);
+  transition:border-color .15s ease,background-color .15s ease,color .15s ease;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{background:var(--accent-ink);border-color:var(--accent-ink);color:var(--on-accent)}
+.btn svg{width:15px;height:15px;flex:none}
+.btn small{font-weight:400;color:inherit;opacity:.75}
+
+/* at-a-glance line */
+.glance{
+  display:flex;flex-wrap:wrap;gap:.35rem 2.2rem;
+  padding:1.05rem 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  font-family:var(--sans);font-size:.9rem;color:var(--ink-3);margin:0 0 3rem;
+}
+.glance b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;margin-right:.35em}
+
+/* sections */
+section{margin:0 0 3.4rem}
+h2{
+  font-family:var(--serif);font-weight:500;font-size:1.55rem;line-height:1.2;letter-spacing:-0.008em;
+  margin:0 0 .9rem;text-wrap:balance;
+}
+h2 + p,h2 + .prose{margin-top:0}
+p{margin:0 0 1rem}
+.note{font-size:.95rem;line-height:1.55;color:var(--ink-2)}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:1.2rem 0 .9rem;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.92rem;line-height:1.4}
+caption{text-align:left;font-family:var(--serif);font-size:.95rem;color:var(--ink-2);padding:0 0 .6rem}
+th,td{padding:.62rem .75rem;border-bottom:1px solid var(--hair);vertical-align:baseline;text-align:left}
+th{font-weight:500;color:var(--ink-3);font-size:.8rem;letter-spacing:.02em;text-transform:uppercase;border-bottom-color:var(--hair-strong);padding-top:0}
+td:first-child,th:first-child{padding-left:0}
+td:last-child,th:last-child{padding-right:0}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ci{color:var(--ink-3)}
+tr.base td{background:var(--accent-wash)}
+tr.base td:first-child{border-radius:var(--radius) 0 0 var(--radius);padding-left:.6rem}
+tr.base td:last-child{border-radius:0 var(--radius) var(--radius) 0;padding-right:.6rem}
+td code{font-size:.84em}
+.method{color:var(--ink);min-width:10.5rem}
+.method span{display:block;color:var(--ink-3);font-size:.82rem;margin-top:.1rem}
+
+/* code */
+code{font-family:var(--mono);font-size:.86em;background:var(--accent-wash);padding:.08em .35em;border-radius:4px;color:var(--ink)}
+pre{
+  font-family:var(--mono);font-size:.84rem;line-height:1.6;
+  background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);
+  padding:1rem 1.1rem;overflow-x:auto;margin:1rem 0;color:var(--ink);
+  scrollbar-width:thin;scrollbar-color:var(--hair-strong) transparent;
+}
+pre code{background:none;padding:0;font-size:inherit}
+pre .c{color:var(--ink-3)}
+.codehead{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:1.2rem 0 -.5rem}
+.codehead span{font-family:var(--sans);font-size:.8rem;color:var(--ink-3);letter-spacing:.02em;text-transform:uppercase}
+.copy{
+  font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--accent);background:none;border:1px solid var(--hair-strong);
+  border-radius:4px;padding:.3rem .6rem;cursor:pointer;transition:border-color .15s ease;
+}
+.copy:hover{border-color:var(--accent)}
+.copy[data-done="true"]{color:var(--ink-3)}
+
+/* figure */
+figure{margin:1.2rem 0 0}
+figure img{display:block;width:100%;height:auto;aspect-ratio:1530/1224;border:1px solid var(--hair);border-radius:var(--radius);background:#fff}
+figcaption{font-size:.95rem;line-height:1.55;color:var(--ink-2);margin:.75rem 0 0;max-width:var(--measure)}
+
+/* two-column meta at the end */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+.cols h2{font-size:1.25rem}
+
+footer{
+  margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--hair);
+  font-family:var(--sans);font-size:.85rem;line-height:1.55;color:var(--ink-3);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem;
+}
+footer a{color:var(--ink-3)}
+footer a:hover{color:var(--accent)}
+
+@media (max-width:700px){
+  .opt{display:none}
+  .method{min-width:9rem}
+}
+@media (max-width:560px){
+  body{font-size:1rem}
+  .page{padding-top:40px}
+  .glance{display:grid;grid-template-columns:1fr 1fr;gap:.45rem 1rem}
+  th,td{padding:.55rem .5rem}
+  .cite{font-size:.93rem}
+}
 </style>
 </head>
 <body>
-<main>
-<h1>MCP Semantic Tool Routing Benchmark</h1>
-<p class="sub">Can one orchestrator tool route a request to the right capability without loading every MCP tool schema into the model's context?</p>
+<div class="page">
 
-<div class="meta">
-  <a class="btn primary" href="https://github.com/amrittmishra/mcp-semantic-tool-routing-benchmark">Code &amp; data on GitHub</a>
-  <a class="btn" href="mcp_tool_routing_dataset_v1.0.0.zip">Download dataset v1.0.0 (CSV, 122 KB zip)</a>
-</div>
+<header>
+  <h1>MCP Semantic Tool Routing Benchmark</h1>
+  <p class="dek">Can one orchestrator tool route a request to the right capability without loading every MCP tool schema into the model's context? A 505-query benchmark, with the vectors and code to answer it offline.</p>
+  <p class="cite">Accompanies <i>Scalable Semantic Routing and QoS-Aware Provider Selection for MCP Agents</i>. Amritansh Mishra, Yash Panditrao, Shlok Parab, Achintya Sharma, Payal Mishra, Ishani Saha. International Conference on Machine Learning and Data Engineering (ICMLDE), Procedia Computer Science, 2026.</p>
+  <div class="actions">
+    <a class="btn primary" href="https://github.com/amrittmishra/mcp-semantic-tool-routing-benchmark">
+      <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.49c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.08-1.87 3.75-3.66 3.95.29.25.54.74.54 1.49v2.21c0 .21.15.46.56.38A8 8 0 0 0 8 .2Z"/></svg>
+      Code and data on GitHub
+    </a>
+    <a class="btn" href="mcp_tool_routing_dataset_v1.0.0.zip" download>
+      <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8m0 0 3-3m-3 3L5 7M2.5 11.5v1a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5v-1"/></svg>
+      Dataset v1.0.0 <small>CSV, 122 KB</small>
+    </a>
+  </div>
+  <p class="glance" aria-label="Dataset at a glance">
+    <span><b>101</b>semantic operations</span>
+    <span><b>18</b>synthetic MCP servers</span>
+    <span><b>505</b>hand-authored queries</span>
+    <span><b>606</b>indexed examples</span>
+    <span><b>24</b>compound requests</span>
+  </p>
+</header>
 
-<div class="stats">
-  <div class="stat"><b>101</b><span>semantic operations</span></div>
-  <div class="stat"><b>18</b><span>synthetic MCP servers</span></div>
-  <div class="stat"><b>505</b><span>hand-authored queries</span></div>
-  <div class="stat"><b>606</b><span>indexed examples</span></div>
-  <div class="stat"><b>24</b><span>compound requests</span></div>
-</div>
+<section id="results">
+  <h2>Routing accuracy on the 505 queries</h2>
+  <p class="prose">Each method must name the single correct operation for a request. Flat dense retrieval over one vector per operation is the baseline; every other row is scored on the same queries with a paired comparison against it. Hard hierarchical gating leaves the correct operation unreachable for 51 of 505 queries, and no lexical or hybrid variant significantly improves on the dense index.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Method</th><th class="num">Top-1</th><th class="num">95% CI</th><th class="opt">Reproduce with</th></tr></thead>
+    <tbody>
+      <tr><td class="method">BM25<span>k<sub>1</sub> = 1.5, b = 0.75</span></td><td class="num">62.97%</td><td class="num ci">58.7 – 67.1</td><td class="opt"><code>research.lexical_hybrid</code></td></tr>
+      <tr><td class="method">Reciprocal rank fusion<span>BM25 + dense top-5 lists, k = 60</span></td><td class="num">86.93%</td><td class="num ci">83.7 – 89.6</td><td class="opt"><code>research.lexical_hybrid</code></td></tr>
+      <tr><td class="method">Hard class-gated hierarchy<span>beam 1, same vectors</span></td><td class="num">87.13%</td><td class="num ci">—</td><td class="opt"><code>hierarchy_experiment</code></td></tr>
+      <tr class="base"><td class="method">Flat dense retrieval<span>one vector per operation, FAISS</span></td><td class="num">95.64%</td><td class="num ci">93.5 – 97.1</td><td class="opt"><code>hierarchy_experiment</code></td></tr>
+      <tr><td class="method">Score interpolation<span>dense weight α<sub>h</sub> = 0.7</span></td><td class="num">95.84%</td><td class="num ci">93.7 – 97.3</td><td class="opt"><code>research.lexical_hybrid</code></td></tr>
+      <tr><td class="method">Multi-vector<span>5-fold cross-validated</span></td><td class="num">97.62%</td><td class="num ci">95.9 – 98.6</td><td class="opt"><code>research.tune_blend</code></td></tr>
+      <tr><td class="method">Jev 1.13 decision model<span>all 101 descriptions as criteria</span></td><td class="num">97.82%</td><td class="num ci">96.1 – 98.8</td><td class="opt"><code>jev_comparison</code></td></tr>
+      <tr><td class="method">Generation selector<span>over the flat top 5</span></td><td class="num">98.02%</td><td class="num ci">96.4 – 98.9</td><td class="opt"><code>research.recovery</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note prose">Top-3 recall of the dense baseline is 99.60%. For 23 of 24 compound requests, a single embedding places every constituent operation within its top 10. These are operation-routing results, not end-to-end task success. Scripts are modules under <code>benchmark/</code>; all except the selector and Jev run offline from the shipped caches.</p>
+</section>
 
-<p>This page accompanies the paper <em>Scalable Semantic Routing and QoS-Aware Provider Selection for MCP Agents</em> (Mishra, Panditrao, Parab, Sharma, Mishra, Saha; ICMLDE 2026, Procedia Computer Science). The repository contains the registry, the 505 labelled queries, the cached <code>gemini-embedding-001</code> vectors, saved outputs of every model run, and the scripts behind each table, so the retrieval results reproduce offline without any API key.</p>
+<section id="qos">
+  <h2>Provider selection after routing</h2>
+  <p class="prose">Once the operation is fixed, a QoS stage allocates traffic among the providers that implement it. The simulation below removes the oracle: four providers start from identical profiles and quality is learned only from sampled executions. Winner-take-all allocation never samples a new, better provider under an uninformative prior; optimistic initialisation discovers it and routes 95–96% of traffic to it.</p>
+  <figure>
+    <img src="qos_dynamic_reputation.png" width="1530" height="1224" loading="lazy" alt="Four-panel figure. A: regret per request for argmax and softmax under uninformative versus optimistic priors. B: the entrant's final traffic share in a cold-start market. C and D: traffic-share timelines in which a new provider joins at request 2,250 under each prior.">
+    <figcaption>Dynamic reputation loop, 10,000 requests over 20 seeds; timelines are a single 3,000-request seed. Reproduce with <code>python -m benchmark.research.qos_dynamic --experiment all</code> and <code>plot_qos_dynamic</code>.</figcaption>
+  </figure>
+</section>
 
-<h2>Results on the 505 queries</h2>
-<table>
-<thead><tr><th>Routing method</th><th class="num">Top-1</th><th class="num">95% Wilson CI</th><th>Script</th></tr></thead>
-<tbody>
-<tr><td>BM25 (k<sub>1</sub>=1.5, b=0.75)</td><td class="num">62.97%</td><td class="num">58.7–67.1</td><td><code>research.lexical_hybrid</code></td></tr>
-<tr><td>Reciprocal rank fusion, BM25 + dense top-5</td><td class="num">86.93%</td><td class="num">83.7–89.6</td><td><code>research.lexical_hybrid</code></td></tr>
-<tr><td>Hard class-gated hierarchy, beam 1</td><td class="num">87.13%</td><td class="num">—</td><td><code>hierarchy_experiment</code></td></tr>
-<tr class="hl"><td>Flat dense retrieval (one vector per operation)</td><td class="num">95.64%</td><td class="num">93.5–97.1</td><td><code>hierarchy_experiment</code></td></tr>
-<tr><td>Best score interpolation (α<sub>h</sub>=0.7)</td><td class="num">95.84%</td><td class="num">93.7–97.3</td><td><code>research.lexical_hybrid</code></td></tr>
-<tr><td>Multi-vector, 5-fold cross-validated</td><td class="num">97.62%</td><td class="num">95.9–98.6</td><td><code>research.tune_blend</code></td></tr>
-<tr><td>Jev 1.13 decision model, all 101 descriptions</td><td class="num">97.82%</td><td class="num">96.1–98.8</td><td><code>jev_comparison</code></td></tr>
-<tr><td>Generation selector over flat top 5</td><td class="num">98.02%</td><td class="num">96.4–98.9</td><td><code>research.recovery</code></td></tr>
-</tbody>
-</table>
-<p class="note">Top-3 recall of flat dense retrieval is 99.60%. Hard hierarchical gating makes the correct operation unreachable for 51 of 505 queries. For 23 of 24 compound requests a single embedding places every constituent operation in its top 10. These are operation-routing results, not end-to-end task success.</p>
-
-<h2>QoS provider selection (simulation)</h2>
-<figure>
-  <img src="qos_dynamic_reputation.png" alt="Four-panel figure: regret per request under uninformative versus optimistic priors; entrant traffic share in a cold-start market; and two traffic-share timelines in which a new provider joins at request 2,250.">
-  <figcaption>Dynamic reputation loop. Winner-take-all allocation never samples a new, better provider under an uninformative prior; optimistic initialisation discovers it and routes 95–96% of traffic to it. Reproduce with <code>python -m benchmark.research.qos_dynamic --experiment all</code>.</figcaption>
-</figure>
-
-<h2>Quick start</h2>
-<pre>git clone https://github.com/amrittmishra/mcp-semantic-tool-routing-benchmark
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="prose">Python 3.11 or newer. Every command below runs from the shipped embedding caches and needs no API key; the README maps each table of the paper to the command that regenerates it.</p>
+  <div class="codehead"><span>Shell</span><button class="copy" type="button" data-copy="quickstart">Copy</button></div>
+<pre id="quickstart"><code>git clone https://github.com/amrittmishra/mcp-semantic-tool-routing-benchmark
 cd mcp-semantic-tool-routing-benchmark
 python -m venv .venv &amp;&amp; . .venv/bin/activate
 pip install -r requirements.txt
 export PYTHONPATH=.
-python -m benchmark.hierarchy_experiment        # Tables 1–2, offline
-python -m benchmark.research.lexical_hybrid     # Table 5 lexical/hybrid rows, offline
-python -m benchmark.research.tune_blend         # multi-vector cross-validation, offline</pre>
+python -m benchmark.hierarchy_experiment      <span class="c"># Tables 1–2: flat vs. hierarchical</span>
+python -m benchmark.research.lexical_hybrid   <span class="c"># Table 5: BM25, RRF, interpolation</span>
+python -m benchmark.research.tune_blend       <span class="c"># multi-vector cross-validation</span>
+python -m benchmark.research.qos_dynamic --experiment all</code></pre>
+</section>
 
-<h2>Dataset files</h2>
-<table>
-<thead><tr><th>File</th><th class="num">Rows</th><th>Description</th></tr></thead>
-<tbody>
-<tr><td><code>servers.csv</code></td><td class="num">18</td><td>One row per downstream synthetic MCP server</td></tr>
-<tr><td><code>tools.csv</code></td><td class="num">101</td><td>One row per semantic operation, with taxonomy class/type and description</td></tr>
-<tr><td><code>queries.csv</code></td><td class="num">505</td><td>Hand-authored routing queries with gold operation, tool and server labels</td></tr>
-<tr><td><code>tool_examples.csv</code></td><td class="num">606</td><td>Positive and negative example phrasings used in the indexed documents</td></tr>
-<tr><td><code>tool_parameters.csv</code></td><td class="num">160</td><td>Flattened input schemas</td></tr>
-</tbody>
-</table>
-<p class="note">The queries were written by the authors after the registry was fixed; two coincide with a positive example up to capitalisation and one differs by a single word, and all three are routed correctly by every method. The catalogue is synthetic and English-only; see the dataset card in the repository for intended uses and limitations.</p>
+<section id="data">
+  <h2>What is in the dataset</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>File</th><th class="num">Rows</th><th>Contents</th></tr></thead>
+    <tbody>
+      <tr><td><code>servers.csv</code></td><td class="num">18</td><td>One row per downstream synthetic MCP server</td></tr>
+      <tr><td><code>tools.csv</code></td><td class="num">101</td><td>One row per semantic operation, with taxonomy class and type, description, and input schema</td></tr>
+      <tr><td><code>queries.csv</code></td><td class="num">505</td><td>Hand-authored routing queries with gold operation, tool and server labels</td></tr>
+      <tr><td><code>tool_examples.csv</code></td><td class="num">606</td><td>Positive and negative example phrasings used in the indexed documents</td></tr>
+      <tr><td><code>tool_parameters.csv</code></td><td class="num">160</td><td>Flattened input-schema parameters</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note prose">The authors wrote the queries after the registry was fixed. Two coincide with a positive example up to capitalisation and one differs by a single word; all three are routed correctly by every method. The catalogue is synthetic and English-only, and the repository's dataset card lists intended uses and limitations. The repository also ships the rebuilt FAISS index, the query, example and compound-request vectors, and the saved outputs of every model run.</p>
+</section>
 
-<h2>License and citation</h2>
-<p>Code: MIT. Data: CC BY 4.0. Please cite the ICMLDE 2026 paper; machine-readable metadata is in <code>CITATION.cff</code>.</p>
+<div class="cols">
+  <section id="cite">
+    <h2>Citation</h2>
+    <div class="codehead"><span>BibTeX</span><button class="copy" type="button" data-copy="bibtex">Copy</button></div>
+<pre id="bibtex"><code>@inproceedings{mishra2026routing,
+  title     = {Scalable Semantic Routing and QoS-Aware
+               Provider Selection for MCP Agents},
+  author    = {Mishra, Amritansh and Panditrao, Yash and
+               Parab, Shlok and Sharma, Achintya and
+               Mishra, Payal and Saha, Ishani},
+  booktitle = {Procedia Computer Science, International
+               Conference on Machine Learning and Data
+               Engineering (ICMLDE)},
+  year      = {2026}
+}</code></pre>
+  </section>
+  <section id="license">
+    <h2>License</h2>
+    <p class="note">Code is released under the MIT License; the dataset, registry and saved query and result files under CC BY 4.0. Machine-readable citation metadata is in <code>CITATION.cff</code>.</p>
+    <p class="note">Questions and corrections: open an issue on the <a href="https://github.com/amrittmishra/mcp-semantic-tool-routing-benchmark/issues">GitHub repository</a>.</p>
+  </section>
+</div>
 
-<footer>Department of Computer Engineering, SVKM's NMIMS Mukesh Patel School of Technology Management &amp; Engineering, Mumbai.</footer>
-</main>
+<footer>
+  <span>Department of Computer Engineering, SVKM's NMIMS Mukesh Patel School of Technology Management &amp; Engineering, Mumbai</span>
+  <a href="https://github.com/amrittmishra/mcp-semantic-tool-routing-benchmark">github.com/amrittmishra/mcp-semantic-tool-routing-benchmark</a>
+</footer>
+
+</div>
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.dataset.copy);
+    if(!el||!navigator.clipboard){return;}
+    navigator.clipboard.writeText(el.innerText).then(function(){
+      btn.textContent='Copied';btn.dataset.done='true';
+      setTimeout(function(){btn.textContent='Copy';delete btn.dataset.done;},1600);
+    });
+  });
+});
+</script>
 </body>
 </html>
