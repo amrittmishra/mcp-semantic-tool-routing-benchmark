@@ -1,14 +1,8 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "site",
-  "cleanUrls": true,
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
-      ]
-    }
+  "version": 2,
+  "builds": [{ "src": "site/**", "use": "@vercel/static" }],
+  "routes": [
+    { "src": "/", "dest": "/site/index.html" },
+    { "src": "/(.*)", "dest": "/site/$1" }
   ]
 }
