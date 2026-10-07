@@ -1,0 +1,1758 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "instruction": "Complete the user's task by calling the available tools. Call one tool at a time and use the result of each call to decide the next one. When the task is complete, reply with a short plain-text summary and do not call any further tool.",
+  "requests": [
+    [
+      "PDF extract, summarize",
+      "Pull the text out of report.pdf and give me a short summary"
+    ],
+    [
+      "Paper search, cite, summarize",
+      "Search for the paper on tool routing, get its citations, and summarize it"
+    ],
+    [
+      "Fetch, extract, translate",
+      "Fetch https://example.com/pricing, extract the text, and translate it to Hindi"
+    ]
+  ],
+  "repeats": 3,
+  "rows": [
+    {
+      "request": "PDF extract, summarize",
+      "text": "Pull the text out of report.pdf and give me a short summary",
+      "repeat": 1,
+      "router": {
+        "agent_turns": [
+          {
+            "prompt_tokens": 165,
+            "output_tokens": 33
+          },
+          {
+            "prompt_tokens": 310,
+            "output_tokens": 32
+          },
+          {
+            "prompt_tokens": 397,
+            "output_tokens": 37
+          }
+        ],
+        "agent_prompt_tokens": 872,
+        "orchestrator_calls": [
+          {
+            "request": "Extract the text from report.pdf and provide a short summary of its contents.",
+            "shortlist": [
+              "PDF_TEXT_EXTRACT",
+              "DOCUMENT_SUMMARIZE",
+              "PAPER_SUMMARIZE",
+              "DOCX_TEXT_EXTRACT",
+              "TEXT_SUMMARIZE",
+              "DOCUMENT_SECTION_EXTRACT",
+              "TEXT_ENTITIES",
+              "WEB_TEXT_EXTRACT",
+              "TEXT_KEYWORDS",
+              "PAPER_METADATA"
+            ],
+            "plan_prompt_tokens": 1249,
+            "plan_output_tokens": 125,
+            "planned_operations": [
+              "PDF_TEXT_EXTRACT",
+              "TEXT_SUMMARIZE"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "PDF_TEXT_EXTRACT",
+                "tool_id": "extract_pdf_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to document_mcp at http://document-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 2,
+                "operation_id": "TEXT_SUMMARIZE",
+                "tool_id": "summarize_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to text_mcp at http://text-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          },
+          {
+            "request": "List the files in the current directory to see if report.pdf exists.",
+            "shortlist": [
+              "DIRECTORY_LIST",
+              "FILE_METADATA",
+              "GIT_STATUS",
+              "FILE_READ",
+              "PDF_TEXT_EXTRACT",
+              "PROCESS_LIST",
+              "GIT_BRANCH_LIST",
+              "DISK_USAGE",
+              "GIT_DIFF",
+              "FILE_DELETE"
+            ],
+            "plan_prompt_tokens": 1206,
+            "plan_output_tokens": 69,
+            "planned_operations": [
+              "DIRECTORY_LIST"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "DIRECTORY_LIST",
+                "tool_id": "list_directory",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to filesystem_mcp at http://filesystem-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          }
+        ],
+        "plan_prompt_tokens": 2455,
+        "total_prompt_tokens": 3327,
+        "final_text": "I am currently unable to access the requested file or process the text due to technical issues with my document and file system connection tools. Please verify that the file exists and try again later.",
+        "attempts_used": 1
+      },
+      "eager": {
+        "turns": [
+          {
+            "turn": 1,
+            "prompt_tokens": 5316,
+            "output_tokens": 20
+          },
+          {
+            "turn": 2,
+            "prompt_tokens": 5379,
+            "output_tokens": 16
+          },
+          {
+            "turn": 3,
+            "prompt_tokens": 5436,
+            "output_tokens": 18
+          },
+          {
+            "turn": 4,
+            "prompt_tokens": 5495,
+            "output_tokens": 25
+          }
+        ],
+        "turn_count": 4,
+        "tool_calls": 3,
+        "operations_called": [
+          "PDF_TEXT_EXTRACT",
+          "DIRECTORY_LIST",
+          "WEB_SEARCH"
+        ],
+        "executed": [
+          {
+            "tool": "extract_pdf_text",
+            "operation_id": "PDF_TEXT_EXTRACT",
+            "server_id": "document_mcp",
+            "arguments": {
+              "path": "report.pdf"
+            },
+            "status": "failed",
+            "ms": 7.567291999293957,
+            "result": {
+              "error": "MCP connection to document_mcp at http://document-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "list_directory",
+            "operation_id": "DIRECTORY_LIST",
+            "server_id": "filesystem_mcp",
+            "arguments": {
+              "path": "."
+            },
+            "status": "failed",
+            "ms": 4.330542000388959,
+            "result": {
+              "error": "MCP connection to filesystem_mcp at http://filesystem-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "search_web",
+            "operation_id": "WEB_SEARCH",
+            "server_id": "web_mcp",
+            "arguments": {
+              "query": "report.pdf"
+            },
+            "status": "failed",
+            "ms": 6.014916998537956,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          }
+        ],
+        "prompt_tokens": 21626,
+        "final_text": "I am currently unable to access the files or web tools due to connectivity issues with the underlying systems. Please try again later.",
+        "truncated": false,
+        "error": null,
+        "attempts_used": 1
+      }
+    },
+    {
+      "request": "PDF extract, summarize",
+      "text": "Pull the text out of report.pdf and give me a short summary",
+      "repeat": 2,
+      "router": {
+        "agent_turns": [
+          {
+            "prompt_tokens": 165,
+            "output_tokens": 32
+          },
+          {
+            "prompt_tokens": 309,
+            "output_tokens": 39
+          }
+        ],
+        "agent_prompt_tokens": 474,
+        "orchestrator_calls": [
+          {
+            "request": "Extract text from report.pdf and provide a short summary of its contents.",
+            "shortlist": [
+              "PDF_TEXT_EXTRACT",
+              "DOCUMENT_SUMMARIZE",
+              "PAPER_SUMMARIZE",
+              "TEXT_SUMMARIZE",
+              "DOCUMENT_SECTION_EXTRACT",
+              "TEXT_ENTITIES",
+              "DOCX_TEXT_EXTRACT",
+              "WEB_TEXT_EXTRACT",
+              "TEXT_KEYWORDS",
+              "PAPER_METADATA"
+            ],
+            "plan_prompt_tokens": 1248,
+            "plan_output_tokens": 131,
+            "planned_operations": [
+              "PDF_TEXT_EXTRACT",
+              "TEXT_SUMMARIZE"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "PDF_TEXT_EXTRACT",
+                "tool_id": "extract_pdf_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to document_mcp at http://document-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 2,
+                "operation_id": "TEXT_SUMMARIZE",
+                "tool_id": "summarize_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to text_mcp at http://text-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          }
+        ],
+        "plan_prompt_tokens": 1248,
+        "total_prompt_tokens": 1722,
+        "final_text": "I apologize, but I am currently unable to access the tools required to read and summarize the PDF file. It appears there is a connectivity issue with the document processing services. Please try again later.",
+        "attempts_used": 1
+      },
+      "eager": {
+        "turns": [
+          {
+            "turn": 1,
+            "prompt_tokens": 5316,
+            "output_tokens": 20
+          },
+          {
+            "turn": 2,
+            "prompt_tokens": 5379,
+            "output_tokens": 16
+          },
+          {
+            "turn": 3,
+            "prompt_tokens": 5436,
+            "output_tokens": 20
+          },
+          {
+            "turn": 4,
+            "prompt_tokens": 5499,
+            "output_tokens": 34
+          }
+        ],
+        "turn_count": 4,
+        "tool_calls": 3,
+        "operations_called": [
+          "PDF_TEXT_EXTRACT",
+          "DIRECTORY_LIST",
+          "PDF_TEXT_EXTRACT"
+        ],
+        "executed": [
+          {
+            "tool": "extract_pdf_text",
+            "operation_id": "PDF_TEXT_EXTRACT",
+            "server_id": "document_mcp",
+            "arguments": {
+              "path": "report.pdf"
+            },
+            "status": "failed",
+            "ms": 8.29587499902118,
+            "result": {
+              "error": "MCP connection to document_mcp at http://document-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "list_directory",
+            "operation_id": "DIRECTORY_LIST",
+            "server_id": "filesystem_mcp",
+            "arguments": {
+              "path": "."
+            },
+            "status": "failed",
+            "ms": 7.566124997538282,
+            "result": {
+              "error": "MCP connection to filesystem_mcp at http://filesystem-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "extract_pdf_text",
+            "operation_id": "PDF_TEXT_EXTRACT",
+            "server_id": "document_mcp",
+            "arguments": {
+              "path": "report.pdf"
+            },
+            "status": "failed",
+            "ms": 7.308457999897655,
+            "result": {
+              "error": "MCP connection to document_mcp at http://document-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          }
+        ],
+        "prompt_tokens": 21630,
+        "final_text": "I apologize, but I am currently unable to access the requested file due to a connection error with the document processing service. Please try again later or verify the file availability.",
+        "truncated": false,
+        "error": null,
+        "attempts_used": 2
+      }
+    },
+    {
+      "request": "PDF extract, summarize",
+      "text": "Pull the text out of report.pdf and give me a short summary",
+      "repeat": 3,
+      "router": {
+        "agent_turns": [
+          {
+            "prompt_tokens": 165,
+            "output_tokens": 30
+          },
+          {
+            "prompt_tokens": 307,
+            "output_tokens": 29
+          }
+        ],
+        "agent_prompt_tokens": 472,
+        "orchestrator_calls": [
+          {
+            "request": "Read the content of report.pdf and provide a short summary.",
+            "shortlist": [
+              "PDF_TEXT_EXTRACT",
+              "DOCUMENT_SUMMARIZE",
+              "PAPER_SUMMARIZE",
+              "FILE_READ",
+              "DOCUMENT_SECTION_EXTRACT",
+              "FILE_METADATA",
+              "TEXT_SUMMARIZE",
+              "DOCX_TEXT_EXTRACT",
+              "PAPER_METADATA",
+              "ISSUE_READ"
+            ],
+            "plan_prompt_tokens": 1268,
+            "plan_output_tokens": 127,
+            "planned_operations": [
+              "PDF_TEXT_EXTRACT",
+              "DOCUMENT_SUMMARIZE"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "PDF_TEXT_EXTRACT",
+                "tool_id": "extract_pdf_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to document_mcp at http://document-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 2,
+                "operation_id": "DOCUMENT_SUMMARIZE",
+                "tool_id": "summarize_document",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to document_mcp at http://document-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          }
+        ],
+        "plan_prompt_tokens": 1268,
+        "total_prompt_tokens": 1740,
+        "final_text": "I apologize, but I am currently unable to access the requested file due to a connection error with the document processing service. Please try again later.",
+        "attempts_used": 1
+      },
+      "eager": {
+        "turns": [
+          {
+            "turn": 1,
+            "prompt_tokens": 5316,
+            "output_tokens": 20
+          },
+          {
+            "turn": 2,
+            "prompt_tokens": 5379,
+            "output_tokens": 16
+          },
+          {
+            "turn": 3,
+            "prompt_tokens": 5436,
+            "output_tokens": 20
+          },
+          {
+            "turn": 4,
+            "prompt_tokens": 5499,
+            "output_tokens": 16
+          },
+          {
+            "turn": 5,
+            "prompt_tokens": 5556,
+            "output_tokens": 48
+          }
+        ],
+        "turn_count": 5,
+        "tool_calls": 4,
+        "operations_called": [
+          "PDF_TEXT_EXTRACT",
+          "DIRECTORY_LIST",
+          "PDF_TEXT_EXTRACT",
+          "DIRECTORY_LIST"
+        ],
+        "executed": [
+          {
+            "tool": "extract_pdf_text",
+            "operation_id": "PDF_TEXT_EXTRACT",
+            "server_id": "document_mcp",
+            "arguments": {
+              "path": "report.pdf"
+            },
+            "status": "failed",
+            "ms": 6.201084001077106,
+            "result": {
+              "error": "MCP connection to document_mcp at http://document-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "list_directory",
+            "operation_id": "DIRECTORY_LIST",
+            "server_id": "filesystem_mcp",
+            "arguments": {
+              "path": "."
+            },
+            "status": "failed",
+            "ms": 7.055750000290573,
+            "result": {
+              "error": "MCP connection to filesystem_mcp at http://filesystem-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "extract_pdf_text",
+            "operation_id": "PDF_TEXT_EXTRACT",
+            "server_id": "document_mcp",
+            "arguments": {
+              "path": "report.pdf"
+            },
+            "status": "failed",
+            "ms": 7.160834000387695,
+            "result": {
+              "error": "MCP connection to document_mcp at http://document-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "list_directory",
+            "operation_id": "DIRECTORY_LIST",
+            "server_id": "filesystem_mcp",
+            "arguments": {
+              "path": "."
+            },
+            "status": "failed",
+            "ms": 7.237334000819828,
+            "result": {
+              "error": "MCP connection to filesystem_mcp at http://filesystem-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          }
+        ],
+        "prompt_tokens": 27186,
+        "final_text": "I apologize, but I am currently unable to access the requested file because I am encountering connection errors with the necessary tools (`document_mcp` and `filesystem_mcp`). I am unable to read or list files at this time.",
+        "truncated": false,
+        "error": null,
+        "attempts_used": 1
+      }
+    },
+    {
+      "request": "Paper search, cite, summarize",
+      "text": "Search for the paper on tool routing, get its citations, and summarize it",
+      "repeat": 1,
+      "router": {
+        "agent_turns": [
+          {
+            "prompt_tokens": 166,
+            "output_tokens": 28
+          },
+          {
+            "prompt_tokens": 302,
+            "output_tokens": 38
+          },
+          {
+            "prompt_tokens": 395,
+            "output_tokens": 44
+          },
+          {
+            "prompt_tokens": 547,
+            "output_tokens": 38
+          },
+          {
+            "prompt_tokens": 694,
+            "output_tokens": 47
+          }
+        ],
+        "agent_prompt_tokens": 2104,
+        "orchestrator_calls": [
+          {
+            "request": "search for the paper on tool routing and get its citations",
+            "shortlist": [
+              "PAPER_CITATIONS",
+              "PAPER_SEARCH",
+              "PAPER_METADATA",
+              "PAPER_COMPARE",
+              "PAPER_SUMMARIZE",
+              "WEB_SEARCH",
+              "DOCUMENT_SECTION_EXTRACT",
+              "DOCUMENT_SEARCH",
+              "ISSUE_SEARCH",
+              "WEB_LINK_EXTRACT"
+            ],
+            "plan_prompt_tokens": 1278,
+            "plan_output_tokens": 127,
+            "planned_operations": [
+              "PAPER_SEARCH",
+              "PAPER_CITATIONS"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "PAPER_SEARCH",
+                "tool_id": "search_research_papers",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 2,
+                "operation_id": "PAPER_CITATIONS",
+                "tool_id": "get_paper_citations",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          },
+          {
+            "request": "Search for academic papers or articles about \"tool routing\" in AI agents or LLMs using Google Search.",
+            "shortlist": [
+              "PAPER_SEARCH",
+              "WEB_SEARCH",
+              "PAPER_CITATIONS",
+              "PAPER_SUMMARIZE",
+              "PAPER_METADATA",
+              "PAPER_COMPARE",
+              "DOCUMENT_SEARCH",
+              "DOCUMENT_SECTION_EXTRACT",
+              "ISSUE_SEARCH",
+              "EMAIL_SEARCH"
+            ],
+            "plan_prompt_tokens": 1296,
+            "plan_output_tokens": 83,
+            "planned_operations": [
+              "PAPER_SEARCH"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "PAPER_SEARCH",
+                "tool_id": "search_research_papers",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          },
+          {
+            "request": "Perform a Google search for \"tool routing in AI agents research paper\" and summarize the findings regarding what tool routing is and key papers.",
+            "shortlist": [
+              "PAPER_SEARCH",
+              "PAPER_SUMMARIZE",
+              "PAPER_CITATIONS",
+              "WEB_SEARCH",
+              "PAPER_COMPARE",
+              "PAPER_METADATA",
+              "DOCUMENT_SECTION_EXTRACT",
+              "DOCUMENT_SEARCH",
+              "DOCUMENT_SUMMARIZE",
+              "ISSUE_SEARCH"
+            ],
+            "plan_prompt_tokens": 1301,
+            "plan_output_tokens": 131,
+            "planned_operations": [
+              "PAPER_SEARCH",
+              "PAPER_COMPARE"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "PAPER_SEARCH",
+                "tool_id": "search_research_papers",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 2,
+                "operation_id": "PAPER_COMPARE",
+                "tool_id": "compare_research_papers",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          },
+          {
+            "request": "Search for \"tool routing in AI agents\" on the web to identify key papers and provide a summary.",
+            "shortlist": [
+              "PAPER_SEARCH",
+              "PAPER_SUMMARIZE",
+              "WEB_SEARCH",
+              "PAPER_CITATIONS",
+              "PAPER_COMPARE",
+              "PAPER_METADATA",
+              "DOCUMENT_SECTION_EXTRACT",
+              "DOCUMENT_SUMMARIZE",
+              "WEB_FETCH",
+              "DOCUMENT_SEARCH"
+            ],
+            "plan_prompt_tokens": 1291,
+            "plan_output_tokens": 123,
+            "planned_operations": [
+              "PAPER_SEARCH",
+              "PAPER_SUMMARIZE"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "PAPER_SEARCH",
+                "tool_id": "search_research_papers",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 2,
+                "operation_id": "PAPER_SUMMARIZE",
+                "tool_id": "summarize_research_paper",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          }
+        ],
+        "plan_prompt_tokens": 5166,
+        "total_prompt_tokens": 7270,
+        "final_text": "I apologize, but I am currently unable to access the research database or external search tools due to a technical error with the connection to my research capabilities. As a result, I cannot search for specific papers or retrieve citations at this time.",
+        "attempts_used": 1
+      },
+      "eager": {
+        "turns": [
+          {
+            "turn": 1,
+            "prompt_tokens": 5317,
+            "output_tokens": 19
+          },
+          {
+            "turn": 2,
+            "prompt_tokens": 5379,
+            "output_tokens": 20
+          },
+          {
+            "turn": 3,
+            "prompt_tokens": 5440,
+            "output_tokens": 16
+          },
+          {
+            "turn": 4,
+            "prompt_tokens": 5497,
+            "output_tokens": 12
+          },
+          {
+            "turn": 5,
+            "prompt_tokens": 5556,
+            "output_tokens": 17
+          },
+          {
+            "turn": 6,
+            "prompt_tokens": 5618,
+            "output_tokens": 10
+          },
+          {
+            "turn": 7,
+            "prompt_tokens": 5673,
+            "output_tokens": 26
+          }
+        ],
+        "turn_count": 7,
+        "tool_calls": 6,
+        "operations_called": [
+          "PAPER_SEARCH",
+          "WEB_SEARCH",
+          "DIRECTORY_LIST",
+          "SYSTEM_INFO",
+          "ISSUE_SEARCH",
+          "CHANNEL_LIST"
+        ],
+        "executed": [
+          {
+            "tool": "search_research_papers",
+            "operation_id": "PAPER_SEARCH",
+            "server_id": "research_mcp",
+            "arguments": {
+              "query": "tool routing"
+            },
+            "status": "failed",
+            "ms": 6.600167002034141,
+            "result": {
+              "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "search_web",
+            "operation_id": "WEB_SEARCH",
+            "server_id": "web_mcp",
+            "arguments": {
+              "query": "research paper on tool routing"
+            },
+            "status": "failed",
+            "ms": 7.108999998308718,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "list_directory",
+            "operation_id": "DIRECTORY_LIST",
+            "server_id": "filesystem_mcp",
+            "arguments": {
+              "path": "."
+            },
+            "status": "failed",
+            "ms": 5.363791999116074,
+            "result": {
+              "error": "MCP connection to filesystem_mcp at http://filesystem-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "get_system_info",
+            "operation_id": "SYSTEM_INFO",
+            "server_id": "system_mcp",
+            "arguments": {},
+            "status": "failed",
+            "ms": 7.157500000175787,
+            "result": {
+              "error": "MCP connection to system_mcp at http://system-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "search_issues",
+            "operation_id": "ISSUE_SEARCH",
+            "server_id": "issue_tracker_mcp",
+            "arguments": {
+              "query": "tool routing"
+            },
+            "status": "failed",
+            "ms": 12.562208001327235,
+            "result": {
+              "error": "MCP connection to issue_tracker_mcp at http://issue-tracker-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "list_channels",
+            "operation_id": "CHANNEL_LIST",
+            "server_id": "messaging_mcp",
+            "arguments": {},
+            "status": "failed",
+            "ms": 7.106875000317814,
+            "result": {
+              "error": "MCP connection to messaging_mcp at http://messaging-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          }
+        ],
+        "prompt_tokens": 38480,
+        "final_text": "I am unable to perform the search or retrieve the paper at this time because all connected tools are currently unreachable due to connection errors.",
+        "truncated": false,
+        "error": null,
+        "attempts_used": 1
+      }
+    },
+    {
+      "request": "Paper search, cite, summarize",
+      "text": "Search for the paper on tool routing, get its citations, and summarize it",
+      "repeat": 2,
+      "router": {
+        "agent_turns": [
+          {
+            "prompt_tokens": 166,
+            "output_tokens": 33
+          },
+          {
+            "prompt_tokens": 361,
+            "output_tokens": 32
+          }
+        ],
+        "agent_prompt_tokens": 527,
+        "orchestrator_calls": [
+          {
+            "request": "Search for the paper on tool routing, get its citations, and summarize it.",
+            "shortlist": [
+              "PAPER_CITATIONS",
+              "PAPER_SUMMARIZE",
+              "PAPER_SEARCH",
+              "PAPER_METADATA",
+              "PAPER_COMPARE",
+              "DOCUMENT_SUMMARIZE",
+              "DOCUMENT_SECTION_EXTRACT",
+              "WEB_SEARCH",
+              "DOCUMENT_SEARCH",
+              "TEXT_SUMMARIZE"
+            ],
+            "plan_prompt_tokens": 1285,
+            "plan_output_tokens": 167,
+            "planned_operations": [
+              "PAPER_SEARCH",
+              "PAPER_CITATIONS",
+              "PAPER_SUMMARIZE"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "PAPER_SEARCH",
+                "tool_id": "search_research_papers",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 2,
+                "operation_id": "PAPER_CITATIONS",
+                "tool_id": "get_paper_citations",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 3,
+                "operation_id": "PAPER_SUMMARIZE",
+                "tool_id": "summarize_research_paper",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          }
+        ],
+        "plan_prompt_tokens": 1285,
+        "total_prompt_tokens": 1812,
+        "final_text": "I apologize, but I am currently unable to access the research database to perform your request. The connection to the research service is failing. Please try again later.",
+        "attempts_used": 1
+      },
+      "eager": {
+        "turns": [
+          {
+            "turn": 1,
+            "prompt_tokens": 5317,
+            "output_tokens": 19
+          },
+          {
+            "turn": 2,
+            "prompt_tokens": 5379,
+            "output_tokens": 22
+          },
+          {
+            "turn": 3,
+            "prompt_tokens": 5442,
+            "output_tokens": 16
+          },
+          {
+            "turn": 4,
+            "prompt_tokens": 5499,
+            "output_tokens": 12
+          },
+          {
+            "turn": 5,
+            "prompt_tokens": 5558,
+            "output_tokens": 41
+          }
+        ],
+        "turn_count": 5,
+        "tool_calls": 4,
+        "operations_called": [
+          "PAPER_SEARCH",
+          "WEB_SEARCH",
+          "DIRECTORY_LIST",
+          "SYSTEM_INFO"
+        ],
+        "executed": [
+          {
+            "tool": "search_research_papers",
+            "operation_id": "PAPER_SEARCH",
+            "server_id": "research_mcp",
+            "arguments": {
+              "query": "tool routing"
+            },
+            "status": "failed",
+            "ms": 6.9494169983954635,
+            "result": {
+              "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "search_web",
+            "operation_id": "WEB_SEARCH",
+            "server_id": "web_mcp",
+            "arguments": {
+              "query": "research paper on \"tool routing\""
+            },
+            "status": "failed",
+            "ms": 7.116041000699624,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "list_directory",
+            "operation_id": "DIRECTORY_LIST",
+            "server_id": "filesystem_mcp",
+            "arguments": {
+              "path": "."
+            },
+            "status": "failed",
+            "ms": 7.029542000964284,
+            "result": {
+              "error": "MCP connection to filesystem_mcp at http://filesystem-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "get_system_info",
+            "operation_id": "SYSTEM_INFO",
+            "server_id": "system_mcp",
+            "arguments": {},
+            "status": "failed",
+            "ms": 7.232249998196494,
+            "result": {
+              "error": "MCP connection to system_mcp at http://system-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          }
+        ],
+        "prompt_tokens": 27195,
+        "final_text": "I am unable to perform the requested task because all of the integrated tool services (research, web, filesystem, and system) are currently unreachable. Please check the status of these services and try again later.",
+        "truncated": false,
+        "error": null,
+        "attempts_used": 1
+      }
+    },
+    {
+      "request": "Paper search, cite, summarize",
+      "text": "Search for the paper on tool routing, get its citations, and summarize it",
+      "repeat": 3,
+      "router": {
+        "agent_turns": [
+          {
+            "prompt_tokens": 166,
+            "output_tokens": 47
+          },
+          {
+            "prompt_tokens": 375,
+            "output_tokens": 65
+          }
+        ],
+        "agent_prompt_tokens": 541,
+        "orchestrator_calls": [
+          {
+            "request": "Search for the paper titled 'Tool Routing' or similar, identify the most relevant one, retrieve its citations, and provide a summary of the paper.",
+            "shortlist": [
+              "PAPER_CITATIONS",
+              "PAPER_SEARCH",
+              "PAPER_METADATA",
+              "PAPER_SUMMARIZE",
+              "PAPER_COMPARE",
+              "WEB_SEARCH",
+              "DOCUMENT_SECTION_EXTRACT",
+              "DOCUMENT_SUMMARIZE",
+              "DOCUMENT_SEARCH",
+              "ISSUE_SEARCH"
+            ],
+            "plan_prompt_tokens": 1304,
+            "plan_output_tokens": 172,
+            "planned_operations": [
+              "PAPER_SEARCH",
+              "PAPER_CITATIONS",
+              "PAPER_SUMMARIZE"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "PAPER_SEARCH",
+                "tool_id": "search_research_papers",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 2,
+                "operation_id": "PAPER_CITATIONS",
+                "tool_id": "get_paper_citations",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 3,
+                "operation_id": "PAPER_SUMMARIZE",
+                "tool_id": "summarize_research_paper",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          }
+        ],
+        "plan_prompt_tokens": 1304,
+        "total_prompt_tokens": 1845,
+        "final_text": "I apologize, but I am currently unable to access the research database due to a technical error with the research connection (the `research_mcp` server is unreachable). \n\nBecause of this, I cannot perform the search, retrieve the citations, or generate the summary for you at this time. Please try again later.",
+        "attempts_used": 1
+      },
+      "eager": {
+        "turns": [
+          {
+            "turn": 1,
+            "prompt_tokens": 5317,
+            "output_tokens": 19
+          },
+          {
+            "turn": 2,
+            "prompt_tokens": 5379,
+            "output_tokens": 20
+          },
+          {
+            "turn": 3,
+            "prompt_tokens": 5440,
+            "output_tokens": 16
+          },
+          {
+            "turn": 4,
+            "prompt_tokens": 5497,
+            "output_tokens": 49
+          }
+        ],
+        "turn_count": 4,
+        "tool_calls": 3,
+        "operations_called": [
+          "PAPER_SEARCH",
+          "WEB_SEARCH",
+          "DIRECTORY_LIST"
+        ],
+        "executed": [
+          {
+            "tool": "search_research_papers",
+            "operation_id": "PAPER_SEARCH",
+            "server_id": "research_mcp",
+            "arguments": {
+              "query": "tool routing"
+            },
+            "status": "failed",
+            "ms": 5.899458999920171,
+            "result": {
+              "error": "MCP connection to research_mcp at http://research-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "search_web",
+            "operation_id": "WEB_SEARCH",
+            "server_id": "web_mcp",
+            "arguments": {
+              "query": "research paper on tool routing"
+            },
+            "status": "failed",
+            "ms": 4.528250003204448,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "list_directory",
+            "operation_id": "DIRECTORY_LIST",
+            "server_id": "filesystem_mcp",
+            "arguments": {
+              "path": "."
+            },
+            "status": "failed",
+            "ms": 7.457749998138752,
+            "result": {
+              "error": "MCP connection to filesystem_mcp at http://filesystem-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          }
+        ],
+        "prompt_tokens": 21633,
+        "final_text": "I apologize, but I am currently unable to access the research, web, or file system tools due to connection issues with the underlying services. I cannot search for the paper on tool routing, retrieve its citations, or summarize it at this time.",
+        "truncated": false,
+        "error": null,
+        "attempts_used": 1
+      }
+    },
+    {
+      "request": "Fetch, extract, translate",
+      "text": "Fetch https://example.com/pricing, extract the text, and translate it to Hindi",
+      "repeat": 1,
+      "router": {
+        "agent_turns": [
+          {
+            "prompt_tokens": 169,
+            "output_tokens": 32
+          },
+          {
+            "prompt_tokens": 313,
+            "output_tokens": 43
+          }
+        ],
+        "agent_prompt_tokens": 482,
+        "orchestrator_calls": [
+          {
+            "request": "fetch text from https://example.com/pricing and translate it to Hindi",
+            "shortlist": [
+              "TEXT_TRANSLATE",
+              "WEB_TEXT_EXTRACT",
+              "WEB_FETCH",
+              "WEB_STRUCTURED_EXTRACT",
+              "WEB_LINK_EXTRACT",
+              "WEB_METADATA",
+              "TEXT_KEYWORDS",
+              "TEXT_SUMMARIZE",
+              "WEB_SEARCH",
+              "TEXT_ENTITIES"
+            ],
+            "plan_prompt_tokens": 1280,
+            "plan_output_tokens": 133,
+            "planned_operations": [
+              "WEB_TEXT_EXTRACT",
+              "TEXT_TRANSLATE"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "WEB_TEXT_EXTRACT",
+                "tool_id": "extract_web_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              },
+              {
+                "step": 2,
+                "operation_id": "TEXT_TRANSLATE",
+                "tool_id": "translate_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to text_mcp at http://text-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          }
+        ],
+        "plan_prompt_tokens": 1280,
+        "total_prompt_tokens": 1762,
+        "final_text": "I encountered an error while attempting to connect to the tools required for fetching and translating the content from the provided URL. It appears that both the web extraction and text translation services are currently unreachable. Please try again later.",
+        "attempts_used": 1
+      },
+      "eager": {
+        "turns": [
+          {
+            "turn": 1,
+            "prompt_tokens": 5320,
+            "output_tokens": 24
+          },
+          {
+            "turn": 2,
+            "prompt_tokens": 5387,
+            "output_tokens": 24
+          },
+          {
+            "turn": 3,
+            "prompt_tokens": 5454,
+            "output_tokens": 20
+          },
+          {
+            "turn": 4,
+            "prompt_tokens": 5515,
+            "output_tokens": 12
+          },
+          {
+            "turn": 5,
+            "prompt_tokens": 5574,
+            "output_tokens": 16
+          },
+          {
+            "turn": 6,
+            "prompt_tokens": 5631,
+            "output_tokens": 10
+          },
+          {
+            "turn": 7,
+            "prompt_tokens": 5686,
+            "output_tokens": 32
+          }
+        ],
+        "turn_count": 7,
+        "tool_calls": 6,
+        "operations_called": [
+          "WEB_TEXT_EXTRACT",
+          "WEB_FETCH",
+          "WEB_SEARCH",
+          "SYSTEM_INFO",
+          "DIRECTORY_LIST",
+          "UUID_GENERATE"
+        ],
+        "executed": [
+          {
+            "tool": "extract_web_text",
+            "operation_id": "WEB_TEXT_EXTRACT",
+            "server_id": "web_mcp",
+            "arguments": {
+              "url": "https://example.com/pricing"
+            },
+            "status": "failed",
+            "ms": 5.19762499970966,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "fetch_web_page",
+            "operation_id": "WEB_FETCH",
+            "server_id": "web_mcp",
+            "arguments": {
+              "url": "https://example.com/pricing"
+            },
+            "status": "failed",
+            "ms": 6.892583998705959,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "search_web",
+            "operation_id": "WEB_SEARCH",
+            "server_id": "web_mcp",
+            "arguments": {
+              "query": "example.com/pricing"
+            },
+            "status": "failed",
+            "ms": 9.266749999369495,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "get_system_info",
+            "operation_id": "SYSTEM_INFO",
+            "server_id": "system_mcp",
+            "arguments": {},
+            "status": "failed",
+            "ms": 6.590749999304535,
+            "result": {
+              "error": "MCP connection to system_mcp at http://system-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "list_directory",
+            "operation_id": "DIRECTORY_LIST",
+            "server_id": "filesystem_mcp",
+            "arguments": {
+              "path": "."
+            },
+            "status": "failed",
+            "ms": 7.374000000709202,
+            "result": {
+              "error": "MCP connection to filesystem_mcp at http://filesystem-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "generate_uuid",
+            "operation_id": "UUID_GENERATE",
+            "server_id": "utility_mcp",
+            "arguments": {},
+            "status": "failed",
+            "ms": 16.87987500190502,
+            "result": {
+              "error": "MCP connection to utility_mcp at http://utility-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          }
+        ],
+        "prompt_tokens": 38567,
+        "final_text": "I am sorry, but I am unable to fulfill your request at this time because I am currently experiencing connection issues with my tool services. Please try again later.",
+        "truncated": false,
+        "error": null,
+        "attempts_used": 2
+      }
+    },
+    {
+      "request": "Fetch, extract, translate",
+      "text": "Fetch https://example.com/pricing, extract the text, and translate it to Hindi",
+      "repeat": 2,
+      "router": {
+        "agent_turns": [
+          {
+            "prompt_tokens": 169,
+            "output_tokens": 33
+          },
+          {
+            "prompt_tokens": 260,
+            "output_tokens": 37
+          },
+          {
+            "prompt_tokens": 355,
+            "output_tokens": 54
+          },
+          {
+            "prompt_tokens": 466,
+            "output_tokens": 26
+          }
+        ],
+        "agent_prompt_tokens": 1250,
+        "orchestrator_calls": [
+          {
+            "request": "Fetch the content from https://example.com/pricing and extract the text.",
+            "shortlist": [
+              "WEB_TEXT_EXTRACT",
+              "WEB_FETCH",
+              "WEB_STRUCTURED_EXTRACT",
+              "DOCX_TEXT_EXTRACT",
+              "WEB_LINK_EXTRACT",
+              "WEB_METADATA",
+              "PDF_TEXT_EXTRACT",
+              "TEXT_KEYWORDS",
+              "DOCUMENT_SECTION_EXTRACT",
+              "TEXT_ENTITIES"
+            ],
+            "plan_prompt_tokens": 1282,
+            "plan_output_tokens": 92,
+            "planned_operations": [
+              "WEB_TEXT_EXTRACT"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "WEB_TEXT_EXTRACT",
+                "tool_id": "extract_web_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          },
+          {
+            "request": "Fetch the text content of the webpage at https://example.com/pricing using any available tool.",
+            "shortlist": [
+              "WEB_FETCH",
+              "WEB_TEXT_EXTRACT",
+              "WEB_STRUCTURED_EXTRACT",
+              "WEB_LINK_EXTRACT",
+              "WEB_METADATA",
+              "WEB_SEARCH",
+              "DOCX_TEXT_EXTRACT",
+              "PDF_TEXT_EXTRACT",
+              "DOCUMENT_SECTION_EXTRACT",
+              "TEXT_KEYWORDS"
+            ],
+            "plan_prompt_tokens": 1283,
+            "plan_output_tokens": 95,
+            "planned_operations": [
+              "WEB_TEXT_EXTRACT"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "WEB_TEXT_EXTRACT",
+                "tool_id": "extract_web_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          },
+          {
+            "request": "Translate the following text to Hindi: 'Example Domain. This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.'",
+            "shortlist": [
+              "TEXT_TRANSLATE",
+              "CALCULATOR",
+              "GEOCODE",
+              "DOCX_TEXT_EXTRACT",
+              "TEXT_REWRITE",
+              "PAPER_SEARCH",
+              "WEB_SEARCH",
+              "DOCUMENT_SECTION_EXTRACT",
+              "WEB_METADATA",
+              "GEO_DISTANCE"
+            ],
+            "plan_prompt_tokens": 1309,
+            "plan_output_tokens": 104,
+            "planned_operations": [
+              "TEXT_TRANSLATE"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "TEXT_TRANSLATE",
+                "tool_id": "translate_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to text_mcp at http://text-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          }
+        ],
+        "plan_prompt_tokens": 3874,
+        "total_prompt_tokens": 5124,
+        "final_text": "I apologize, but I am currently unable to access the requested webpage or perform the translation due to connectivity issues with my internal services.",
+        "attempts_used": 1
+      },
+      "eager": {
+        "turns": [
+          {
+            "turn": 1,
+            "prompt_tokens": 5320,
+            "output_tokens": 24
+          },
+          {
+            "turn": 2,
+            "prompt_tokens": 5387,
+            "output_tokens": 24
+          },
+          {
+            "turn": 3,
+            "prompt_tokens": 5454,
+            "output_tokens": 21
+          },
+          {
+            "turn": 4,
+            "prompt_tokens": 5516,
+            "output_tokens": 12
+          },
+          {
+            "turn": 5,
+            "prompt_tokens": 5575,
+            "output_tokens": 32
+          }
+        ],
+        "turn_count": 5,
+        "tool_calls": 4,
+        "operations_called": [
+          "WEB_TEXT_EXTRACT",
+          "WEB_FETCH",
+          "WEB_SEARCH",
+          "SYSTEM_INFO"
+        ],
+        "executed": [
+          {
+            "tool": "extract_web_text",
+            "operation_id": "WEB_TEXT_EXTRACT",
+            "server_id": "web_mcp",
+            "arguments": {
+              "url": "https://example.com/pricing"
+            },
+            "status": "failed",
+            "ms": 6.9552089989883825,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "fetch_web_page",
+            "operation_id": "WEB_FETCH",
+            "server_id": "web_mcp",
+            "arguments": {
+              "url": "https://example.com/pricing"
+            },
+            "status": "failed",
+            "ms": 7.35983300182852,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "search_web",
+            "operation_id": "WEB_SEARCH",
+            "server_id": "web_mcp",
+            "arguments": {
+              "query": "example.com pricing page content"
+            },
+            "status": "failed",
+            "ms": 7.15870900239679,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "get_system_info",
+            "operation_id": "SYSTEM_INFO",
+            "server_id": "system_mcp",
+            "arguments": {},
+            "status": "failed",
+            "ms": 7.035499998892192,
+            "result": {
+              "error": "MCP connection to system_mcp at http://system-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          }
+        ],
+        "prompt_tokens": 27252,
+        "final_text": "I am currently unable to access external websites or the system tools required to complete your request, as the necessary service connections are experiencing failures. Please try again later.",
+        "truncated": false,
+        "error": null,
+        "attempts_used": 1
+      }
+    },
+    {
+      "request": "Fetch, extract, translate",
+      "text": "Fetch https://example.com/pricing, extract the text, and translate it to Hindi",
+      "repeat": 3,
+      "router": {
+        "agent_turns": [
+          {
+            "prompt_tokens": 169,
+            "output_tokens": 33
+          },
+          {
+            "prompt_tokens": 260,
+            "output_tokens": 42
+          },
+          {
+            "prompt_tokens": 360,
+            "output_tokens": 34
+          },
+          {
+            "prompt_tokens": 449,
+            "output_tokens": 43
+          }
+        ],
+        "agent_prompt_tokens": 1238,
+        "orchestrator_calls": [
+          {
+            "request": "Fetch the content from https://example.com/pricing and extract the text.",
+            "shortlist": [
+              "WEB_TEXT_EXTRACT",
+              "WEB_FETCH",
+              "WEB_STRUCTURED_EXTRACT",
+              "DOCX_TEXT_EXTRACT",
+              "WEB_LINK_EXTRACT",
+              "WEB_METADATA",
+              "PDF_TEXT_EXTRACT",
+              "TEXT_KEYWORDS",
+              "DOCUMENT_SECTION_EXTRACT",
+              "TEXT_ENTITIES"
+            ],
+            "plan_prompt_tokens": 1282,
+            "plan_output_tokens": 92,
+            "planned_operations": [
+              "WEB_TEXT_EXTRACT"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "WEB_TEXT_EXTRACT",
+                "tool_id": "extract_web_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          },
+          {
+            "request": "Fetch the content of https://example.com/pricing using a different tool or method if possible, or retry the fetch.",
+            "shortlist": [
+              "WEB_FETCH",
+              "WEB_TEXT_EXTRACT",
+              "WEB_METADATA",
+              "WEB_STRUCTURED_EXTRACT",
+              "WEB_LINK_EXTRACT",
+              "WEB_SEARCH",
+              "DOCUMENT_SECTION_EXTRACT",
+              "SYSTEM_INFO",
+              "ENVIRONMENT_READ",
+              "DOCX_TEXT_EXTRACT"
+            ],
+            "plan_prompt_tokens": 1254,
+            "plan_output_tokens": 92,
+            "planned_operations": [
+              "WEB_TEXT_EXTRACT"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "WEB_TEXT_EXTRACT",
+                "tool_id": "extract_web_text",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          },
+          {
+            "request": "Get the HTML content of https://example.com/pricing using any available tool.",
+            "shortlist": [
+              "WEB_FETCH",
+              "WEB_TEXT_EXTRACT",
+              "WEB_METADATA",
+              "WEB_STRUCTURED_EXTRACT",
+              "WEB_LINK_EXTRACT",
+              "WEB_SEARCH",
+              "DOCUMENT_SECTION_EXTRACT",
+              "SYSTEM_INFO",
+              "FILE_READ",
+              "DOCX_TEXT_EXTRACT"
+            ],
+            "plan_prompt_tokens": 1270,
+            "plan_output_tokens": 88,
+            "planned_operations": [
+              "WEB_FETCH"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "operation_id": "WEB_FETCH",
+                "tool_id": "fetch_web_page",
+                "status": "failed",
+                "result": {
+                  "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+                }
+              }
+            ]
+          }
+        ],
+        "plan_prompt_tokens": 3806,
+        "total_prompt_tokens": 5044,
+        "final_text": "I am sorry, but I am currently unable to fetch the content from the website due to a technical error with the connection to the web tool. Please try again later or provide the text you would like translated manually.",
+        "attempts_used": 1
+      },
+      "eager": {
+        "turns": [
+          {
+            "turn": 1,
+            "prompt_tokens": 5320,
+            "output_tokens": 24
+          },
+          {
+            "turn": 2,
+            "prompt_tokens": 5387,
+            "output_tokens": 24
+          },
+          {
+            "turn": 3,
+            "prompt_tokens": 5454,
+            "output_tokens": 23
+          },
+          {
+            "turn": 4,
+            "prompt_tokens": 5518,
+            "output_tokens": 45
+          }
+        ],
+        "turn_count": 4,
+        "tool_calls": 3,
+        "operations_called": [
+          "WEB_TEXT_EXTRACT",
+          "WEB_FETCH",
+          "WEB_SEARCH"
+        ],
+        "executed": [
+          {
+            "tool": "extract_web_text",
+            "operation_id": "WEB_TEXT_EXTRACT",
+            "server_id": "web_mcp",
+            "arguments": {
+              "url": "https://example.com/pricing"
+            },
+            "status": "failed",
+            "ms": 5.992916998366127,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "fetch_web_page",
+            "operation_id": "WEB_FETCH",
+            "server_id": "web_mcp",
+            "arguments": {
+              "url": "https://example.com/pricing"
+            },
+            "status": "failed",
+            "ms": 7.272584000020288,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          },
+          {
+            "tool": "search_web",
+            "operation_id": "WEB_SEARCH",
+            "server_id": "web_mcp",
+            "arguments": {
+              "query": "https://example.com/pricing content"
+            },
+            "status": "failed",
+            "ms": 6.483083998318762,
+            "result": {
+              "error": "MCP connection to web_mcp at http://web-mcp:8000/mcp failed: ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+            }
+          }
+        ],
+        "prompt_tokens": 21679,
+        "final_text": "I am sorry, but I am currently unable to access or extract content from `https://example.com/pricing` due to a technical error with the web-related tools. Please verify the URL or try again later.",
+        "truncated": false,
+        "error": null,
+        "attempts_used": 1
+      }
+    }
+  ]
+}

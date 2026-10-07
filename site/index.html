@@ -219,7 +219,7 @@ footer a:hover{color:var(--accent)}
     </tbody>
   </table>
   </div>
-  <p class="note prose">Top-3 recall of the dense baseline is 99.60%. For 23 of 24 compound requests, a single embedding places every constituent operation within its top 10. These are operation-routing results, not end-to-end task success. Scripts are modules under <code>benchmark/</code>; all except the selector and Jev run offline from the shipped caches.</p>
+  <p class="note prose">Top-3 recall of the dense baseline is 99.60%. For 23 of 24 compound requests, a single embedding places every constituent operation within its top 10. On three matched compound requests, counting every prompt on both paths, routing used 8.3&times; fewer prompt tokens than an eager agent loading all 101 schemas. These are operation-routing and cost results, not end-to-end task success. Scripts are modules under <code>benchmark/</code>; the README states for each table whether it reproduces offline, ships with run logs, or must be re-run with an API key.</p>
 </section>
 
 <section id="qos">

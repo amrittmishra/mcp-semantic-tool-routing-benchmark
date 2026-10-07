@@ -1,0 +1,793 @@
+{
+  "requests": 10000,
+  "seeds": [
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "sweeps": {
+    "quality": {
+      "default": {
+        "0.85 / 0.76": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.6547,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.11179999999999998,
+            "best_final_share": 0.7929,
+            "regret_per_request": 0.06109176392063803
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.6547,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.0002,
+            "best_final_share": 0.9994,
+            "regret_per_request": 0.002313787785396217
+          }
+        },
+        "0.93 / 0.86 (base)": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.8126,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.3356,
+            "best_final_share": 0.6068,
+            "regret_per_request": 0.04376619281008411
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.8126,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.0016999999999999997,
+            "best_final_share": 0.9968999999999999,
+            "regret_per_request": 0.001995221569727046
+          }
+        },
+        "0.97 / 0.93": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.904,
+              "provider_alpha": 0.8735,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.6169,
+            "best_final_share": 0.6169,
+            "regret_per_request": 0.022798279918190036
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.904,
+              "provider_alpha": 0.8735,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 0.3,
+            "swept_final_share": 0.31165000000000004,
+            "best_final_share": 0.31165000000000004,
+            "regret_per_request": 0.023598724931438164
+          }
+        },
+        "0.99 / 0.97": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.9333,
+              "provider_alpha": 0.8544,
+              "provider_gamma": 0.6336,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.7035500000000001,
+            "best_final_share": 0.7035500000000001,
+            "regret_per_request": 0.03340137760912475
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.9333,
+              "provider_alpha": 0.8544,
+              "provider_gamma": 0.6336,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.9856,
+            "best_final_share": 0.9856,
+            "regret_per_request": 0.009902310456188225
+          }
+        },
+        "1.00 / 0.99": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.9333,
+              "provider_alpha": 0.8322,
+              "provider_gamma": 0.6208,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.7537,
+            "best_final_share": 0.7537,
+            "regret_per_request": 0.034841662336887416
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.9333,
+              "provider_alpha": 0.8322,
+              "provider_gamma": 0.6208,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 1.0,
+            "best_final_share": 1.0,
+            "regret_per_request": 0.0006053715653817397
+          }
+        }
+      }
+    },
+    "cost": {
+      "default": {
+        "0.6": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.9735,
+              "provider_beta": 0.7792,
+              "provider_gamma": 0.6282,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.8901,
+            "best_final_share": 0.8901,
+            "regret_per_request": 0.044465564010672566
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.9735,
+              "provider_beta": 0.7792,
+              "provider_gamma": 0.6282,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.99405,
+            "best_final_share": 0.99405,
+            "regret_per_request": 0.0035695155488554807
+          }
+        },
+        "1.2 (base)": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.8126,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.6068,
+            "best_final_share": 0.6068,
+            "regret_per_request": 0.04376619281008411
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.8126,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.9968999999999999,
+            "best_final_share": 0.9968999999999999,
+            "regret_per_request": 0.001995221569727046
+          }
+        },
+        "2.4": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.857,
+              "provider_gamma": 0.6671,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 0.55,
+            "swept_final_share": 0.48135000000000006,
+            "best_final_share": 0.48135000000000006,
+            "regret_per_request": 0.024859263278901134
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.857,
+              "provider_gamma": 0.6671,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.9862,
+            "best_final_share": 0.9862,
+            "regret_per_request": 0.001626073697863846
+          }
+        },
+        "3.6": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.8659,
+              "provider_gamma": 0.6715,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 0.6,
+            "swept_final_share": 0.4716,
+            "best_final_share": 0.4716,
+            "regret_per_request": 0.017300638010518156
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.8659,
+              "provider_gamma": 0.6715,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.99835,
+            "best_final_share": 0.99835,
+            "regret_per_request": 0.0016386481144056893
+          }
+        },
+        "6.0": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.8718,
+              "provider_gamma": 0.6745,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 0.4,
+            "swept_final_share": 0.4295999999999999,
+            "best_final_share": 0.4295999999999999,
+            "regret_per_request": 0.013900950102434351
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.8718,
+              "provider_gamma": 0.6745,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.9943,
+            "best_final_share": 0.9943,
+            "regret_per_request": 0.0015196035800228431
+          }
+        }
+      },
+      "budget": {
+        "0.6": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.9824,
+              "provider_gamma": 0.5684,
+              "provider_delta": 0.55,
+              "provider_beta": 0.4737
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.9906499999999999,
+            "best_final_share": 0.9906499999999999,
+            "regret_per_request": 0.03165534223741838
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.9824,
+              "provider_gamma": 0.5684,
+              "provider_delta": 0.55,
+              "provider_beta": 0.4737
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.9900500000000001,
+            "best_final_share": 0.9900500000000001,
+            "regret_per_request": 0.008746086489837285
+          }
+        },
+        "1.2 (base)": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_gamma": 0.6434,
+              "provider_beta": 0.6237,
+              "provider_delta": 0.55,
+              "provider_alpha": 0.5324
+            },
+            "true_best": "provider_gamma",
+            "learned_leader": "provider_gamma",
+            "found_best_rate": 0.8,
+            "swept_final_share": 0.13474999999999998,
+            "best_final_share": 0.38164999999999993,
+            "regret_per_request": 0.028262725300337483
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_gamma": 0.6434,
+              "provider_beta": 0.6237,
+              "provider_delta": 0.55,
+              "provider_alpha": 0.5324
+            },
+            "true_best": "provider_gamma",
+            "learned_leader": "provider_delta",
+            "found_best_rate": 0.0,
+            "swept_final_share": 0.0,
+            "best_final_share": 0.0,
+            "regret_per_request": 0.09302862843679924
+          }
+        },
+        "2.4": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.8237,
+              "provider_gamma": 0.7434,
+              "provider_delta": 0.55,
+              "provider_alpha": 0.5324
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.033850000000000005,
+            "best_final_share": 0.6678499999999999,
+            "regret_per_request": 0.054014490444683996
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.8237,
+              "provider_gamma": 0.7434,
+              "provider_delta": 0.55,
+              "provider_alpha": 0.5324
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 0.8,
+            "swept_final_share": 0.0,
+            "best_final_share": 0.7771,
+            "regret_per_request": 0.050351103053961496
+          }
+        },
+        "3.6": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.8637,
+              "provider_gamma": 0.7634,
+              "provider_delta": 0.55,
+              "provider_alpha": 0.5324
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.01095,
+            "best_final_share": 0.732,
+            "regret_per_request": 0.054752867513127
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.8637,
+              "provider_gamma": 0.7634,
+              "provider_delta": 0.55,
+              "provider_alpha": 0.5324
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 0.8,
+            "swept_final_share": 0.0,
+            "best_final_share": 0.8,
+            "regret_per_request": 0.06656133629426694
+          }
+        },
+        "6.0": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.8904,
+              "provider_gamma": 0.7767,
+              "provider_delta": 0.55,
+              "provider_alpha": 0.5324
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.0018500000000000003,
+            "best_final_share": 0.7212499999999998,
+            "regret_per_request": 0.05509868370720637
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.8904,
+              "provider_gamma": 0.7767,
+              "provider_delta": 0.55,
+              "provider_alpha": 0.5324
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 0.95,
+            "swept_final_share": 0.0,
+            "best_final_share": 0.94985,
+            "regret_per_request": 0.026010335390418898
+          }
+        }
+      }
+    },
+    "latency": {
+      "default": {
+        "60": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.9,
+              "provider_beta": 0.7901,
+              "provider_gamma": 0.6369,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.7353500000000001,
+            "best_final_share": 0.7353500000000001,
+            "regret_per_request": 0.05497871939863465
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.9,
+              "provider_beta": 0.7901,
+              "provider_gamma": 0.6369,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.9949,
+            "best_final_share": 0.9949,
+            "regret_per_request": 0.0021400449687755283
+          }
+        },
+        "120 (base)": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.8126,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.6068,
+            "best_final_share": 0.6068,
+            "regret_per_request": 0.04376619281008411
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.8735,
+              "provider_beta": 0.8126,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.9968999999999999,
+            "best_final_share": 0.9968999999999999,
+            "regret_per_request": 0.001995221569727046
+          }
+        },
+        "240": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.8126,
+              "provider_alpha": 0.7676,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 0.9,
+            "swept_final_share": 0.31999999999999995,
+            "best_final_share": 0.57785,
+            "regret_per_request": 0.03461735582894109
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.8126,
+              "provider_alpha": 0.7676,
+              "provider_gamma": 0.6448,
+              "provider_delta": 0.3
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 0.05,
+            "swept_final_share": 0.96455,
+            "best_final_share": 0.0308,
+            "regret_per_request": 0.04506132878334537
+          }
+        },
+        "480": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.8126,
+              "provider_alpha": 0.75,
+              "provider_gamma": 0.6996,
+              "provider_delta": 0.3846
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 0.9,
+            "swept_final_share": 0.30475,
+            "best_final_share": 0.52815,
+            "regret_per_request": 0.035084211928634305
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.8126,
+              "provider_alpha": 0.75,
+              "provider_gamma": 0.6996,
+              "provider_delta": 0.3846
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 0.05,
+            "swept_final_share": 0.96205,
+            "best_final_share": 0.029949999999999997,
+            "regret_per_request": 0.06198149161158597
+          }
+        },
+        "960": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.8126,
+              "provider_alpha": 0.75,
+              "provider_gamma": 0.7229,
+              "provider_delta": 0.4207
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 0.85,
+            "swept_final_share": 0.3012500000000001,
+            "best_final_share": 0.4822,
+            "regret_per_request": 0.032785687114409226
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.8126,
+              "provider_alpha": 0.75,
+              "provider_gamma": 0.7229,
+              "provider_delta": 0.4207
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 0.0,
+            "swept_final_share": 0.9986,
+            "best_final_share": 0.00030000000000000003,
+            "regret_per_request": 0.061950044890129605
+          }
+        }
+      },
+      "interactive": {
+        "60": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_alpha": 0.95,
+              "provider_beta": 0.8291,
+              "provider_gamma": 0.5315,
+              "provider_delta": 0.2
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 0.85,
+            "swept_final_share": 0.6979499999999998,
+            "best_final_share": 0.6979499999999998,
+            "regret_per_request": 0.0586319712435439
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_alpha": 0.95,
+              "provider_beta": 0.8291,
+              "provider_gamma": 0.5315,
+              "provider_delta": 0.2
+            },
+            "true_best": "provider_alpha",
+            "learned_leader": "provider_alpha",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.9999499999999999,
+            "best_final_share": 0.9999499999999999,
+            "regret_per_request": 0.0005597852473033411
+          }
+        },
+        "120 (base)": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.8966,
+              "provider_alpha": 0.8706,
+              "provider_gamma": 0.5553,
+              "provider_delta": 0.2
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.223,
+            "best_final_share": 0.7725000000000001,
+            "regret_per_request": 0.009551415784138647
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.8966,
+              "provider_alpha": 0.8706,
+              "provider_gamma": 0.5553,
+              "provider_delta": 0.2
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.0002,
+            "best_final_share": 0.9997,
+            "regret_per_request": 0.000904838749355515
+          }
+        },
+        "240": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.8966,
+              "provider_gamma": 0.5553,
+              "provider_alpha": 0.5529,
+              "provider_delta": 0.2
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.0019500000000000003,
+            "best_final_share": 0.9929499999999999,
+            "regret_per_request": 0.001973361070147746
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.8966,
+              "provider_gamma": 0.5553,
+              "provider_alpha": 0.5529,
+              "provider_delta": 0.2
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.0,
+            "best_final_share": 1.0,
+            "regret_per_request": 0.0011262624667779297
+          }
+        },
+        "480": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.8966,
+              "provider_gamma": 0.7196,
+              "provider_alpha": 0.5,
+              "provider_delta": 0.4538
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.0006000000000000001,
+            "best_final_share": 0.9714500000000001,
+            "regret_per_request": 0.003318093463178773
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.8966,
+              "provider_gamma": 0.7196,
+              "provider_alpha": 0.5,
+              "provider_delta": 0.4538
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.0,
+            "best_final_share": 0.9999500000000001,
+            "regret_per_request": 0.0006791840231954729
+          }
+        },
+        "960": {
+          "softmax t=0.10, uninformative": {
+            "oracle": {
+              "provider_beta": 0.8966,
+              "provider_gamma": 0.7896,
+              "provider_delta": 0.5621,
+              "provider_alpha": 0.5
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.00015000000000000001,
+            "best_final_share": 0.90055,
+            "regret_per_request": 0.006801505233900627
+          },
+          "argmax, optimistic": {
+            "oracle": {
+              "provider_beta": 0.8966,
+              "provider_gamma": 0.7896,
+              "provider_delta": 0.5621,
+              "provider_alpha": 0.5
+            },
+            "true_best": "provider_beta",
+            "learned_leader": "provider_beta",
+            "found_best_rate": 1.0,
+            "swept_final_share": 0.0,
+            "best_final_share": 0.9999,
+            "regret_per_request": 0.0004990244512500534
+          }
+        }
+      }
+    }
+  }
+}

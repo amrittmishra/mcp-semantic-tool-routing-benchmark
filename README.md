@@ -26,7 +26,9 @@ tables are included, so all retrieval results reproduce offline.
 | `benchmark/results.jsonl` | Saved flat-FAISS run: top-5 candidates and scores per query (Table 1 baseline, 483/505) |
 | `benchmark/jev_results.jsonl`, `jev_results_openrouter.jsonl` | Two independent Jev 1.13 passes over the 505 queries (494/505 each) |
 | `benchmark/qos_dynamic_results.json`, `qos_dynamic_optimistic.json` | Saved dynamic QoS simulation outputs |
-| `orchestrator/` | The minimal library the scripts import: registry loader, embedding document builder, FAISS index, router, Jev client, QoS registry and simulator |
+| `orchestrator/` | The minimal library the scripts import: registry loader, embedding document builder, FAISS index, router, MCP client, Jev client, QoS registry and simulator |
+| `synthetic_servers/` | The 18 synthetic MCP servers (deterministic fabricated outputs, no side effects) used by the Table 7 harness |
+| `benchmark/table7_chain_cost.json`, `benchmark/qos_sensitivity_results.json` | Saved Table 7 runs and the full QoS sensitivity grid |
 | `benchmark/`, `benchmark/research/` | Experiment scripts (table below) |
 
 ## Reproducing the paper's tables
@@ -39,28 +41,49 @@ pip install -r requirements.txt
 export PYTHONPATH=.
 ```
 
-No credentials are needed for anything marked *offline*.
+Not every result can be reproduced to the same degree. Each row says which.
 
-| Paper table / result | Command | Needs |
+**Offline: no API key, from the shipped embeddings, index, and simulator**
+
+| Paper result | Command |
+|---|---|
+| Table 1 flat vs. hierarchical; Table 2 authored vs. k-means gates | `python -m benchmark.hierarchy_experiment` |
+| Table 3 accuracy vs. catalogue size | `python -m benchmark.research.scaling` |
+| Table 4 mean-centering / ABTT / CSLS rows | `python -m benchmark.research.reranking` |
+| Table 4 multi-vector 2-fold and 5-fold rows | `python -m benchmark.research.tune_blend` |
+| Multi-vector ablations (Sec. 5.2) | `python -m benchmark.research.multivector` |
+| Table 5 BM25, RRF, interpolation rows | `python -m benchmark.research.lexical_hybrid` |
+| Table 6 compound-request retrieval | `python -m benchmark.research.chains` |
+| Sec. 7 static incentive (0.584, 19.6 %, 95.84 %) | `python -m benchmark.research.qos_incentive` |
+| Sec. 7 dynamic market; Table 9 cold start | `python -m benchmark.research.qos_dynamic --experiment all` (and `--prior optimistic`) |
+| Table 10 quality / cost / latency sweeps | `python -m benchmark.research.qos_sensitivity` (full grid: `benchmark/qos_sensitivity_results.json`) |
+| Fig. 2 | `python -m benchmark.research.plot_qos_dynamic` |
+
+**Code and complete per-call logs: re-score offline, re-run with credentials**
+
+| Paper result | Saved log | Re-run |
 |---|---|---|
-| Table 1 flat vs. hierarchical routing; Table 2 authored vs. k-means gates | `python -m benchmark.hierarchy_experiment` | offline |
-| Table 3 accuracy vs. catalogue size | `python -m benchmark.research.scaling` | offline |
-| Table 4 mean-centering / ABTT / CSLS rows | `python -m benchmark.research.reranking` | offline |
-| Table 4 multi-vector 2-fold and 5-fold rows | `python -m benchmark.research.tune_blend` | offline |
-| Multi-vector ablations (Sec. 5.2) | `python -m benchmark.research.multivector` | offline |
-| Table 5 BM25, RRF, interpolation | `python -m benchmark.research.lexical_hybrid` (add `--dense-matrix` for full-ranking variants, see docstring) | offline |
-| Table 5 Jev row | `OP=<openrouter key> python -m benchmark.jev_comparison` | OpenRouter |
-| Table 4 selector rows | `python -m benchmark.research.recovery --k 5` | Vertex AI (Gemini) |
-| Table 6 compound-request retrieval | `python -m benchmark.research.chains` | offline |
-| Table 8 EAGER prompt control | `python -m benchmark.research.eager_control` | Vertex AI + `google-adk` |
-| Sec. 7 static QoS incentive (0.584, 19.6 %, 95.84 %) | `python -m benchmark.research.qos_incentive` | offline |
-| Sec. 7 / Table 9 dynamic QoS, cold start | `python -m benchmark.research.qos_dynamic --experiment all` and `--prior optimistic`; `--experiment cold-start` | offline |
-| Fig. 2 | `python -m benchmark.research.plot_qos_dynamic` | offline (`matplotlib`) |
+| Table 5 Jev row (two passes) | `benchmark/jev_results.jsonl`, `benchmark/jev_results_openrouter.jsonl` | `OP=<openrouter key> python -m benchmark.jev_comparison` |
+| Table 7 full prompt tokens, ROUTER vs. EAGER (3 requests x 3 runs x 2 arms) | `benchmark/table7_chain_cost.json` | `python -m benchmark.research.table7_chain_cost --spawn-servers --repeats 3` (Vertex AI; starts the 18 synthetic MCP servers locally) |
 
-The three matched ROUTER-vs-EAGER chain loops (Table 7) were measured against
-the live orchestrator and its 18 synthetic MCP servers in the full system
-repository and are not reproducible from this package alone; their raw token
-counts are reported in the paper.
+**Code only: re-run with Vertex AI, no per-query logs were saved**
+
+| Paper result | Re-run |
+|---|---|
+| Table 4 selector rows | `python -m benchmark.research.recovery --k 3` and `--k 5` |
+| Table 8 EAGER prompt control | `python -m benchmark.research.eager_control` (needs `google-adk`) |
+
+### Table 7 harness
+
+Both arms are Google ADK agents with the same model, instruction, and the 18
+synthetic MCP servers in `synthetic_servers/`; only their tools differ. EAGER
+gets all 101 operations as tools. ROUTER's primary agent gets one tool,
+`route_and_execute`; behind it the orchestrator embeds the request, takes the
+FAISS top 10, makes one planning call that orders the steps and fills their
+arguments, and executes the plan. The ROUTER total counts every generation
+prompt on that path: every primary-agent turn plus every planning call. The
+log records each call's prompt tokens, the shortlist, the plan, the executed
+operations, and the tool outputs.
 
 ### Rebuilding the vectors
 
@@ -95,6 +118,10 @@ and limitations.
 | Multi-vector, 5-fold CV | 97.62 % | 95.9 - 98.6 |
 | Jev 1.13, all 101 descriptions | 97.82 % | 96.1 - 98.8 |
 | Selector over flat top 5 | 98.02 % | 96.4 - 98.9 |
+
+On three matched compound requests (Table 7), counting every prompt on both
+paths, ROUTER used 8.3x fewer prompt tokens than an eager ADK agent loading all
+101 tool schemas (pooled over nine runs; 7.3-10.4x per request).
 
 ## License
 
