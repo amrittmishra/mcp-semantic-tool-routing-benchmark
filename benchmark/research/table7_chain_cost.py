@@ -236,7 +236,19 @@ def eager_agent(downstream: DownstreamRegistry):
 
 # --- synthetic servers -------------------------------------------------------
 
+def use_local_endpoints() -> None:
+    """Point every downstream client at the locally spawned servers.
+
+    A repository ``.env`` may define ``<SERVER>_MCP_URL`` with Docker service
+    hostnames; left in place, every tool call would fail to connect.
+    """
+    for server_id in SYNTHETIC_MODULES:
+        os.environ[f"{server_id.upper()}_URL"] = (
+            f"http://127.0.0.1:{LOCAL_PORTS[server_id]}/mcp")
+
+
 def spawn_servers() -> list[subprocess.Popen]:
+    use_local_endpoints()
     env = dict(os.environ, HOST="127.0.0.1", LOG_LEVEL="warning",
                PYTHONPATH=str(ROOT))
     procs = []
@@ -260,6 +272,49 @@ def spawn_servers() -> list[subprocess.Popen]:
     return procs
 
 
+# --- validity --------------------------------------------------------------------
+
+async def preflight(downstream: DownstreamRegistry) -> None:
+    """Fail fast unless one real tool call succeeds on every server."""
+    registry = load_registry()
+    for server_id in SYNTHETIC_MODULES:
+        tool = next(t for t in registry.tools if t.server_id == server_id)
+        args = {k: "x" for k, v in tool.input_schema.items() if v.get("required")}
+        try:
+            await downstream.call_tool(server_id, tool.tool_id, args)
+        except Exception as exc:  # noqa: BLE001
+            raise SystemExit(f"preflight: {server_id} unreachable ({exc}); "
+                             "start the servers or pass --spawn-servers") from exc
+    print(f"preflight: all {len(SYNTHETIC_MODULES)} MCP servers answered a tool call",
+          flush=True)
+
+
+class InvalidRun(RuntimeError):
+    """A completed agent loop whose tool calls did not all execute."""
+
+
+def router_valid(calls: list[dict]) -> None:
+    steps = [s for c in calls for s in c["steps"]]
+    if not calls or not steps:
+        raise InvalidRun("ROUTER executed no step")
+    bad = [s for s in steps if s.get("status") != "success"]
+    if bad:
+        raise InvalidRun(f"ROUTER: {len(bad)}/{len(steps)} steps failed: {bad[0]}")
+
+
+def eager_valid(result: dict) -> None:
+    if result.get("error"):
+        raise InvalidRun(f"EAGER error: {result['error']}")
+    executed = result.get("executed") or []
+    if not executed:
+        raise InvalidRun("EAGER executed no tool")
+    bad = [x for x in executed if x.get("status") != "success"]
+    if bad:
+        raise InvalidRun(f"EAGER: {len(bad)}/{len(executed)} calls failed: {bad[0]}")
+    if result.get("truncated"):
+        raise InvalidRun("EAGER hit the turn cap")
+
+
 # --- retries -------------------------------------------------------------------
 
 def _throttled(exc_or_text: Any) -> bool:
@@ -267,32 +322,44 @@ def _throttled(exc_or_text: Any) -> bool:
     return "429" in text or "RESOURCE_EXHAUSTED" in text or "ResourceExhausted" in text
 
 
-async def with_retries(make_attempt, attempts: int = 12) -> dict:
-    """Re-run a whole arm when Vertex throttles it.
+async def with_retries(make_attempt, check, attempts: int = 12,
+                       max_invalid: int = 3) -> dict:
+    """Run one arm until it yields a complete, valid agent loop.
 
-    A throttled attempt is discarded entirely, so a recorded run is always one
-    complete, uninterrupted agent loop; ``attempts_used`` is logged.
+    Throttled attempts are discarded and retried. A loop that completes but
+    has any failed downstream call is rejected by ``check`` and retried at most
+    ``max_invalid`` times; if every attempt is invalid the experiment stops
+    rather than record it. ``attempts_used`` and ``rejected`` are logged.
     """
+    rejected: list[str] = []
     for attempt in range(1, attempts + 1):
         try:
             result = await make_attempt()
             if isinstance(result, dict) and _throttled(result.get("error", "")):
                 raise RuntimeError(result["error"])
+            check(result)
             result["attempts_used"] = attempt
+            result["rejected"] = rejected
             return result
+        except InvalidRun as exc:
+            rejected.append(str(exc)[:300])
+            print(f"    rejected invalid run: {str(exc)[:160]}", flush=True)
+            if len(rejected) > max_invalid:
+                raise SystemExit(f"{len(rejected)} invalid runs in a row; not recording")
         except Exception as exc:  # noqa: BLE001
             if not _throttled(exc) or attempt == attempts:
                 raise
             wait = min(120, 15 * attempt)
             print(f"    throttled (attempt {attempt}), retrying in {wait}s", flush=True)
             await asyncio.sleep(wait)
-    raise RuntimeError("unreachable")
+    raise SystemExit("exhausted attempts")
 
 
 # --- main ----------------------------------------------------------------------
 
 async def main_async(args) -> dict:
     downstream = DownstreamRegistry()
+    await preflight(downstream)
     orchestrator = Orchestrator(downstream)
     eager = eager_agent(downstream)
     rows = []
@@ -302,20 +369,23 @@ async def main_async(args) -> dict:
                 orchestrator.calls.clear()
                 return await run_adk(router_agent(orchestrator), text, "router")
 
-            r = await with_retries(router_attempt)
+            r = await with_retries(
+                router_attempt, lambda _: router_valid(orchestrator.calls))
             agent_tokens = sum(t["prompt_tokens"] for t in r["turns"])
             plan_tokens = sum(c["plan_prompt_tokens"] or 0 for c in orchestrator.calls)
             router = {"agent_turns": r["turns"], "agent_prompt_tokens": agent_tokens,
                       "orchestrator_calls": list(orchestrator.calls),
                       "plan_prompt_tokens": plan_tokens,
                       "total_prompt_tokens": agent_tokens + plan_tokens,
-                      "final_text": r["final_text"], "attempts_used": r["attempts_used"]}
-            e = await with_retries(lambda: eager.run(text))
+                      "final_text": r["final_text"], "attempts_used": r["attempts_used"],
+                      "rejected": r["rejected"]}
+            e = await with_retries(lambda: eager.run(text), eager_valid)
             row = {"request": label, "text": text, "repeat": rep, "router": router,
                    "eager": {k: e.get(k) for k in ("turns", "turn_count", "tool_calls",
                                                    "operations_called", "executed",
                                                    "prompt_tokens", "final_text",
-                                                   "truncated", "error", "attempts_used")}}
+                                                   "truncated", "error", "attempts_used",
+                                                   "rejected")}}
             rows.append(row)
             ratio = (e.get("prompt_tokens") or 0) / max(1, router["total_prompt_tokens"])
             print(f"{label:32s} rep {rep}: ROUTER agent {agent_tokens:5d} "
@@ -325,6 +395,8 @@ async def main_async(args) -> dict:
                   f"| ratio {ratio:.1f}x", flush=True)
             await asyncio.sleep(args.pause)
     return {"model": vertex_env.MODEL, "instruction": INSTRUCTION,
+            "validity": "every recorded run executed all of its downstream tool "
+                        "calls successfully; runs with any failed call were rejected",
             "requests": REQUESTS, "repeats": args.repeats, "rows": rows}
 
 

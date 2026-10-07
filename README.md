@@ -83,7 +83,11 @@ FAISS top 10, makes one planning call that orders the steps and fills their
 arguments, and executes the plan. The ROUTER total counts every generation
 prompt on that path: every primary-agent turn plus every planning call. The
 log records each call's prompt tokens, the shortlist, the plan, the executed
-operations, and the tool outputs.
+operations, and the tool outputs. With `--spawn-servers` the harness points
+every MCP client at the local servers (overriding any `*_MCP_URL` in a `.env`),
+checks that all 18 servers answer a tool call before starting, and rejects and
+retries any run in which a downstream tool call fails, so every recorded run
+executed all of its tool calls.
 
 ### Rebuilding the vectors
 
@@ -118,6 +122,13 @@ and limitations.
 | Multi-vector, 5-fold CV | 97.62 % | 95.9 - 98.6 |
 | Jev 1.13, all 101 descriptions | 97.82 % | 96.1 - 98.8 |
 | Selector over flat top 5 | 98.02 % | 96.4 - 98.9 |
+
+On three matched compound requests (Table 7), counting every prompt on both
+paths, ROUTER used 5.3x fewer prompt tokens than an eager ADK agent loading all
+101 tool schemas (pooled over nine runs; 4.0-9.4x per request). The advantage
+is 8.9-9.4x when the primary agent delegates the whole request to the
+orchestrator in one call and 3.9-4.7x when it splits the chain into per-step
+calls.
 
 
 ## License
