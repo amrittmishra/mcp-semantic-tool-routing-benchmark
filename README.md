@@ -119,9 +119,6 @@ and limitations.
 | Jev 1.13, all 101 descriptions | 97.82 % | 96.1 - 98.8 |
 | Selector over flat top 5 | 98.02 % | 96.4 - 98.9 |
 
-On three matched compound requests (Table 7), counting every prompt on both
-paths, ROUTER used 8.3x fewer prompt tokens than an eager ADK agent loading all
-101 tool schemas (pooled over nine runs; 7.3-10.4x per request).
 
 ## License
 
