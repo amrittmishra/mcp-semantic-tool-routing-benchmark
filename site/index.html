@@ -196,6 +196,7 @@ footer a:hover{color:var(--accent)}
     <span><b>101</b>semantic operations</span>
     <span><b>18</b>synthetic MCP servers</span>
     <span><b>505</b>hand-authored queries</span>
+    <span><b>202</b>supplementary requests</span>
     <span><b>606</b>indexed examples</span>
     <span><b>24</b>compound requests</span>
   </p>
@@ -219,7 +220,7 @@ footer a:hover{color:var(--accent)}
     </tbody>
   </table>
   </div>
-  <p class="note prose">Top-3 recall of the dense baseline is 99.60%. For 23 of 24 compound requests, a single embedding places every constituent operation within its top 10. On three matched compound requests, counting every prompt on both paths, routing used 5.3&times; fewer prompt tokens than an eager agent loading all 101 schemas (4.0&ndash;9.4&times; per request). These are operation-routing and cost results, not end-to-end task success. Scripts are modules under <code>benchmark/</code>; the README states for each table whether it reproduces offline, ships with run logs, or must be re-run with an API key.</p>
+  <p class="note prose">Top-3 recall of the dense baseline is 99.60%. For 23 of 24 compound requests, a single embedding places every constituent operation within its top 10. On three matched compound requests, counting every prompt on both paths, routing used 5.3&times; fewer prompt tokens than an eager agent loading all 101 schemas (4.0&ndash;9.4&times; per request). On 202 supplementary, model-authored requests the gating loss and lexical results replicate and the selector (100%) and Jev (98.51%) hold up, but the multi-vector gain does not (93.56% against 94.06% flat). These are operation-routing and cost results, not end-to-end task success. Scripts are modules under <code>benchmark/</code>; the README states for each table whether it reproduces offline, ships with run logs, or must be re-run with an API key.</p>
 </section>
 
 <section id="qos">
@@ -257,6 +258,7 @@ python -m benchmark.research.qos_dynamic --experiment all</code></pre>
       <tr><td><code>queries.csv</code></td><td class="num">505</td><td>Hand-authored routing queries with gold operation, tool and server labels</td></tr>
       <tr><td><code>tool_examples.csv</code></td><td class="num">606</td><td>Positive and negative example phrasings used in the indexed documents</td></tr>
       <tr><td><code>tool_parameters.csv</code></td><td class="num">160</td><td>Flattened input-schema parameters</td></tr>
+      <tr><td><code>queries_supplementary.csv</code></td><td class="num">202</td><td>Model-authored, scenario-based requests, two per operation; a non-independent stress test written with access to the catalogue</td></tr>
     </tbody>
   </table>
   </div>

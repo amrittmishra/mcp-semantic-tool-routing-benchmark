@@ -1,4 +1,5 @@
-"""Full prompt-token cost of ROUTER and EAGER on the three Table 7 requests.
+"""Full prompt-token cost of ROUTER and EAGER on the three Table 8 requests
+(the script name predates the renumbering).
 
     python -m benchmark.research.table7_chain_cost --spawn-servers --repeats 3
 
@@ -45,7 +46,7 @@ from orchestrator.router import Router
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 OUTPUT = pathlib.Path(__file__).resolve().parents[1] / "table7_chain_cost.json"
 
-# The chain samples of the evaluation UI, i.e. the three requests in Table 7.
+# The chain samples of the evaluation UI, i.e. the three requests in Table 8.
 REQUESTS = [
     ("PDF extract, summarize", "Pull the text out of report.pdf and give me a short summary"),
     ("Paper search, cite, summarize",

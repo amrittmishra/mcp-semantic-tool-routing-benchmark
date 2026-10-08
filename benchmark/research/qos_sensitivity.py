@@ -1,4 +1,4 @@
-"""One-factor sensitivity sweeps for the QoS marketplace (paper Table 10).
+"""One-factor sensitivity sweeps for the QoS marketplace (paper Table 11).
 
     python -m benchmark.research.qos_sensitivity
     python -m benchmark.research.qos_sensitivity --requests 10000 --seeds 20 --json out.json
